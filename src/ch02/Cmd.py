@@ -3,13 +3,16 @@ class Cmd():
     versionFlag = False
     cpOption = ""
     className = ""
+    XjreOption = ""
     args = []
 
     def __init__(self, options, argvs):
         if options.versionFlag:
             self.__printVersion()
-        elif options.cpOption:
+        if options.cpOption:
             self.cpOption = options.cpOption
+        if options.XjreOption:
+            self.XjreOption = options.XjreOption
 
         if argvs:
             self.className = argvs[0]
