@@ -1,4 +1,4 @@
-from ch02.classpath.Entry import Entry
+from ch03.classpath.Entry import Entry
 import os.path
 import zipfile
 

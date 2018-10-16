@@ -22,7 +22,9 @@ def startJVM(cmd):
     className = cmd.className.replace(".", "/")
     classData, _ = cp.readClass(className)
 
-    print("class data:{0}".format([int(hex(data), 16) for data in classData]))
+
+    print("class data:{0}".format([int(data, 16) for data in classData]))
+    # print("class data:{0}".format(classData))
 
 main()
 
