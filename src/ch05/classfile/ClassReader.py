@@ -1,5 +1,3 @@
-import struct
-
 #读取字节的类
 class ClassReader():
     def __init__(self, classData):
@@ -8,22 +6,22 @@ class ClassReader():
     def readUnit8(self):
         val = self.data[:1]
         self.data = self.data[1:]
-        return bytes([int(t, 16) for t in val])
+        return val
 
     def readUnit16(self):
         val = self.data[:2]
         self.data = self.data[2:]
-        return bytes([int(t, 16) for t in val])
+        return val
 
     def readUnit32(self):
         val = self.data[:4]
         self.data = self.data[4:]
-        return bytes([int(t, 16) for t in val])
+        return val
 
     def readUnit64(self):
         val = self.data[:8]
         self.data = self.data[8:]
-        return bytes([int(t, 16) for t in val])
+        return val
 
     def readUnit16s(self):
         n = int.from_bytes(self.readUnit16(), byteorder = 'big')
@@ -35,4 +33,4 @@ class ClassReader():
     def readBytes(self, n):
         bytes = self.data[:n]
         self.data = self.data[n:]
-        return bytearray([int(t, 16) for t in bytes])
+        return bytearray(bytes)

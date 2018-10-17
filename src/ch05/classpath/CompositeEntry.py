@@ -13,8 +13,8 @@ class CompositeEntry(Entry):
         for entry in self.compositeEntryList:
             data, fromEntry = entry.readClass(className)
             if data:
-                return data, fromEntry
-        return print("class not found:{0}".format(className))
+                return data, fromEntry, None
+        return None, None, "class not found:{0}".format(className)
 
     def __str__(self):
         return Entry.pathListSeparator.join(str(entry) for entry in self.compositeEntryList)

@@ -2,14 +2,14 @@ class Stack():
     def __init__(self, maxSize):
         self.maxSize = maxSize
         self.size = 0
-        self._top = None
+        self._top = 0
 
     def push(self, frame):
         if self.size >= self.maxSize:
             raise RuntimeError("java.lang.StackOverflowError")
         if self._top:
             frame.lower = self._top
-        self.top = frame
+        self._top = frame
         self.size += 1
 
     def pop(self):

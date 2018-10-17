@@ -7,7 +7,7 @@ class DirEntry(Entry):
 
     def readClass(self,className):
         fileName = os.path.join(self.absDir, className)
-        data = open(fileName, "r").read()
+        data = open(fileName, "rb").read()
         return data, self
 
     def __str__(self):

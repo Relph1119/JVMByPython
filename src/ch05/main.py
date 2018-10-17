@@ -1,6 +1,8 @@
 from optparse import OptionParser
 from ch05.Cmd import Cmd
-from ch05.rtda.Frame import Frame
+from ch05.classpath.Classpath import Classpath
+from ch05.classfile.ClassFile import ClassFile
+from ch05.Interpreter import Interpreter
 
 def main():
     parser = OptionParser(usage="%prog [-options] class [args...]")
@@ -16,41 +18,29 @@ def main():
     startJVM(cmd)
 
 def startJVM(cmd):
-   frame = Frame(100, 100)
-   testLocalVars(frame.localVars)
-   testOperandStack(frame.operandStack)
+    cp = Classpath().parse(cmd.XjreOption, cmd.cpOption)
+    print("classpath:{0} class:{1} args:{2}".format(cp, cmd.className, cmd.args))
 
-def testLocalVars(vars):
-    vars.setNumeric(0, 100)
-    vars.setNumeric(1, -100)
-    vars.setNumeric(2, 2997924580)
-    vars.setNumeric(3, -2997924580)
-    vars.setNumeric(4, 3.1415926)
-    vars.setNumeric(5, 2.71828182845)
-    vars.setRef(6, None)
-    print(vars.getNumeric(0))
-    print(vars.getNumeric(1))
-    print(vars.getNumeric(2))
-    print(vars.getNumeric(3))
-    print(vars.getNumeric(4))
-    print(vars.getNumeric(5))
-    print(vars.getRef(6))
+    className = cmd.className.replace(".", "/")
+    cf = loadClass(className, cp)
+    mainMethod = getMainMethod(cf)
+    if mainMethod:
+        Interpreter.interpret(mainMethod)
+    else:
+        print("Main method not found in class {0}".format(cmd.className))
 
-def testOperandStack(ops):
-    ops.pushNumeric(100)
-    ops.pushNumeric(-100)
-    ops.pushNumeric(2997924580)
-    ops.pushNumeric(-2997924580)
-    ops.pushNumeric(3.1415926)
-    ops.pushNumeric(2.71828182845)
-    ops.pushRef(None)
-    print(ops.popRef())
-    print(ops.popNumeric())
-    print(ops.popNumeric())
-    print(ops.popNumeric())
-    print(ops.popNumeric())
-    print(ops.popNumeric())
-    print(ops.popNumeric())
+def loadClass(className, classPath):
+    classData, _ = classPath.readClass(className)
+
+    classfile = ClassFile(classData)
+    cf = classfile.parse()
+    return cf
+
+def getMainMethod(classFile):
+    for m in classFile.methods:
+        if m.name() == "main" and m.descriptor() == "([Ljava/lang/String;)V":
+            return m
+    return None
 
 main()
 

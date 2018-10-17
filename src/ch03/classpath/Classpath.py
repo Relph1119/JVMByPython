@@ -50,9 +50,13 @@ class Classpath:
     def readClass(self, className):
         className = className + ".class"
         if self.bootClasspath:
-            return self.bootClasspath.readClass(className)
+            data, entry, error = self.bootClasspath.readClass(className)
+            if not error:
+                return data, entry
         if self.extClassPath:
-            return self.extClassPath.readClass(className)
+            data, entry, error = self.extClassPath.readClass(className)
+            if not error:
+                return data, entry
         return self.userClasspath.readClass(className)
 
     def __str__(self):

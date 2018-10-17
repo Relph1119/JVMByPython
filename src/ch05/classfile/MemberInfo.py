@@ -30,3 +30,12 @@ class MemberInfo():
 
     def descriptor(self):
         return self.cp.getUtf8(self.descriptorIndex)
+
+    def codeAttribute(self):
+        from ch05.classfile.AttrCode import CodeAttribute
+
+        for attrInfo in self.attributes:
+            if isinstance(attrInfo, CodeAttribute):
+                return attrInfo
+
+        return None

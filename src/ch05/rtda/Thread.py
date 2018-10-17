@@ -14,5 +14,8 @@ class Thread():
     def currentFrame(self):
         return self.stack.top()
 
+    def newFrame(self, maxLocals, maxStack):
+        from ch05.rtda.Frame import Frame
+        return Frame(self, maxLocals, maxStack)
 
 

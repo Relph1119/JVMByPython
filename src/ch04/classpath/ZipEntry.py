@@ -15,7 +15,6 @@ class ZipEntry(Entry):
             for file in z.filelist:
                 if file.filename == className:
                     data = z.open(file, 'r').read()
-                    data = [hex(d) for d in data]
                     break
 
         return data, self
