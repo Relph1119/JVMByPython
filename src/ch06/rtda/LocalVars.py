@@ -1,4 +1,4 @@
-from ch05.rtda.Slot import Slot
+from ch06.rtda.Slot import Slot
 
 class LocalVars():
     def __init__(self, maxLocals):

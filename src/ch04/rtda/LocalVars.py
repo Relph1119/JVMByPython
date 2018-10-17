@@ -1,4 +1,3 @@
-import struct
 from ch04.rtda.Slot import Slot
 
 class LocalVars():
