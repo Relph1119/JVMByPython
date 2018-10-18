@@ -52,11 +52,11 @@ class Classpath:
         if self.bootClasspath:
             data, entry, error = self.bootClasspath.readClass(className)
             if not error:
-                return data, entry
+                return data, entry, None
         if self.extClassPath:
             data, entry, error = self.extClassPath.readClass(className)
             if not error:
-                return data, entry
+                return data, entry, None
         return self.userClasspath.readClass(className)
 
     def __str__(self):

@@ -1,11 +1,12 @@
 from ch06.instructions.base.Instruction import NoOperandsInstruction
+import copy
 
 class DUP(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
         slot = stack.popSlot()
         stack.pushSlot(slot)
-        stack.pushSlot(slot)
+        stack.pushSlot(copy.deepcopy(slot))
 
 class DUP_X1(NoOperandsInstruction):
     def execute(self, frame):
@@ -14,7 +15,7 @@ class DUP_X1(NoOperandsInstruction):
         slot2 = stack.popSlot()
         stack.pushSlot(slot1)
         stack.pushSlot(slot2)
-        stack.pushSlot(slot1)
+        stack.pushSlot(copy.deepcopy(slot1))
 
 class DUP_X2(NoOperandsInstruction):
     def execute(self, frame):
@@ -25,7 +26,7 @@ class DUP_X2(NoOperandsInstruction):
         stack.pushSlot(slot1)
         stack.pushSlot(slot3)
         stack.pushSlot(slot2)
-        stack.pushSlot(slot1)
+        stack.pushSlot(copy.deepcopy(slot1))
 
 class DUP2(NoOperandsInstruction):
     def execute(self, frame):
@@ -34,8 +35,8 @@ class DUP2(NoOperandsInstruction):
         slot2 = stack.popSlot()
         stack.pushSlot(slot2)
         stack.pushSlot(slot1)
-        stack.pushSlot(slot2)
-        stack.pushSlot(slot1)
+        stack.pushSlot(copy.deepcopy(slot2))
+        stack.pushSlot(copy.deepcopy(slot1))
 
 class DUP2_X1(NoOperandsInstruction):
     def execute(self, frame):
@@ -46,8 +47,8 @@ class DUP2_X1(NoOperandsInstruction):
         stack.pushSlot(slot2)
         stack.pushSlot(slot1)
         stack.pushSlot(slot3)
-        stack.pushSlot(slot2)
-        stack.pushSlot(slot1)
+        stack.pushSlot(copy.deepcopy(slot2))
+        stack.pushSlot(copy.deepcopy(slot1))
 
 class DUP2_X2(NoOperandsInstruction):
     def execute(self, frame):
@@ -60,5 +61,5 @@ class DUP2_X2(NoOperandsInstruction):
         stack.pushSlot(slot1)
         stack.pushSlot(slot4)
         stack.pushSlot(slot3)
-        stack.pushSlot(slot2)
-        stack.pushSlot(slot1)
+        stack.pushSlot(copy.deepcopy(slot2))
+        stack.pushSlot(copy.deepcopy(slot1))

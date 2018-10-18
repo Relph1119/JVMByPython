@@ -3,17 +3,12 @@ from ch06.rtda.Thread import Thread
 class Interpreter():
 
     @staticmethod
-    def interpret(methodInfo):
-        codeAttr = methodInfo.codeAttribute()
-        maxLocals = codeAttr.maxLocals
-        maxStack = codeAttr.maxStack
-        bytecode = codeAttr.code
-
+    def interpret(method):
         thread = Thread()
-        frame = thread.newFrame(maxLocals,maxStack)
+        frame = thread.newFrame(method)
         thread.pushFrame(frame)
         try:
-            Interpreter.loop(thread, bytecode)
+            Interpreter.loop(thread, method.code)
         except RuntimeError as e:
             print("LocalVars: {0}".format(frame.localVars))
             print("OperandStack: {0}".format(frame.operandStack))

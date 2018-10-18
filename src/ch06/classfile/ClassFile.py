@@ -19,16 +19,19 @@ class ClassFile():
         self.attributes = []
 
     def parse(self):
-        cr = ClassReader(self.classData)
-        self.read(cr)
-        return self
+        try:
+            cr = ClassReader(self.classData)
+            self.read(cr)
+            return self, None
+        except Exception as e:
+            return self, e
 
     def read(self, classReader):
         self.readAndCheckMaigc(classReader)
         self.readAndCheckVersion(classReader)
         self.constantPool = ConstantPool()
         self.constantPool.readConstantPool(classReader)
-        self.accessFlags = classReader.readUnit16()
+        self.accessFlags = int.from_bytes(classReader.readUnit16(), byteorder="big")
         self.thisClass = int.from_bytes(classReader.readUnit16(), byteorder="big")
         self.superClass = int.from_bytes(classReader.readUnit16(), byteorder="big")
         self.interfaces = classReader.readUnit16s()

@@ -1,8 +1,8 @@
 
 
 class ConstantPool():
-    def __init__(self):
-        self.cp = []
+    def __init__(self, cp=[]):
+        self.cp = cp
 
     def readConstantPool(self, classReader):
         from ch06.classfile.CpNumeric import ConstantLongInfo, ConstantDoubleInfo
