@@ -1,8 +1,8 @@
 from optparse import OptionParser
-from ch06.Cmd import Cmd
-from ch06.classpath.Classpath import Classpath
-from ch06.classfile.ClassFile import ClassFile
-from ch06.Interpreter import Interpreter
+from ch07.Cmd import Cmd
+from ch07.classpath.Classpath import Classpath
+from ch07.classfile.ClassFile import ClassFile
+from ch07.Interpreter import Interpreter
 
 def main():
     parser = OptionParser(usage="%prog [-options] class [args...]")
@@ -17,7 +17,7 @@ def main():
         startJVM(cmd)
 
 def startJVM(cmd):
-    from ch06.rtda.heap.ClassLoader import ClassLoader
+    from ch07.rtda.heap.ClassLoader import ClassLoader
 
     cp = Classpath().parse(cmd.XjreOption, cmd.cpOption)
     print("classpath:{0} class:{1} args:{2}".format(cp, cmd.className, cmd.args))
