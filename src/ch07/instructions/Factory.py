@@ -50,6 +50,10 @@ from ch07.instructions.references.Ldc import *
 from ch07.instructions.references.New import *
 from ch07.instructions.references.Invokespecial import *
 from ch07.instructions.references.Invokevirtual import *
+from ch07.instructions.references.Invokeinterface import *
+from ch07.instructions.references.Invokestatic import *
+from ch07.instructions.control.Return import *
+
 
 class Factory():
 
@@ -147,6 +151,7 @@ class Factory():
             return ALOAD_2()
         elif opcode == 0x2d:
             return ALOAD_3()
+
         elif opcode == 0x36:
             return ISTORE()
         elif opcode == 0x37:
@@ -365,7 +370,18 @@ class Factory():
             return TABLE_SWITCH()
         elif opcode == 0xab:
             return LOOKUP_SWITCH()
-
+        elif opcode == 0xac:
+            return IRETURN()
+        elif opcode == 0xad:
+            return LRETURN()
+        elif opcode == 0xae:
+            return FRETURN()
+        elif opcode == 0xaf:
+            return DRETURN()
+        elif opcode == 0xb0:
+            return ARETURN()
+        elif opcode == 0xb1:
+            return RETURN()
         elif opcode == 0xb2:
             return GET_STATIC()
         elif opcode == 0xb3:
@@ -378,6 +394,10 @@ class Factory():
             return INVOKE_VIRTURL()
         elif opcode == 0xb7:
             return INVOKE_SPECIAL()
+        elif opcode == 0xb8:
+            return INVOKE_STATIC()
+        elif opcode == 0xb9:
+            return INVOKE_INTERFACE()
 
         elif opcode == 0xbb:
             return NEW()

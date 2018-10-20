@@ -2,12 +2,20 @@ from ch07.instructions.base.Instruction import Index16Instruction
 
 class PUT_STATIC(Index16Instruction):
     def execute(self, frame):
+        from ch07.instructions.base.ClassInitLogic import ClassInitLogic
+
+
         currentMethod = frame.method
         currentClass = currentMethod.getClass()
         cp = currentClass.constantPool
         fieldRef = cp.getConstant(self.index)
         field = fieldRef.resolveField()
         clazz = field.getClass()
+
+        if not clazz.initStarted:
+            frame.revertNextPC()
+            ClassInitLogic.initClass(frame.thread, clazz)
+            return
 
         if not field.isStatic():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")

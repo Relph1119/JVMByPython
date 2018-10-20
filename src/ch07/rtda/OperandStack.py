@@ -33,5 +33,8 @@ class OperandStack():
         self.size -= 1
         return self.slots[self.size]
 
+    def getRefFromTop(self, n):
+        return self.slots[self.size - 1 - n].ref
+
     def __str__(self):
         return "size:{0} slots:{1}".format(self.size, [str(t) for t in self.slots])

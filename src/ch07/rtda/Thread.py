@@ -18,4 +18,10 @@ class Thread():
         from ch07.rtda.Frame import Frame
         return Frame(self, method)
 
+    def topFrame(self):
+        return self.stack.top()
+
+    def isStackEmpty(self):
+        return self.stack.isEmpty()
+
 

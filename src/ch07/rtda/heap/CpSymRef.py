@@ -7,7 +7,7 @@ class SymRef():
     def getClass(self):
         return self._class
 
-    def resolveClass(self):
+    def resolvedClass(self):
         if not self.getClass():
             self.resolveClassRef()
 

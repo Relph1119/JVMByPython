@@ -10,7 +10,7 @@ class CHECK_CAST(Index16Instruction):
 
         cp = frame.method.getClass().constantPool
         classRef = cp.getConstant(self.index)
-        clazz = classRef.resolveClass()
+        clazz = classRef.resolvedClass()
         if not ref.isInstanceOf(clazz):
             raise RuntimeError("java.lang.ClassCastException")
 

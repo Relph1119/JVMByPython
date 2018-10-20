@@ -10,5 +10,7 @@ class Frame():
         self.thread = thread
         self.nextPC = 0
 
+    def revertNextPC(self):
+        self.nextPC = self.thread.pc
 
 

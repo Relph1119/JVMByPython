@@ -1,12 +1,14 @@
 class ClassLoader():
     def __init__(self):
         self.cp = None
+        self.verboseFlag = False
         self.classMap = None
 
     @staticmethod
-    def newClassLoader(classPath):
+    def newClassLoader(classPath, verboseFlag):
         classLoader = ClassLoader()
         classLoader.cp = classPath
+        classLoader.verboseFlag = verboseFlag
         classLoader.classMap = dict()
         return classLoader
 
@@ -21,7 +23,8 @@ class ClassLoader():
         data, entry = self.readClass(name)
         clazz = self.defineClass(data)
         ClassLoader.link(clazz)
-        print("[Loaded {0} from {1}]".format(name, entry))
+        if self.verboseFlag:
+            print("[Loaded {0} from {1}]".format(name, entry))
         return clazz
 
     def readClass(self, name):

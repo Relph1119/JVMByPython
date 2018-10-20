@@ -19,7 +19,7 @@ class FieldRef(MemberRef):
 
     def resolveFieldRef(self):
         d = self.cp.getClass()
-        c = self.resolveClass()
+        c = self.resolvedClass()
         field = FieldRef.lookupField(c, self.name, self.descriptor)
 
         if not field:

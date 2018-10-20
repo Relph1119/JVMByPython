@@ -2,8 +2,8 @@ from ch07.instructions.base.Instruction import NoOperandsInstruction
 
 def _sub(frame):
     stack = frame.operandStack
-    v1 = stack.popNumeric()
     v2 = stack.popNumeric()
+    v1 = stack.popNumeric()
     result = v1 - v2
     stack.pushNumeric(result)
 

@@ -9,4 +9,3 @@ class MemberRef(SymRef):
     def copyMemberRefInfo(self, refInfo):
         self.className = refInfo.className()
         self.name, self.descriptor = refInfo.nameAndDescrptor()
-

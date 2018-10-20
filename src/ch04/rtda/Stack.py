@@ -19,7 +19,7 @@ class Stack():
         top = self._top
         self._top = top.lower
         top.lower = None
-        self.size += 1
+        self.size -= 1
 
         return top
 

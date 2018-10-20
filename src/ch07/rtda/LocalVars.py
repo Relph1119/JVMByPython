@@ -1,4 +1,5 @@
 from ch07.rtda.Slot import Slot
+import copy
 
 class LocalVars():
     def __init__(self, maxLocals):
@@ -17,6 +18,9 @@ class LocalVars():
 
     def getRef(self, index):
         return self.slots[index].ref
+
+    def setSlot(self, index, slot):
+        self.slots[index] = copy.deepcopy(slot)
 
     def __str__(self):
         return "slots:{0}".format([str(t) for t in self.slots])

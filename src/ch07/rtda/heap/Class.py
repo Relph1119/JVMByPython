@@ -15,6 +15,7 @@ class Class():
         self.instanceSlotCount = 0
         self.staticSlotCount = 0
         self.staticVars = None
+        self.initStarted = False
 
     @staticmethod
     def newClass(classFile):
@@ -100,16 +101,25 @@ class Class():
 
         return False
 
+    def isSuperClassOf(self, otherClass):
+        return otherClass.isSubClassOf(self)
+
     def getMainMethod(self):
         return self.getStaticMethod("main", "([Ljava/lang/String;)V")
 
     def getStaticMethod(self, name, descriptor):
-        for m in self.methods:
-            if m.isStatic() and m.name == "main" and m.descriptor == "([Ljava/lang/String;)V":
-                return m
+        for method in self.methods:
+            if method.isStatic() and method.name == name and  method.descriptor == descriptor:
+                return method
         return None
 
     def newObject(self):
         from ch07.rtda.heap.Object import Object
 
         return Object.newObject(self)
+
+    def startInit(self):
+        self.initStarted = True
+
+    def getClinitMethod(self):
+        return self.getStaticMethod("<clinit>", "()V")

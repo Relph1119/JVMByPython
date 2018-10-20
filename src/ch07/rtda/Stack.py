@@ -19,7 +19,7 @@ class Stack():
         top = self._top
         self._top = top.lower
         top.lower = None
-        self.size += 1
+        self.size -= 1
 
         return top
 
@@ -27,3 +27,6 @@ class Stack():
         if not self._top:
             raise RuntimeError("jvm stack is empty!")
         return self._top
+
+    def isEmpty(self):
+        return not self._top

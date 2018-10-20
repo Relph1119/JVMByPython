@@ -1,6 +1,7 @@
 class Cmd():
-
     versionFlag = False
+    verboseClassFlag = False
+    verboseInstFlag = False
     cpOption = ""
     className = ""
     XjreOption = ""
@@ -13,6 +14,10 @@ class Cmd():
             self.cpOption = options.cpOption
         if options.XjreOption:
             self.XjreOption = options.XjreOption
+        if options.verboseClassFlag:
+            self.verboseClassFlag = options.verboseClassFlag
+        if options.verboseInstFlag:
+            self.verboseInstFlag = options.verboseInstFlag
 
         if argvs:
             self.className = argvs[0]
