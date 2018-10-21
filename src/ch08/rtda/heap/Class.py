@@ -71,10 +71,28 @@ class Class():
         if s == t:
             return True
 
-        if not t.isInterface():
-            return s.isSubClassOf(t)
+        if not s.isArray():
+            if not s.isInterface():
+                if not t.isInterface():
+                    return s.isSubClassOf(t)
+                else:
+                    return s.isImplements(t)
+            else:
+                if not t.isInterface():
+                    return t.isJlObject()
+                else:
+                    return t.isSuperInterfaceOf(s)
         else:
-            return s.isImplements(t)
+            if not t.isArray():
+                if not t.isInterface():
+                    return t.isJlObject()
+                else:
+                    return t.isJlCloneable() or t.isJioSerializable()
+            else:
+                sc = s.componentClass()
+                tc = t.componentClass()
+                return sc == tc or tc.isAssignableFrom(sc)
+
 
     def isSubClassOf(self, otherClass):
         c = self.superClass
@@ -104,6 +122,9 @@ class Class():
     def isSuperClassOf(self, otherClass):
         return otherClass.isSubClassOf(self)
 
+    def isSuperInterfaceOf(self, iface):
+        return iface.isSubInterfaceOf(self)
+
     def getMainMethod(self):
         return self.getStaticMethod("main", "([Ljava/lang/String;)V")
 
@@ -123,3 +144,40 @@ class Class():
 
     def getClinitMethod(self):
         return self.getStaticMethod("<clinit>", "()V")
+
+    ##数组Class
+    def newArray(self, count):
+        from ch08.rtda.heap.Object import Object
+        if not self.isArray():
+            raise RuntimeError("Not array class: " + self.name)
+        return Object(self, count)
+
+    def isArray(self):
+        return self.name[0] == '['
+
+    def isJlObject(self):
+        return self.name == "java/lang/Object"
+
+    def isJlCloneable(self):
+        return self.name == "java/lang/Cloneable"
+
+    def isJioSerializable(self):
+        return self.name == "java/io/Serializable"
+
+    def arrayClass(self):
+        from ch08.rtda.heap.ClassNameHelper import ClassNameHelper
+
+        arrayClassName = ClassNameHelper.getArrayClassName(self.name)
+        return self.loader.loadClass(arrayClassName)
+
+    def componentClass(self):
+        componentCLassName = Class.getComponentClassName(self.name)
+        return self.loader.loadClass(componentCLassName)
+
+    @staticmethod
+    def getComponentClassName(className):
+        from ch08.rtda.heap.ClassNameHelper import ClassNameHelper
+
+        if className[0] == '[':
+            componentTypeDescriptor = className[1:]
+            return ClassNameHelper.toClassName(componentTypeDescriptor)

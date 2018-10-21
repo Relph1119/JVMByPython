@@ -52,6 +52,12 @@ from ch08.instructions.references.Invokespecial import *
 from ch08.instructions.references.Invokevirtual import *
 from ch08.instructions.references.Invokeinterface import *
 from ch08.instructions.references.Invokestatic import *
+from ch08.instructions.loads.Xaload import *
+from ch08.instructions.stores.Xastore import *
+from ch08.instructions.references.Anewarray import *
+from ch08.instructions.references.ArrayLength import *
+from ch08.instructions.references.Multianewarray import *
+from ch08.instructions.references.Newarray import *
 from ch08.instructions.control.Return import *
 
 
@@ -151,7 +157,22 @@ class Factory():
             return ALOAD_2()
         elif opcode == 0x2d:
             return ALOAD_3()
-
+        elif opcode == 0x2e:
+            return IALOAD()
+        elif opcode == 0x2f:
+            return LALOAD()
+        elif opcode == 0x30:
+            return FALOAD()
+        elif opcode == 0x31:
+            return DALOAD()
+        elif opcode == 0x32:
+            return AALOAD()
+        elif opcode == 0x33:
+            return BALOAD()
+        elif opcode == 0x34:
+            return CALOAD()
+        elif opcode == 0x35:
+            return SALOAD()
         elif opcode == 0x36:
             return ISTORE()
         elif opcode == 0x37:
@@ -202,7 +223,20 @@ class Factory():
             return ASTORE_2()
         elif opcode == 0x4e:
             return ASTORE_3()
-
+        elif opcode == 0x4f:
+            return IASTORE()
+        elif opcode == 0x51:
+            return FASTORE()
+        elif opcode == 0x52:
+            return DASTORE()
+        elif opcode == 0x53:
+            return AASTORE()
+        elif opcode == 0x54:
+            return BASTORE()
+        elif opcode == 0x55:
+            return CASTORE()
+        elif opcode == 0x56:
+            return SASTORE()
         elif opcode == 0x57:
             return POP()
         elif opcode == 0x58:
@@ -401,6 +435,12 @@ class Factory():
 
         elif opcode == 0xbb:
             return NEW()
+        elif opcode == 0xbc:
+            return NEW_ARRAY()
+        elif opcode == 0xbd:
+            return ANEW_ARRAY()
+        elif opcode == 0xbe:
+            return ARRAY_LENGTH()
 
         elif opcode == 0xc0:
             return CHECK_CAST()
@@ -409,7 +449,8 @@ class Factory():
 
         elif opcode == 0xc4:
             return WIDE()
-
+        elif opcode == 0xc5:
+            return MULTI_ANEW_ARRAY()
         elif opcode == 0xc6:
             return IFNULL()
         elif opcode == 0xc7:

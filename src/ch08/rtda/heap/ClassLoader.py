@@ -16,9 +16,23 @@ class ClassLoader():
         clazz = self.classMap.get(name)
         if clazz:
             return clazz
-        else:
-            return self.loadNonArrayClass(name)
+        if name[0] == '[':
+            return self.loadArrayClass(name)
+        return self.loadNonArrayClass(name)
 
+    def loadArrayClass(self, name):
+        from ch08.rtda.heap.Class import Class
+        from ch08.rtda.heap.AccessFlags import AccessFlags
+        clazz = Class()
+        clazz.accessFlags = AccessFlags.ACC_PUBLIC
+        clazz.name = name
+        clazz.loader = self
+        clazz.initStarted = True
+        clazz.superClass = self.loadClass("java/lang/Object")
+        clazz.interfaces = [self.loadClass("java/lang/Cloneable"), self.loadClass("java/io/Serializable")]
+        self.classMap[name] = clazz
+        return clazz
+    
     def loadNonArrayClass(self, name):
         data, entry = self.readClass(name)
         clazz = self.defineClass(data)

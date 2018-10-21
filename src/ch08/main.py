@@ -1,7 +1,6 @@
 from optparse import OptionParser
 from ch08.Cmd import Cmd
 from ch08.classpath.Classpath import Classpath
-from ch08.classfile.ClassFile import ClassFile
 from ch08.Interpreter import Interpreter
 
 def main():
