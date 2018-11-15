@@ -1,4 +1,4 @@
-class ClassLoader():
+class ClassLoader:
     def __init__(self):
         self.cp = None
         self.verboseFlag = False
@@ -128,6 +128,8 @@ class ClassLoader():
 
     @staticmethod
     def initStaticFinalVar(clazz, field):
+        from ch08.rtda.heap.StringPool import StringPool
+
         vars = clazz.staticVars
         cp = clazz.constantPool
         cpIndex = field.constValueIndex
@@ -138,7 +140,9 @@ class ClassLoader():
                 val = cp.getConstant(cpIndex)
                 vars.setNumeric(slotId, val)
             elif field.descriptor == "Ljava/lang/String":
-                raise RuntimeError("todo")
+                goStr = cp.getConstant(cpIndex)
+                jStr = StringPool.JString(clazz.loader, goStr)
+                vars.setRef(slotId, jStr)
 
 
 

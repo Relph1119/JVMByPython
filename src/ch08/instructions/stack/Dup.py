@@ -6,7 +6,7 @@ class DUP(NoOperandsInstruction):
         stack = frame.operandStack
         slot = stack.popSlot()
         stack.pushSlot(slot)
-        stack.pushSlot(copy.deepcopy(slot))
+        stack.pushSlot(slot)
 
 class DUP_X1(NoOperandsInstruction):
     def execute(self, frame):

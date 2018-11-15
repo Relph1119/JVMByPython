@@ -1,5 +1,5 @@
 #读取字节的类
-class ClassReader():
+class ClassReader:
     def __init__(self, classData):
         self.data = classData
 

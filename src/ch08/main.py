@@ -32,7 +32,7 @@ def startJVM(cmd):
     mainMethod = mainClass.getMainMethod()
 
     if mainMethod:
-        Interpreter.interpret(mainMethod, cmd.verboseInstFlag)
+        Interpreter.interpret(mainMethod, cmd.verboseInstFlag, cmd.args)
     else:
         print("Main method not found in class {0}".format(cmd.className))
 

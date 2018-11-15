@@ -10,8 +10,7 @@ def main():
     (options, args) = parser.parse_args()
     if options:
         cmd = Cmd(options, args)
-
-    cmd.printClasspath()
+        cmd.printClasspath()
 
 main()
 

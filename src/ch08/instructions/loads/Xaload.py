@@ -31,7 +31,7 @@ class BALOAD(NoOperandsInstruction):
         checkNotNone(arrRef)
         bytes = arrRef.bytes()
         checkIndex(len(bytes), index)
-        stack.pushRef(bytes[index])
+        stack.pushNumeric(bytes[index])
 
 class CALOAD(NoOperandsInstruction):
     def execute(self, frame):
@@ -42,7 +42,7 @@ class CALOAD(NoOperandsInstruction):
         checkNotNone(arrRef)
         chars = arrRef.chars()
         checkIndex(len(chars), index)
-        stack.pushRef(chars[index])
+        stack.pushNumeric(chars[index])
 
 class DALOAD(NoOperandsInstruction):
     def execute(self, frame):
@@ -53,7 +53,7 @@ class DALOAD(NoOperandsInstruction):
         checkNotNone(arrRef)
         doubles = arrRef.doubles()
         checkIndex(len(doubles), index)
-        stack.pushRef(doubles[index])
+        stack.pushNumeric(doubles[index])
 
 class FALOAD(NoOperandsInstruction):
     def execute(self, frame):
@@ -64,7 +64,7 @@ class FALOAD(NoOperandsInstruction):
         checkNotNone(arrRef)
         floats = arrRef.floats()
         checkIndex(len(floats), index)
-        stack.pushRef(floats[index])
+        stack.pushNumeric(floats[index])
 
 class IALOAD(NoOperandsInstruction):
     def execute(self, frame):
@@ -75,7 +75,7 @@ class IALOAD(NoOperandsInstruction):
         checkNotNone(arrRef)
         ints = arrRef.ints()
         checkIndex(len(ints), index)
-        stack.pushRef(ints[index])
+        stack.pushNumeric(ints[index])
 
 class LALOAD(NoOperandsInstruction):
     def execute(self, frame):
@@ -86,7 +86,7 @@ class LALOAD(NoOperandsInstruction):
         checkNotNone(arrRef)
         longs = arrRef.longs()
         checkIndex(len(longs), index)
-        stack.pushRef(longs[index])
+        stack.pushNumeric(longs[index])
 
 class SALOAD(NoOperandsInstruction):
     def execute(self, frame):
@@ -97,4 +97,4 @@ class SALOAD(NoOperandsInstruction):
         checkNotNone(arrRef)
         shorts = arrRef.shorts()
         checkIndex(len(shorts), index)
-        stack.pushRef(shorts[index])
+        stack.pushNumeric(shorts[index])

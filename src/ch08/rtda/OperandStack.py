@@ -1,6 +1,6 @@
 from ch08.rtda.Slot import Slot
 
-class OperandStack():
+class OperandStack:
     def __init__(self, maxStack):
         self.slots = []
         if maxStack > 0:
@@ -22,7 +22,8 @@ class OperandStack():
     def popRef(self):
         self.size -= 1
         ref = self.slots[self.size].ref
-        self.slots[self.size].ref = None
+        num = self.slots[self.size].num
+        self.slots[self.size] = Slot(num, None)
         return ref
 
     def pushSlot(self, slot):

@@ -13,8 +13,7 @@ def main():
     (options, args) = parser.parse_args()
     if options:
         cmd = Cmd(options, args)
-
-    startJVM(cmd)
+        startJVM(cmd)
 
 def startJVM(cmd):
     cp = Classpath().parse(cmd.XjreOption, cmd.cpOption)

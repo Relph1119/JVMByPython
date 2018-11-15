@@ -1,6 +1,6 @@
 from ch08.rtda.heap.AccessFlags import AccessFlags
 
-class Class():
+class Class:
     def __init__(self):
         self.accessFlags = 0
         self.name = ""
@@ -181,3 +181,14 @@ class Class():
         if className[0] == '[':
             componentTypeDescriptor = className[1:]
             return ClassNameHelper.toClassName(componentTypeDescriptor)
+
+    def getField(self, name, descriptor, isStatic):
+        c = self
+        while c:
+            for field in c.fields:
+                if field.isStatic() == isStatic \
+                        and field.name == name and field.descriptor == descriptor:
+                    return field
+
+            c = c.superClass
+        return None

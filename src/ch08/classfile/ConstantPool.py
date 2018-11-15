@@ -1,6 +1,4 @@
-
-
-class ConstantPool():
+class ConstantPool:
     def __init__(self, cp=[]):
         self.cp = cp
 

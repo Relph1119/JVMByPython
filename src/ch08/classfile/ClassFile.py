@@ -3,7 +3,7 @@ from ch08.classfile.ConstantPool import ConstantPool
 from ch08.classfile.MemberInfo import MemberInfo
 from ch08.classfile.AttributeInfo import AttributeInfo
 
-class ClassFile():
+class ClassFile:
     def __init__(self, classData):
         self.classData = classData
         self.magic = ""
