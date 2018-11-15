@@ -4,6 +4,7 @@ class CompositeEntry(Entry):
     def __init__(self):
         self.compositeEntryList = []
 
+    @staticmethod
     def newCompositeEntry(pathList):
         compositeEntry = CompositeEntry()
         for _, path in pathList.split(Entry.pathListSeparator):

@@ -14,9 +14,9 @@ class Entry(metaclass=ABCMeta):
         from ch02.classpath.ZipEntry import ZipEntry
         from ch02.classpath.DirEntry import DirEntry
         if Entry.pathListSeparator in path:
-            return CompositeEntry(path)
+            return CompositeEntry.newCompositeEntry(path)
         elif path.endswith("*"):
-            return WildcardEntry(path)
+            return WildcardEntry.newWildcardEntry(path)
         elif path.endswith(".jar") or path.endswith(".JAR") or path.endswith(".zip") or path.endswith(".ZIP"):
             return ZipEntry(path)
         else:
