@@ -1,5 +1,4 @@
-class Cmd():
-
+class Cmd:
     versionFlag = False
     cpOption = ""
     className = ""

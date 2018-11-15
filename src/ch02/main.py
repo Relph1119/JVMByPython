@@ -12,16 +12,17 @@ def main():
     (options, args) = parser.parse_args()
     if options:
         cmd = Cmd(options, args)
-
-    startJVM(cmd)
+        startJVM(cmd)
 
 def startJVM(cmd):
-    cp = Classpath().parse(cmd.XjreOption, cmd.cpOption)
+    cp = Classpath.parse(cmd.XjreOption, cmd.cpOption)
     print("classpath:{0} class:{1} args:{2}".format(cp, cmd.className, cmd.args))
 
     className = cmd.className.replace(".", "/")
-    classData, _ = cp.readClass(className)
-
+    classData, _, error = cp.readClass(className)
+    if error:
+        print("Could not find or load main class {0}\n".format(cmd.className))
+        return
 
     print("class data:{0}".format([int(data, 16) for data in classData]))
     # print("class data:{0}".format(classData))

@@ -10,12 +10,18 @@ class ZipEntry(Entry):
         return self.absDir
 
     def readClass(self, className):
-        data = None
+        error, data = None, None
         with zipfile.ZipFile(self.absDir, 'r') as z:
             for file in z.filelist:
                 if file.filename == className:
-                    data = z.open(file, 'r').read()
-                    data = [hex(d) for d in data]
+                    try:
+                        data = z.open(file, 'r').read()
+                        data = [hex(d) for d in data]
+                    except Exception as e:
+                        error = e
+                        return None, None, error
                     break
-
-        return data, self
+        if not data:
+            error = "class not found:{0}".format(className)
+            return None, None, error
+        return data, self, error

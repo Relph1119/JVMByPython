@@ -1,20 +1,22 @@
 from ch02.classpath.Entry import Entry
 
 class CompositeEntry(Entry):
+    def __init__(self):
+        self.compositeEntryList = []
 
-    compositeEntryList = []
-
-    def __init__(self, pathList):
+    def newCompositeEntry(pathList):
+        compositeEntry = CompositeEntry()
         for _, path in pathList.split(Entry.pathListSeparator):
             entry = Entry.newEntry(path)
-            self.compositeEntryList.append(entry)
+            compositeEntry.compositeEntryList.append(entry)
+        return compositeEntry
 
     def readClass(self,className):
         for entry in self.compositeEntryList:
-            data, fromEntry = entry.readClass(className)
-            if data:
-                return data, fromEntry
-        return print("class not found:{0}".format(className))
+            data, fromEntry, error = entry.readClass(className)
+            if not error:
+                return data, fromEntry, None
+        return None, None, "class not found:{0}".format(className)
 
     def __str__(self):
         return Entry.pathListSeparator.join(str(entry) for entry in self.compositeEntryList)

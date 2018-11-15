@@ -7,6 +7,7 @@ class Entry(metaclass=ABCMeta):
     def readClass(self,className):
         pass
 
+    @staticmethod
     def newEntry(path):
         from ch02.classpath.CompositeEntry import CompositeEntry
         from ch02.classpath.WildcardEntry import WildcardEntry

@@ -4,55 +4,57 @@ from ch02.classpath.Entry import Entry
 
 class Classpath:
     def __init__(self):
-        self.cpOption = None
-        self.jreOption = None
+        self.bootClasspath = None
+        self.extClassPath = None
+        self.userClasspath = None
 
-    def parse(self, jreOption, cpOption):
-        self.jreOption = jreOption
-        self.cpOption = cpOption
-        self.parse_boot_and_ext_classpath()
-        self.parse_user_classpath()
-        return self
+    @staticmethod
+    def parse(jreOption, cpOption):
+        cp = Classpath()
+        cp.parse_boot_and_ext_classpath(jreOption)
+        cp.parse_user_classpath(cpOption)
+        return cp
 
-    def parse_boot_and_ext_classpath(self):
-        jreDir = self.__getJreDir()
+    def parse_boot_and_ext_classpath(self, jreOption):
+        jreDir = self.__getJreDir(jreOption)
 
         jreLibPath = os.path.join(jreDir, "lib", "*")
-        self.bootClasspath = WildcardEntry(jreLibPath)
+        self.bootClasspath = WildcardEntry.newWildcardEntry(jreLibPath)
 
         jreExtPath = os.path.join(jreDir, "lib", "ext", "*")
-        self.extClassPath = WildcardEntry(jreExtPath)
+        self.extClassPath = WildcardEntry.newWildcardEntry(jreExtPath)
 
     #得到Jre路径
-    def __getJreDir(self):
-        if self.jreOption:
-            return self.jreOption
+    def __getJreDir(self, jreOption):
+        if jreOption and self.__exists(jreOption):
+            return jreOption
         if self.__exists("./jre"):
             return "./jre"
-        jr = os.environ.get("JAVA_HOME")
-        if jr:
-            return os.path.join(jr, "jre")
+        jh = os.environ.get("JAVA_HOME")
+        if jh:
+            return os.path.join(jh, "jre")
         raise RuntimeError("Can not find jre folder!")
 
     ##判断路径是否存在
-    @staticmethod
     def __exists(self, path):
         if os.path.isdir(path):
             return True
         else:
             return False
 
-    def parse_user_classpath(self):
-        if not self.cpOption:
-            self.cpOption = "."
-        self.userClasspath = Entry.newEntry(self.cpOption)
+    def parse_user_classpath(self, cpOption):
+        if not cpOption:
+            cpOption = "."
+        self.userClasspath = Entry.newEntry(cpOption)
 
     def readClass(self, className):
         className = className + ".class"
         if self.bootClasspath:
-            return self.bootClasspath.readClass(className)
+            data, entry, error = self.bootClasspath.readClass(className)
+            return data, entry, error
         if self.extClassPath:
-            return self.extClassPath.readClass(className)
+            data, entry, error = self.extClassPath.readClass(className)
+            return data, entry, error
         return self.userClasspath.readClass(className)
 
     def __str__(self):

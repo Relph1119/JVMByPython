@@ -7,8 +7,12 @@ class DirEntry(Entry):
 
     def readClass(self,className):
         fileName = os.path.join(self.absDir, className)
-        data = open(fileName, "r").read()
-        return data, self
+        data, error = None, None
+        try:
+            data = open(fileName, "rb").read()
+        except IOError as e:
+            error = e
+        return data, self, error
 
     def __str__(self):
         return self.absDir
