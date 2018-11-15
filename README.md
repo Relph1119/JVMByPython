@@ -15,7 +15,7 @@ PyCharm 版本：PyCharm 2017.3.3 (Professional Edition)
 完成一个简易的命令行工具，使用各种参数执行JVM命令  
 传入参数：<pre>--cp foo/bar MyApp arg1 arg2</pre>
 
-![](https://i.imgur.com/8MCtDmt.png)
+![](https://i.imgur.com/i9Xfu5c.png)
 采用OptionParser作为命令行解析器，具体处理的打印输入留给Cmd类去处理。
 
 ### 第二章-搜索class文件 ###
