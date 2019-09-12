@@ -7,7 +7,7 @@ from ch07.Interpreter import Interpreter
 def main():
     parser = OptionParser(usage="%prog [-options] class [args...]")
 
-    parser.add_option("-v", "--version", action="store_true", default=False, dest="versionFlag", help="print version and exit.")
+    parser.add_option("-v", "--version", action="store_true", default=False, dest="version_flag", help="print version and exit.")
     parser.add_option("--verbose", action="store_true", default=False, dest="verboseClassFlag", help="enable verbose output")
     parser.add_option("--verbose:class", action="store_true", default=False, dest="verboseClassFlag", help="enable verbose output")
     parser.add_option("--verbose:inst", action="store_true", default=False, dest="verboseInstFlag", help="enable verbose output")

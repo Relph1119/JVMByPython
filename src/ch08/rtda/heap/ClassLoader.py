@@ -42,7 +42,7 @@ class ClassLoader:
         return clazz
 
     def readClass(self, name):
-        data, entry, error = self.cp.readClass(name)
+        data, entry, error = self.cp.read_class(name)
         if error:
             raise RuntimeError("java.lang.ClassNotFoundException: " + name)
         return data, entry

@@ -10,23 +10,26 @@
 
 class Cmd:
     # 版本号
-    versionFlag = False
+    version_flag = False
     # 指定用户类路径
     cpOption = ""
     # 类名
-    className = ""
+    class_name = ""
     # 传入的其他参数，或者是类参数
     args = []
+    # 指定jre目录
+    XjreOption = ""
 
     def __init__(self, options, argvs):
         # 打印版本号
-        if options.versionFlag:
+        if options.version_flag:
             self.__print_version()
-        elif options.cpOption:
-            self.cpOption = options.cpOption
+        else:
+            self.cpOption = options.cpOption or ""
+            self.XjreOption = options.XjreOption or ""
 
         if argvs:
-            self.className = argvs[0]
+            self.class_name = argvs[0]
             self.args = argvs[1:] or []
 
     @staticmethod
@@ -34,7 +37,7 @@ class Cmd:
         print("version 0.0.1")
 
     def print_classpath(self):
-        print("classpath:{0} class:{1} args:{2}\n".format(self.cpOption, self.className, self.print_args()))
+        print("classpath:{0} class:{1} args:{2}\n".format(self.cpOption, self.class_name, self.print_args()))
 
     # 打印传入参数
     def print_args(self):

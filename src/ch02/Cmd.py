@@ -1,24 +1,44 @@
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Cmd.py
+@time: 2019/9/12 9:55
+@desc: 命令行类
+"""
+
+
 class Cmd:
-    versionFlag = False
+    # 版本号
+    version_flag = False
+    # 指定用户类路径
     cpOption = ""
-    className = ""
-    XjreOption = ""
+    # 类名
+    class_name = ""
+    # 传入的其他参数，或者是类参数
     args = []
+    # 指定jre目录
+    XjreOption = ""
 
     def __init__(self, options, argvs):
-        if options.versionFlag:
-            self.__printVersion()
-        if options.cpOption:
-            self.cpOption = options.cpOption
-        if options.XjreOption:
-            self.XjreOption = options.XjreOption
+        # 打印版本号
+        if options.version_flag:
+            self.__print_version()
+        else:
+            self.cpOption = options.cpOption or ""
+            self.XjreOption = options.XjreOption or ""
 
         if argvs:
-            self.className = argvs[0]
-            self.args = argvs[1:] if argvs[1:] else []
+            self.class_name = argvs[0]
+            self.args = argvs[1:] or []
 
-    def __printVersion(self):
+    @staticmethod
+    def __print_version():
         print("version 0.0.1")
 
-    def printClasspath(self):
-        print("classpath:{0} class:{1} args:{2}\n".format(self.cpOption, self.className, " ".join(self.args)))
+    def print_classpath(self):
+        print("classpath:{0} class:{1} args:{2}\n".format(self.cpOption, self.class_name, self.print_args()))
+
+    # 打印传入参数
+    def print_args(self):
+        return '[' + ' '.join(self.args) + ']'

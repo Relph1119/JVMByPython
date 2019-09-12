@@ -1,6 +1,6 @@
 # 记录自己用Python完成编写JVM的过程
 
-项目完全参考张秀宏大神的《自己动手写Java虚拟机》代码结构，在此向本书作者表示感谢。
+&emsp;&emsp;项目完全参考张秀宏大神的《自己动手写Java虚拟机》代码结构，在此向本书作者表示感谢。
 
 ## 运行环境 ##
 Python 版本：3.7.2  
@@ -9,7 +9,7 @@ PyCharm 版本：PyCharm 2018.3.7 (Professional Edition)
 ## 代码结构 ##
 
 ## 代码编写与运行结果 ##
-<font color=red >项目的所有运行都是采用Run的方式传参，并执行，请读者运行时注意</font>
+&emsp;&emsp;项目的所有运行都是采用直接运行Main.py的方式，请读者运行时注意
 
 ### 第一章-命令行工具 ###
 完成一个简易的命令行工具，使用各种参数执行JVM命令  
@@ -26,5 +26,5 @@ PyCharm 版本：PyCharm 2018.3.7 (Professional Edition)
 
 ![](images/ch02/搜索class文件.png)
 1. pathListSeparator引用路径写死为分号“;”，Linux下面为冒号。
-2. 由于class是Python的关键字，所有代码中的class改为了className。
+2. 由于class是Python的关键字，所有代码中的class改为了class_name。
 3. 如果该结构体是数组，由于Python无法表示结构数组，故类初始化的时候初始一个数组。

@@ -11,7 +11,7 @@ class CompositeEntry(Entry):
 
     def readClass(self,className):
         for entry in self.compositeEntryList:
-            data, fromEntry = entry.readClass(className)
+            data, fromEntry = entry.read_class(className)
             if data:
                 return data, fromEntry, None
         return None, None, "class not found:{0}".format(className)

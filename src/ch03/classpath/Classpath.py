@@ -57,7 +57,7 @@ class Classpath:
             data, entry, error = self.extClassPath.readClass(className)
             if not error:
                 return data, entry
-        return self.userClasspath.readClass(className)
+        return self.userClasspath.read_class(className)
 
     def __str__(self):
         return self.userClasspath.__str__()

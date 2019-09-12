@@ -6,7 +6,7 @@ from ch03.classfile.ClassFile import ClassFile
 def main():
     parser = OptionParser(usage="%prog [-options] class [args...]")
 
-    parser.add_option("-v", "--version", action="store_true", default=False, dest="versionFlag", help="print version and exit.")
+    parser.add_option("-v", "--version", action="store_true", default=False, dest="version_flag", help="print version and exit.")
     parser.add_option("--cp", action="store", type="string", dest="cpOption", help="classpath")
     parser.add_option("--classpath", action="store", type="string", dest="cpOption", help="classpath")
     parser.add_option("--Xjre", action="store", type="string", dest="XjreOption", help="path to jre")
@@ -25,7 +25,7 @@ def startJVM(cmd):
     printClassInfo(cf)
 
 def loadClass(className, classPath):
-    classData, _ = classPath.readClass(className)
+    classData, _ = classPath.read_class(className)
 
     classfile = ClassFile(classData)
     cf = classfile.parse()
