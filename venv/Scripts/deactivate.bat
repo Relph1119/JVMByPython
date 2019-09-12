@@ -1,19 +1,21 @@
 @echo off
 
-set VIRTUAL_ENV=
-
-REM Don't use () to avoid problems with them in %PATH%
-if not defined _OLD_VIRTUAL_PROMPT goto ENDIFVPROMPT
+if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"
-    set _OLD_VIRTUAL_PROMPT=
-:ENDIFVPROMPT
+)
+set _OLD_VIRTUAL_PROMPT=
 
-if not defined _OLD_VIRTUAL_PYTHONHOME goto ENDIFVHOME
+if defined _OLD_VIRTUAL_PYTHONHOME (
     set "PYTHONHOME=%_OLD_VIRTUAL_PYTHONHOME%"
     set _OLD_VIRTUAL_PYTHONHOME=
-:ENDIFVHOME
+)
 
-if not defined _OLD_VIRTUAL_PATH goto ENDIFVPATH
+if defined _OLD_VIRTUAL_PATH (
     set "PATH=%_OLD_VIRTUAL_PATH%"
-    set _OLD_VIRTUAL_PATH=
-:ENDIFVPATH
+)
+
+set _OLD_VIRTUAL_PATH=
+
+set VIRTUAL_ENV=
+
+:END
