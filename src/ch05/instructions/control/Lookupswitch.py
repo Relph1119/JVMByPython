@@ -15,7 +15,7 @@ class LOOKUP_SWITCH(NoOperandsInstruction):
         self.matchOffsets = bytecodeReader.readInt32s(self.npairs * 2)
 
     def execute(self, frame):
-        key = frame.operandStack.popNumeric()
+        key = frame.operandStack.pop_numeric()
         for i in range(0, self.npairs * 2, 2):
             if self.matchOffsets[i] == key:
                 offset = self.matchOffsets[i+1]

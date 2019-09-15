@@ -25,7 +25,7 @@ class Interpreter():
         from ch05.instructions.base.BytecodeReader import BytecodeReader
         from ch05.instructions.Factory import Factory
 
-        frame = thread.popFrame()
+        frame = thread.pop_frame()
         reader = BytecodeReader()
 
         while True:

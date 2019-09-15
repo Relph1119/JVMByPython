@@ -10,4 +10,4 @@ class NEW(Index16Instruction):
             raise RuntimeError("java.lang.InstantiationError")
 
         ref = clazz.newObject()
-        frame.operandStack.pushRef(ref)
+        frame.operandStack.push_ref(ref)

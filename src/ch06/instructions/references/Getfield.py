@@ -10,7 +10,7 @@ class GET_FIELD(Index16Instruction):
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         stack = frame.operandStack
-        ref = stack.popRef()
+        ref = stack.pop_ref()
         if not ref:
             raise RuntimeError("java.lang.NollPointerException")
 
@@ -19,6 +19,6 @@ class GET_FIELD(Index16Instruction):
         slots = ref.fields
 
         if descriptor[0] in {"Z", "B", "C", "S", "I", "F", "J", "D"}:
-            stack.pushNumeric(slots.getNumeric(slotId))
+            stack.push_numeric(slots.get_numeric(slotId))
         elif descriptor[0] in {"L", "["}:
-            stack.pushRef(slots.getRef(slotId))
+            stack.push_ref(slots.get_ref(slotId))

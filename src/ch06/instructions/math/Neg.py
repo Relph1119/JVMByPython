@@ -2,8 +2,8 @@ from ch06.instructions.base.Instruction import NoOperandsInstruction
 
 def _neg(frame):
     stack = frame.operandStack
-    val = stack.popNumeric()
-    stack.pushNumeric(-val)
+    val = stack.pop_numeric()
+    stack.push_numeric(-val)
 
 class DNEG(NoOperandsInstruction):
     def execute(self, frame):

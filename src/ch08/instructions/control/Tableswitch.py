@@ -17,7 +17,7 @@ class TABLE_SWITCH(NoOperandsInstruction):
         self.jumpOffsets = bytecodeReader.readInt32s(jumpOffsetsCount)
 
     def execute(self, frame):
-        index = frame.operandStack.popNumeric()
+        index = frame.operandStack.pop_numeric()
 
         if self.low <= index <= self.high:
             offset = self.jumpOffsets[index - self.low]

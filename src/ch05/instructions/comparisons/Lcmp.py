@@ -3,11 +3,11 @@ from ch05.instructions.base.Instruction import NoOperandsInstruction
 class LCMP(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        v2 = stack.popNumeric()
-        v1 = stack.popNumeric()
+        v2 = stack.pop_numeric()
+        v1 = stack.pop_numeric()
         if v1 > v2:
-            stack.pushNumeric(1)
+            stack.push_numeric(1)
         elif v1 == v2:
-            stack.pushNumeric(0)
+            stack.push_numeric(0)
         else:
-            stack.pushNumeric(-1)
+            stack.push_numeric(-1)

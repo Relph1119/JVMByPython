@@ -4,20 +4,20 @@ import ctypes
 class L2D(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        l = stack.popNumeric()
+        l = stack.pop_numeric()
         d = float(l)
-        stack.pushNumeric(d)
+        stack.push_numeric(d)
 
 class L2F(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        l = stack.popNumeric()
+        l = stack.pop_numeric()
         f = float(l)
-        stack.pushNumeric(f)
+        stack.push_numeric(f)
 
 class L2I(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        l = stack.popNumeric()
+        l = stack.pop_numeric()
         i = ctypes.c_int32(l).value
-        stack.pushNumeric(i)
+        stack.push_numeric(i)

@@ -1,25 +1,35 @@
-from ch04.classfile.AttributeInfo import AttributeInfo
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: AttrLocalVariableTable.py
+@time: 2019/9/15 09:58
+@desc: LocalVariableTable属性表中存放方法的局部变量信息
+"""
+
+from .AttributeInfo import AttributeInfo
+
 
 class LocalVariableTableAttribute(AttributeInfo):
     def __init__(self):
         self.localVariableTable = []
 
-    def readInfo(self, classReader):
-        localVariableTableLength = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        for i in range(localVariableTableLength):
-            localVariableTableEntry = LocalVariableTableEntry()
-            localVariableTableEntry.startPc = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            localVariableTableEntry.length = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            localVariableTableEntry.nameIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            localVariableTableEntry.descriptorIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            localVariableTableEntry.index = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            self.localVariableTable.append(localVariableTableEntry)
+    def read_info(self, class_reader):
+        local_variable_table_length = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        for i in range(local_variable_table_length):
+            local_variable_table_entry = LocalVariableTableEntry()
+            local_variable_table_entry.start_pc = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            local_variable_table_entry.length = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            local_variable_table_entry.name_index = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            local_variable_table_entry.descriptor_index = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            local_variable_table_entry.index = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            self.localVariableTable.append(local_variable_table_entry)
 
 
 class LocalVariableTableEntry():
     def __init__(self):
-        self.startPc = 0
+        self.start_pc = 0
         self.length = 0
-        self.nameIndex = 0
-        self.descriptorIndex = 0
+        self.name_index = 0
+        self.descriptor_index = 0
         self.index = 0

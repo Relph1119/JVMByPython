@@ -119,7 +119,7 @@ class ClassLoader():
         if cpIndex > 0:
             if field.descriptor in {"Z", "B", "C", "S", "I","J", "F", "D"}:
                 val = cp.getConstant(cpIndex)
-                vars.setNumeric(slotId, val)
+                vars.set_numeric(slotId, val)
             elif field.descriptor == "Ljava/lang/String":
                 raise RuntimeError("todo")
 

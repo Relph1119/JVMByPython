@@ -21,6 +21,6 @@ class PUT_STATIC(Index16Instruction):
         stack = frame.operandStack
 
         if descriptor[0] in {"Z", "B", "C", "S", "I", "F", "J", "D"}:
-            slots.setNumeric(slotId, stack.popNumeric())
+            slots.set_numeric(slotId, stack.pop_numeric())
         elif descriptor[0] == "L":
-            slots.setRef(slotId, stack.popRef())
+            slots.set_ref(slotId, stack.pop_ref())

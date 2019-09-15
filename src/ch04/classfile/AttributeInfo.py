@@ -1,59 +1,68 @@
-from abc import ABCMeta, abstractstaticmethod
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: AttributeInfo.py
+@time: 2019/9/15 09:32
+@desc: 属性表类
+"""
+
+from abc import ABCMeta, abstractmethod
+
 
 class AttributeInfo(metaclass=ABCMeta):
 
-    @abstractstaticmethod
-    def readInfo(self, classReader):
+    @abstractmethod
+    def read_info(self, class_reader):
         pass
 
+    # 读取属性表
     @staticmethod
-    def readAttributes(classReader, constantPool):
-        attributesCount = int.from_bytes(classReader.read_unit16(), byteorder="big")
+    def read_attributes(class_reader, constant_pool):
+        attributes_count = int.from_bytes(class_reader.read_unit16(), byteorder="big")
         attributes = []
-        for i in range(attributesCount):
-            attributes.append(AttributeInfo.readAttribute(classReader, constantPool))
+        for i in range(attributes_count):
+            attributes.append(AttributeInfo.read_attribute(class_reader, constant_pool))
         return attributes
 
+    # 读取单个属性
     @staticmethod
-    def readAttribute(classReader, constantPool):
-        attrNameIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        attrName = ""
-        if attrNameIndex != 0:
-           attrName = constantPool.get_utf8(attrNameIndex)
-        attrLen = int.from_bytes(classReader.read_unit32(), byteorder="big")
-        attrInfo = AttributeInfo.newAttributeInfo(attrName, attrLen, constantPool)
-        attrInfo.readInfo(classReader)
-        return attrInfo
+    def read_attribute(class_reader, constant_pool):
+        attr_name_index = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        attr_name = ""
+        if attr_name_index != 0:
+            attr_name = constant_pool.get_utf8(attr_name_index)
+        attr_len = int.from_bytes(class_reader.read_unit32(), byteorder="big")
+        attr_info = AttributeInfo.new_attribute_info(attr_name, attr_len, constant_pool)
+        attr_info.read_info(class_reader)
+        return attr_info
 
     @staticmethod
-    def newAttributeInfo(attrName, attrLen, constantPool):
-        from ch04.classfile.AttrCode import CodeAttribute
-        from ch04.classfile.AttrConstantValue import ConstantValueAttribute
-        from ch04.classfile.AttrMarkers import DeprecatedAttribute, SyntheticAttribute
-        from ch04.classfile.AttrExceptions import ExceptionsAttribute
-        from ch04.classfile.AttrLineNumberTable import LineNumberTableAttribute
-        from ch04.classfile.AttrSourceFile import SourceFileAttribute
-        from ch04.classfile.AttrUnparsed import UnparsedAttribute
-        from ch04.classfile.AttrLocalVariableTable import LocalVariableTableAttribute
+    def new_attribute_info(attr_name, attr_len, constant_pool):
+        from .AttrCode import CodeAttribute
+        from .AttrConstantValue import ConstantValueAttribute
+        from .AttrMarkers import DeprecatedAttribute, SyntheticAttribute
+        from .AttrExceptions import ExceptionsAttribute
+        from .AttrLineNumberTable import LineNumberTableAttribute
+        from .AttrSourceFile import SourceFileAttribute
+        from .AttrUnparsed import UnparsedAttribute
+        from .AttrLocalVariableTable import LocalVariableTableAttribute
 
-        if attrName == "Code":
-            return CodeAttribute(constantPool)
-        elif attrName == "ConstantValue":
+        if attr_name == "Code":
+            return CodeAttribute(constant_pool)
+        elif attr_name == "ConstantValue":
             return ConstantValueAttribute()
-        elif attrName == "Deprecated":
+        elif attr_name == "Deprecated":
             return DeprecatedAttribute()
-        elif attrName == "Exceptions":
+        elif attr_name == "Exceptions":
             return ExceptionsAttribute()
-        elif attrName == "LineNumberTable":
+        elif attr_name == "LineNumberTable":
             return LineNumberTableAttribute()
-        elif attrName == "LocalVariableTable":
+        elif attr_name == "LocalVariableTable":
             return LocalVariableTableAttribute()
-        elif attrName == "SourceFile":
-            return SourceFileAttribute(constantPool)
-        elif attrName == "Synthetic":
+        elif attr_name == "SourceFile":
+            return SourceFileAttribute(constant_pool)
+        elif attr_name == "Synthetic":
             return SyntheticAttribute()
         else:
-            return UnparsedAttribute(attrName, attrLen)
-
-
-
+            return UnparsedAttribute(attr_name, attr_len)

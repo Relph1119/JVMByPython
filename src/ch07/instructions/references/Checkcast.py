@@ -3,8 +3,8 @@ from ch07.instructions.base.Instruction import Index16Instruction
 class CHECK_CAST(Index16Instruction):
     def execute(self, frame):
         stack = frame.operandStack
-        ref = stack.popRef()
-        stack.pushRef(ref)
+        ref = stack.pop_ref()
+        stack.push_ref(ref)
         if not ref:
             return
 

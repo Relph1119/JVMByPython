@@ -11,7 +11,7 @@ class ClassInitLogic():
        clinit = clazz.getClinitMethod()
        if clinit:
            newFrame = thread.newFrame(clinit)
-           thread.pushFrame(newFrame)
+           thread.push_frame(newFrame)
 
     @staticmethod
     def initSuperClass(thread, clazz):

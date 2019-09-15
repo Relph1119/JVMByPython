@@ -20,7 +20,7 @@ class Interpreter():
         from ch06.instructions.base.BytecodeReader import BytecodeReader
         from ch06.instructions.Factory import Factory
 
-        frame = thread.popFrame()
+        frame = thread.pop_frame()
         reader = BytecodeReader()
 
         while True:

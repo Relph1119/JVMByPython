@@ -4,7 +4,7 @@ class MethodInvokeLogic():
     def invokeMethod(invokerFrame, method):
         thread = invokerFrame.thread
         newFrame = thread.newFrame(method)
-        thread.pushFrame(newFrame)
+        thread.push_frame(newFrame)
 
         argSlotSlot = method.argSlotCount
         if argSlotSlot > 0:
@@ -14,6 +14,6 @@ class MethodInvokeLogic():
 
         if method.isNative():
             if method.name == "registerNatives":
-                thread.popFrame()
+                thread.pop_frame()
             else:
                 raise RuntimeError("native method: {0}.{1}{2}".format(method.getClass().name, method.name, method.descriptor))

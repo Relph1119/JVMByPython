@@ -3,16 +3,16 @@ from ch08.rtda.heap.StringPool import StringPool
 
 def _println(stack, descriptor):
     if descriptor == "(Z)V":
-        print("{0}".format(stack.popNumeric() != 0))
+        print("{0}".format(stack.pop_numeric() != 0))
     elif descriptor in {"(C)V", "(B)V", "(S)V", "(I)V", "(J)V", "(F)V", "(D)V"}:
-        print("{0}".format(stack.popNumeric()))
+        print("{0}".format(stack.pop_numeric()))
     elif descriptor == "(Ljava/lang/String;)V":
-        jStr = stack.popRef()
+        jStr = stack.pop_ref()
         goStr = StringPool.goString(jStr)
         print("{0}".format(goStr))
     else:
         raise RuntimeError("println: " + descriptor)
-    stack.popRef()
+    stack.pop_ref()
 
 class INVOKE_VIRTURL(Index16Instruction):
     def execute(self, frame):

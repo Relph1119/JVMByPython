@@ -3,8 +3,8 @@ from ch05.instructions.base.BranchLogic import BranchLogic
 
 def _icmpPop(frame):
     stack = frame.operandStack
-    val2 = stack.popNumeric()
-    val1 = stack.popNumeric()
+    val2 = stack.pop_numeric()
+    val1 = stack.pop_numeric()
     return val1, val2
 
 class IF_ICMPEQ(BranchInstruction):

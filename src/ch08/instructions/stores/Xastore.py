@@ -14,9 +14,9 @@ def checkIndex(arrLen, index):
 class AASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        ref = stack.popRef()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        ref = stack.pop_ref()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         refs = arrRef.refs()
@@ -26,9 +26,9 @@ class AASTORE(NoOperandsInstruction):
 class BASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        val = stack.popNumeric()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        val = stack.pop_numeric()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         bytes = arrRef.bytes()
@@ -38,9 +38,9 @@ class BASTORE(NoOperandsInstruction):
 class CASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        val = stack.popNumeric()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        val = stack.pop_numeric()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         chars = arrRef.chars()
@@ -50,9 +50,9 @@ class CASTORE(NoOperandsInstruction):
 class DASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        val = stack.popNumeric()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        val = stack.pop_numeric()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         doubles = arrRef.doubles()
@@ -62,9 +62,9 @@ class DASTORE(NoOperandsInstruction):
 class FASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        val = stack.popNumeric()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        val = stack.pop_numeric()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         floats = arrRef.floats()
@@ -74,9 +74,9 @@ class FASTORE(NoOperandsInstruction):
 class IASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        val = stack.popNumeric()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        val = stack.pop_numeric()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         ints = arrRef.ints()
@@ -86,9 +86,9 @@ class IASTORE(NoOperandsInstruction):
 class LASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        val = stack.popNumeric()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        val = stack.pop_numeric()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         longs = arrRef.longs()
@@ -98,9 +98,9 @@ class LASTORE(NoOperandsInstruction):
 class SASTORE(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        val = stack.popNumeric()
-        index = stack.popNumeric()
-        arrRef = stack.popRef()
+        val = stack.pop_numeric()
+        index = stack.pop_numeric()
+        arrRef = stack.pop_ref()
 
         checkNotNone(arrRef)
         shorts = arrRef.shorts()

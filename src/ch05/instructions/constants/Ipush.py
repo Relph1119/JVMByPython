@@ -9,7 +9,7 @@ class BIPUSH(Instruction):
 
     def execute(self, frame):
         i = self.val
-        frame.operandStack.pushNumeric(i)
+        frame.operandStack.push_numeric(i)
 
 class SIPUSH(Instruction):
     def __init__(self):
@@ -20,4 +20,4 @@ class SIPUSH(Instruction):
 
     def execute(self, frame):
         i = self.val
-        frame.operandStack.pushNumeric(i)
+        frame.operandStack.push_numeric(i)

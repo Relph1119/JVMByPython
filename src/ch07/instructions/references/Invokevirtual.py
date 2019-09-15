@@ -2,12 +2,12 @@ from ch07.instructions.base.Instruction import Index16Instruction
 
 def _println(stack, descriptor):
     if descriptor == "(Z)V":
-        print("{0}".format(stack.popNumeric() != 0))
+        print("{0}".format(stack.pop_numeric() != 0))
     elif descriptor in {"(C)V", "(B)V", "(S)V", "(I)V", "(J)V", "(F)V", "(D)V"}:
-        print("{0}".format(stack.popNumeric()))
+        print("{0}".format(stack.pop_numeric()))
     else:
         raise RuntimeError("println: " + descriptor)
-    stack.popRef()
+    stack.pop_ref()
 
 class INVOKE_VIRTURL(Index16Instruction):
     def execute(self, frame):

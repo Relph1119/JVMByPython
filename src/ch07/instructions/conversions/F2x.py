@@ -4,21 +4,21 @@ import ctypes
 class F2D(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        f = stack.popNumeric()
+        f = stack.pop_numeric()
         d = float(f)
-        stack.pushNumeric(f)
+        stack.push_numeric(f)
 
 
 class F2I(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        f = stack.popNumeric()
+        f = stack.pop_numeric()
         i = ctypes.c_int32(f)
-        stack.pushNumeric(i)
+        stack.push_numeric(i)
 
 class F2L(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack
-        f = stack.popNumeric()
+        f = stack.pop_numeric()
         l = ctypes.c_int64(f)
-        stack.pushNumeric(l)
+        stack.push_numeric(l)

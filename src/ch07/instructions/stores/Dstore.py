@@ -1,8 +1,8 @@
 from ch07.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
 
 def _dstore(frame, index):
-    val = frame.operandStack.popNumeric()
-    frame.localVars.setNumeric(index, val)
+    val = frame.operandStack.pop_numeric()
+    frame.localVars.set_numeric(index, val)
 
 
 class DSTORE(Index8Instruction):

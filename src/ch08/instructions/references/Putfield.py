@@ -19,14 +19,14 @@ class PUT_FIELD(Index16Instruction):
         stack = frame.operandStack
 
         if descriptor[0] in {"Z", "B", "C", "S", "I", "F", "J", "D"}:
-            val = stack.popNumeric()
-            ref = stack.popRef()
+            val = stack.pop_numeric()
+            ref = stack.pop_ref()
             if not ref:
                 raise RuntimeError("java.lang.NollPointerException")
-            ref.fields().setNumeric(slotId, val)
+            ref.fields().set_numeric(slotId, val)
         elif descriptor[0] in {"L", "["}:
-            val = stack.popRef()
-            ref = stack.popRef()
+            val = stack.pop_ref()
+            ref = stack.pop_ref()
             if not ref:
                 raise RuntimeError("java.lang.NollPointerException")
-            ref.fields().setRef(slotId, val)
+            ref.fields().set_ref(slotId, val)

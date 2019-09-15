@@ -21,14 +21,14 @@ class NEW_ARRAY(Instruction):
         import ctypes
 
         stack = frame.operandStack
-        count = stack.popNumeric()
+        count = stack.pop_numeric()
         if count < 0:
             raise RuntimeError("java.lang.NegativeArraySizeException")
 
         classLoader = frame.method.getClass().loader
         arrClass = NEW_ARRAY.getPrimitiveArrayClass(classLoader, self.atype)
         arr = arrClass.newArray(ctypes.c_uint(count).value)
-        stack.pushRef(arr)
+        stack.push_ref(arr)
 
     @staticmethod
     def getPrimitiveArrayClass(loader, atype):

@@ -6,9 +6,9 @@ def _ldc(frame, index):
     c = cp.getConstant(index)
 
     if isinstance(c, int):
-        stack.pushNumeric(c)
+        stack.push_numeric(c)
     elif isinstance(c, float):
-        stack.pushNumeric(c)
+        stack.push_numeric(c)
     else:
         raise RuntimeError("todo: ldc!")
 
@@ -28,8 +28,8 @@ class LDC2_W(Index16Instruction):
         c = cp.getConstant(self.index)
 
         if isinstance(c, int):
-            stack.pushNumeric(c)
+            stack.push_numeric(c)
         elif isinstance(c, float):
-            stack.pushNumeric(c)
+            stack.push_numeric(c)
         else:
             raise RuntimeError("java.lang.ClassFormatError")

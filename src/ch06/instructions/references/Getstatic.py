@@ -16,6 +16,6 @@ class GET_STATIC(Index16Instruction):
         stack = frame.operandStack
 
         if descriptor[0] in {"Z", "B", "C", "S", "I", "F", "J", "D"}:
-            stack.pushNumeric(slots.getNumeric(slotId))
+            stack.push_numeric(slots.get_numeric(slotId))
         elif descriptor[0] in {"L", "["}:
-            stack.pushRef(slots.getRef(slotId))
+            stack.push_ref(slots.get_ref(slotId))

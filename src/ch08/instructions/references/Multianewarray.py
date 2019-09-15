@@ -5,7 +5,7 @@ import copy
 def popAndCheckCounts(stack, dimensions):
     counts = [0 for i in range(dimensions)]
     for i in range(dimensions-1, -1, -1):
-        counts[i] = stack.popNumeric()
+        counts[i] = stack.pop_numeric()
         if counts[i] < 0:
             raise RuntimeError("java.lang.NegativeArraySizeException")
 
@@ -38,5 +38,5 @@ class MULTI_ANEW_ARRAY(Instruction):
         stack = frame.operandStack
         counts = popAndCheckCounts(stack, int(self.dimensions))
         arr = newMultiDimensionalArray(counts, arrClass)
-        stack.pushRef(arr)
+        stack.push_ref(arr)
 

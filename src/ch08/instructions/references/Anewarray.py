@@ -9,12 +9,12 @@ class ANEW_ARRAY(Index16Instruction):
         componentClass = classRef.resolvedClass()
 
         stack = frame.operandStack
-        count = stack.popNumeric()
+        count = stack.pop_numeric()
         if count < 0:
             raise RuntimeError("java.lang.NegativeArraySizeException")
 
         arrClass = componentClass.arrayClass()
         arr = arrClass.newArray(ctypes.c_uint(count))
-        stack.pushRef(arr)
+        stack.push_ref(arr)
 
     

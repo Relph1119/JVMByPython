@@ -3,8 +3,8 @@ from ch06.instructions.base.BranchLogic import BranchLogic
 
 def _acmpPop(frame):
     stack = frame.operandStack
-    val2 = stack.popRef()
-    val1 = stack.popRef()
+    val2 = stack.pop_ref()
+    val1 = stack.pop_ref()
     return val1, val2
 
 class IF_ACMPEQ(BranchInstruction):

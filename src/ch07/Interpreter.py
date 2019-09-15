@@ -24,7 +24,7 @@ class Interpreter():
         reader = BytecodeReader()
 
         while True:
-            frame = thread.currentFrame()
+            frame = thread.current_frame()
             pc = frame.nextPC
             thread.pc = pc
 
@@ -44,7 +44,7 @@ class Interpreter():
     @staticmethod
     def logFrames(thread):
         while not thread.isStackEmpty():
-            frame = thread.popFrame()
+            frame = thread.pop_frame()
             method = frame.method
             className = method.getClass().name
             print(">> pc: {0:4} {1}.{2}{3}".format(frame.nextPC, className, method.name, method.descriptor))

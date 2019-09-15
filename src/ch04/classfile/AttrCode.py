@@ -1,39 +1,55 @@
-from ch04.classfile.AttributeInfo import AttributeInfo
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: AttrCode.py
+@time: 2019/9/15 09:49
+@desc: Code属性存放字节码等方法相关信息
+"""
+
+from .AttributeInfo import AttributeInfo
+
 
 class CodeAttribute(AttributeInfo):
-    def __init__(self, constantPool):
-        self.cp = constantPool
-        self.maxStack = 0
-        self.maxLocals = 0
+    def __init__(self, constant_pool):
+        self.cp = constant_pool
+        # 操作数栈的最大深度
+        self.max_stack = 0
+        # 局部变量表大小
+        self.max_locals = 0
+        # 字节码，存在u1表中
         self.code = None
-        self.exceptionTable = []
+        # 异常处理表
+        self.exception_table = []
+        # 属性表
         self.attributes = []
 
-    def readInfo(self, classReader):
-        self.maxStack = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        self.maxLocals = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        codeLength = int.from_bytes(classReader.read_unit32(), byteorder="big")
-        self.code = classReader.read_bytes(codeLength)
-        self.exceptionTable = self.readExceptionTable(classReader)
-        self.attributes = AttributeInfo.readAttributes(classReader, self.cp)
+    def read_info(self, class_reader):
+        self.max_stack = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        self.max_locals = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        code_length = int.from_bytes(class_reader.read_unit32(), byteorder="big")
+        self.code = class_reader.read_bytes(code_length)
+        self.exception_table = self.read_exception_table(class_reader)
+        self.attributes = AttributeInfo.read_attributes(class_reader, self.cp)
 
-    def readExceptionTable(self, classReader):
-        exceptionTableLength = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        exceptionTable = []
-        for _ in range(exceptionTableLength):
-            exceptionTableEntry = ExceptionTableEntry()
-            exceptionTableEntry.startPc = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            exceptionTableEntry.endPc = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            exceptionTableEntry.handlerPc = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            exceptionTableEntry.catchType = int.from_bytes(classReader.read_unit16(), byteorder="big")
-            exceptionTable.append(exceptionTableEntry)
-        return exceptionTable
+    @staticmethod
+    def read_exception_table(class_reader):
+        exception_table_length = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        exception_table = []
+        for _ in range(exception_table_length):
+            exception_table_entry = ExceptionTableEntry()
+            exception_table_entry.start_pc = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            exception_table_entry.end_pc = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            exception_table_entry.handler_pc = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            exception_table_entry.catch_type = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+            exception_table.append(exception_table_entry)
+        return exception_table
 
-class ExceptionTableEntry():
+
+# 异常处理表实体类
+class ExceptionTableEntry:
     def __init__(self):
-        self.startPc = 0
-        self.endPc = 0
-        self.handlerPc = 0
-        self.catchType = 0
-
-
+        self.start_pc = 0
+        self.end_pc = 0
+        self.handler_pc = 0
+        self.catch_type = 0

@@ -1,8 +1,8 @@
 from ch06.instructions.base.Instruction import NoOperandsInstruction, Index8Instruction
 
 def _iload(frame, index):
-    val = frame.localVars.getNumeric(index)
-    frame.operandStack.pushNumeric(val)
+    val = frame.localVars.get_numeric(index)
+    frame.operandStack.push_numeric(val)
 
 class ILOAD(Index8Instruction):
     def execute(self, frame):

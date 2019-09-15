@@ -12,6 +12,6 @@ class IINC(NoOperandsInstruction):
 
     def execute(self, frame):
         localVars = frame.localVars
-        val = localVars.getNumeric(self.index)
+        val = localVars.get_numeric(self.index)
         val += self.const
-        localVars.setNumeric(self.index, val)
+        localVars.set_numeric(self.index, val)
