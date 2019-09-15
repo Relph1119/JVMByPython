@@ -8,7 +8,7 @@ class AttributeInfo(metaclass=ABCMeta):
 
     @staticmethod
     def readAttributes(classReader, constantPool):
-        attributesCount = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        attributesCount = int.from_bytes(classReader.read_unit16(), byteorder="big")
         attributes = []
         for i in range(attributesCount):
             attributes.append(AttributeInfo.readAttribute(classReader, constantPool))
@@ -16,11 +16,11 @@ class AttributeInfo(metaclass=ABCMeta):
 
     @staticmethod
     def readAttribute(classReader, constantPool):
-        attrNameIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        attrNameIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
         attrName = ""
         if attrNameIndex != 0:
-           attrName = constantPool.getUtf8(attrNameIndex)
-        attrLen = int.from_bytes(classReader.readUnit32(), byteorder="big")
+           attrName = constantPool.get_utf8(attrNameIndex)
+        attrLen = int.from_bytes(classReader.read_unit32(), byteorder="big")
         attrInfo = AttributeInfo.newAttributeInfo(attrName, attrLen, constantPool)
         attrInfo.readInfo(classReader)
         return attrInfo

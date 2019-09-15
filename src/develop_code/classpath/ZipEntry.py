@@ -24,8 +24,6 @@ class ZipEntry(Entry):
                 if file.filename == class_name:
                     try:
                         data = z.open(file, 'r').read()
-                        # 返回16进制数据
-                        data = [hex(d) for d in data]
                     except Exception as e:
                         error = e
                         return None, None, error

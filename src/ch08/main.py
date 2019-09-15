@@ -23,18 +23,18 @@ def startJVM(cmd):
     from ch08.rtda.heap.ClassLoader import ClassLoader
 
     cp = Classpath().parse(cmd.XjreOption, cmd.cpOption)
-    print("classpath:{0} class:{1} args:{2}".format(cp, cmd.className, cmd.args))
+    print("classpath:{0} class:{1} args:{2}".format(cp, cmd.class_name, cmd.args))
 
     classLoader = ClassLoader.newClassLoader(cp, cmd.verboseClassFlag)
 
-    className = cmd.className.replace(".", "/")
+    className = cmd.class_name.replace(".", "/")
     mainClass = classLoader.loadClass(className)
     mainMethod = mainClass.getMainMethod()
 
     if mainMethod:
         Interpreter.interpret(mainMethod, cmd.verboseInstFlag, cmd.args)
     else:
-        print("Main method not found in class {0}".format(cmd.className))
+        print("Main method not found in class {0}".format(cmd.class_name))
 
 def getMainMethod(classFile):
     for m in classFile.methods:

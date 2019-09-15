@@ -5,5 +5,5 @@ class ExceptionsAttribute(AttributeInfo):
         self.exceptionIndexTable = []
 
     def readInfo(self, classReader):
-        self.exceptionIndexTable = classReader.readUnit16s()
+        self.exceptionIndexTable = classReader.read_unit16s()
         

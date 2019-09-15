@@ -55,14 +55,14 @@ class ClassLoader():
 
     @staticmethod
     def resolveSuperClass(clazz):
-        if clazz.name != "java/lang/object" and clazz.superClassName:
-            clazz.superClass = clazz.loader.loadClass(clazz.superClassName)
+        if clazz.name != "java/lang/object" and clazz.super_class_name:
+            clazz.superClass = clazz.loader.loadClass(clazz.super_class_name)
 
     @staticmethod
     def resolveInterfaces(clazz):
-        interfaceCount = len(clazz.interfaceNames)
+        interfaceCount = len(clazz.interface_names)
         if interfaceCount > 0:
-            for interfaceName in clazz.interfaceNames:
+            for interfaceName in clazz.interface_names:
                 clazz.interfaces.append(clazz.loader.loadClass(interfaceName))
 
     @staticmethod

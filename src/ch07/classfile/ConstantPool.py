@@ -8,7 +8,7 @@ class ConstantPool():
         from ch07.classfile.CpNumeric import ConstantLongInfo, ConstantDoubleInfo
         from ch07.classfile.ConstantInfo import ConstantInfo
 
-        cpCount = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        cpCount = int.from_bytes(classReader.read_unit16(), byteorder="big")
         self.cp = [0 for i in range(cpCount)]
 
         i = 1

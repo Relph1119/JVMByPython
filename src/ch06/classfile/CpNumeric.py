@@ -6,7 +6,7 @@ class ConstantIntgerInfo(ConstantInfo):
         self.val = 0
 
     def readInfo(self, classReader):
-        bytes = int.from_bytes(classReader.readUnit32(), byteorder='big')
+        bytes = int.from_bytes(classReader.read_unit32(), byteorder='big')
         self.val = ctypes.c_int32(bytes).value
 
 class ConstantFloatInfo(ConstantInfo):
@@ -14,7 +14,7 @@ class ConstantFloatInfo(ConstantInfo):
         self.val = 0.0
 
     def readInfo(self, classReader):
-        bytes = int.from_bytes(classReader.readUnit32(), byteorder='big')
+        bytes = int.from_bytes(classReader.read_unit32(), byteorder='big')
         self.val = ctypes.c_float(bytes).value
 
 class ConstantLongInfo(ConstantInfo):
@@ -22,7 +22,7 @@ class ConstantLongInfo(ConstantInfo):
         self.val = 0
 
     def readInfo(self, classReader):
-        bytes = int.from_bytes(classReader.readUnit64(), byteorder='big')
+        bytes = int.from_bytes(classReader.read_unit64(), byteorder='big')
         self.val = ctypes.c_int64(bytes).value
 
 class ConstantDoubleInfo(ConstantInfo):
@@ -30,6 +30,6 @@ class ConstantDoubleInfo(ConstantInfo):
         self.val = 0.0
 
     def readInfo(self, classReader):
-        bytes = int.from_bytes(classReader.readUnit64(), byteorder='big')
+        bytes = int.from_bytes(classReader.read_unit64(), byteorder='big')
         self.val = ctypes.c_float(bytes).value
 

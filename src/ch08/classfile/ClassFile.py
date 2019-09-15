@@ -31,23 +31,23 @@ class ClassFile:
         self.readAndCheckVersion(classReader)
         self.constantPool = ConstantPool()
         self.constantPool.readConstantPool(classReader)
-        self.accessFlags = int.from_bytes(classReader.readUnit16(), byteorder="big")
-        self.thisClass = int.from_bytes(classReader.readUnit16(), byteorder="big")
-        self.superClass = int.from_bytes(classReader.readUnit16(), byteorder="big")
-        self.interfaces = classReader.readUnit16s()
+        self.accessFlags = int.from_bytes(classReader.read_unit16(), byteorder="big")
+        self.thisClass = int.from_bytes(classReader.read_unit16(), byteorder="big")
+        self.superClass = int.from_bytes(classReader.read_unit16(), byteorder="big")
+        self.interfaces = classReader.read_unit16s()
         memberInfo = MemberInfo(self.constantPool)
         self.fields = memberInfo.readMembers(classReader, self.constantPool)
         self.methods = memberInfo.readMembers(classReader, self.constantPool)
         self.attributes = AttributeInfo.readAttributes(classReader, self.constantPool)
 
     def readAndCheckMaigc(self, classReader):
-        magic = classReader.readUnit32()
+        magic = classReader.read_unit32()
         if magic != b'\xca\xfe\xba\xbe':
             raise RuntimeError("java.lang.ClassFormatError: magic")
 
     def readAndCheckVersion(self, classReader):
-        self.minorVersion = int.from_bytes(classReader.readUnit16(), byteorder = 'big')
-        self.majorVersion = int.from_bytes(classReader.readUnit16(), byteorder = 'big')
+        self.minorVersion = int.from_bytes(classReader.read_unit16(), byteorder ='big')
+        self.majorVersion = int.from_bytes(classReader.read_unit16(), byteorder ='big')
         if self.majorVersion == 45:
             return
         elif self.majorVersion in {46, 47, 48, 49, 50, 51, 52}:
@@ -56,13 +56,13 @@ class ClassFile:
         raise RuntimeError("java.lang.UnsupportedClassVersionError!")
 
     def className(self):
-        return self.constantPool.getClassName(self.thisClass)
+        return self.constantPool.class_name(self.thisClass)
 
     def superClassName(self):
         if self.superClass:
-            return self.constantPool.getClassName(self.superClass)
+            return self.constantPool.class_name(self.superClass)
         return ""
 
     def interfaceNames(self):
-        return [self.constantPool.getClassName(cpName) for cpName in self.interfaces]
+        return [self.constantPool.class_name(cpName) for cpName in self.interfaces]
 

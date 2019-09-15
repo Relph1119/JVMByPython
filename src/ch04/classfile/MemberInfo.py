@@ -9,7 +9,7 @@ class MemberInfo():
         self.attributes = []
 
     def readMembers(self, classReader, constantPool):
-        memberCount =  int.from_bytes(classReader.readUnit16(), byteorder = 'big')
+        memberCount =  int.from_bytes(classReader.read_unit16(), byteorder ='big')
         members = []
         for i in range(memberCount):
             members.append(self.readMember(classReader, constantPool))
@@ -19,14 +19,14 @@ class MemberInfo():
         from ch04.classfile.AttributeInfo import AttributeInfo
 
         member = MemberInfo(constantPool)
-        member.accessFlags = classReader.readUnit16()
-        member.nameIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
-        member.descriptorIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        member.accessFlags = classReader.read_unit16()
+        member.nameIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
+        member.descriptorIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
         member.attributes = AttributeInfo.readAttributes(classReader, constantPool)
         return member
 
     def name(self):
-        return self.cp.getUtf8(self.nameIndex)
+        return self.cp.get_utf8(self.nameIndex)
 
     def descriptor(self):
-        return self.cp.getUtf8(self.descriptorIndex)
+        return self.cp.get_utf8(self.descriptorIndex)

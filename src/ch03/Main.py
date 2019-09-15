@@ -57,7 +57,7 @@ def load_class(class_name, class_path):
 # 把class文件的一些重要信息打印出来
 def print_class_info(class_file):
     print("version: {0}.{1}".format(class_file.major_version, class_file.minor_version))
-    print("constants count: {0}".format(len(class_file.constant_pool)))
+    print("constants count: {0}".format(len(class_file.constant_pool.cp)))
     print("access flags: {0}".format(hex(int.from_bytes(class_file.access_flags, byteorder="big"))))
     print("this class: {0}".format(class_file.class_name))
     print("super class: {0}".format(class_file.super_class_name))

@@ -47,3 +47,6 @@ class ConstantPool:
     def get_utf8(self, index):
         utf8_info = self.get_constant_info(index)
         return utf8_info.str
+
+    def __len__(self):
+        return len(self.cp)

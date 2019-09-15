@@ -25,9 +25,9 @@ class Class:
 
         clazz = Class()
         clazz.accessFlags = classFile.accessFlags
-        clazz.name = classFile.className()
-        clazz.superClassName = classFile.superClassName()
-        clazz.interfaceNames = classFile.interfaceNames()
+        clazz.name = classFile.class_name()
+        clazz.superClassName = classFile.super_class_name()
+        clazz.interfaceNames = classFile.interface_names()
         clazz.constantPool = ConstantPool.newConstantPool(clazz, classFile.constantPool)
         clazz.fields = Field.newFields(clazz, classFile.fields)
         clazz.methods = Method.newMethod(clazz, classFile.methods)

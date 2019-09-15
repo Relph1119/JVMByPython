@@ -7,6 +7,6 @@ class MemberRef(SymRef):
         self.descriptor = ""
 
     def copyMemberRefInfo(self, refInfo):
-        self.className = refInfo.className()
-        self.name, self.descriptor = refInfo.nameAndDescrptor()
+        self.className = refInfo.class_name()
+        self.name, self.descriptor = refInfo.name_and_descriptor()
 

@@ -5,6 +5,6 @@ class ConstantValueAttribute(AttributeInfo):
         self.constantValueIndex = 0
 
     def readInfo(self, classReader):
-        self.constantValueIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        self.constantValueIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
 
     

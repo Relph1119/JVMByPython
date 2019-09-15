@@ -7,7 +7,7 @@ class ConstantStringInfo(ConstantInfo):
         self.stringIndex = ""
 
     def readInfo(self, classReader):
-        self.stringIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        self.stringIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
 
     def String(self):
         return self.cp.getUtf8(self.stringIndex)

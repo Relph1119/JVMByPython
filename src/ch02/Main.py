@@ -48,7 +48,7 @@ def start_JVM(cmd):
         exit(0)
 
     # 打印class里面的数据信息
-    print("class data: {0}".format([int(data, 16) for data in class_data]))
+    print("class data: {0}".format([int(hex(d),16) for d in class_data]))
 
 
 if __name__ == '__main__':

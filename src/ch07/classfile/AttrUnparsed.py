@@ -7,4 +7,4 @@ class UnparsedAttribute(AttributeInfo):
         self.info = ""
 
     def readInfo(self, classReader):
-        self.info = classReader.readBytes(self.length)
+        self.info = classReader.read_bytes(self.length)

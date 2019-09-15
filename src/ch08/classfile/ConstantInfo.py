@@ -23,7 +23,7 @@ class ConstantInfo(metaclass=ABCMeta):
 
     @staticmethod
     def readConstantInfo(classReader, constantPool):
-        tag = int.from_bytes(classReader.readUnit8(), byteorder="big")
+        tag = int.from_bytes(classReader.read_unit8(), byteorder="big")
         c = ConstantInfo.newConstatnInfo(tag, constantPool)
         c.readInfo(classReader)
         return c

@@ -5,14 +5,14 @@ class LocalVariableTypeTableAttribute(AttributeInfo):
         self.localVariableTable = []
 
     def readInfo(self, classReader):
-        localVariableTableLength = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        localVariableTableLength = int.from_bytes(classReader.read_unit16(), byteorder="big")
         for i in range(localVariableTableLength):
             localVariableTypeTableEntry = localVariableTypeTableEntry()
-            localVariableTypeTableEntry.startPc = int.from_bytes(classReader.readUnit16(), byteorder="big")
-            localVariableTypeTableEntry.length = int.from_bytes(classReader.readUnit16(), byteorder="big")
-            localVariableTypeTableEntry.nameIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
-            localVariableTypeTableEntry.descriptorIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
-            localVariableTypeTableEntry.index = int.from_bytes(classReader.readUnit16(), byteorder="big")
+            localVariableTypeTableEntry.startPc = int.from_bytes(classReader.read_unit16(), byteorder="big")
+            localVariableTypeTableEntry.length = int.from_bytes(classReader.read_unit16(), byteorder="big")
+            localVariableTypeTableEntry.nameIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
+            localVariableTypeTableEntry.descriptorIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
+            localVariableTypeTableEntry.index = int.from_bytes(classReader.read_unit16(), byteorder="big")
             self.localVariableTable.append(localVariableTypeTableEntry)
 
 

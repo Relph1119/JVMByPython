@@ -6,8 +6,8 @@ class ConstantClassInfo(ConstantInfo):
         self.nameIndex = 0
 
     def readInfo(self, classReader):
-        self.nameIndex = int.from_bytes(classReader.readUnit16(), byteorder="big")
+        self.nameIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
 
     def name(self):
-        return self.cp.getUtf8(self.nameIndex)
+        return self.cp.get_utf8(self.nameIndex)
 

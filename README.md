@@ -1,25 +1,27 @@
 # 记录自己用Python完成编写JVM的过程
 
-&emsp;&emsp;项目完全参考张秀宏大神的《自己动手写Java虚拟机》代码结构，在此向本书作者表示感谢。
+项目完全参考张秀宏大神的《自己动手写Java虚拟机》代码结构，在此向本书作者表示感谢。
 
-## 运行环境 ##
+## 运行环境
 Python 版本：3.7.2  
-PyCharm 版本：PyCharm 2018.3.7 (Professional Edition)
+PyCharm 版本：PyCharm 2018.3.7 (Professional Edition)  
+Java版本：1.8
 
-## 代码结构 ##
+## 代码结构
 
-## 代码编写与运行结果 ##
-&emsp;&emsp;项目的所有运行都是采用直接运行Main.py的方式，请读者运行时注意
+## 代码编写与运行结果
+项目的所有运行都是采用直接运行Main.py的方式，请读者运行时注意。
 
-### 第一章-命令行工具 ###
+### 第一章-命令行工具
 完成一个简易的命令行工具，使用各种参数执行JVM命令  
 传入参数：
 > --cp foo/bar MyApp arg1 arg2
 
 ![](images/ch01/命令行工具.png)
-采用OptionParser作为命令行解析器，具体处理的打印输入留给Cmd类去处理。
+1. 采用OptionParser作为命令行解析器，具体处理的打印输入留给Cmd类去处理。
+2. 用于在使用命令行解析器时，必须使用"--X"表示参数，不能按照书中的"-"进行编码。
 
-### 第二章-搜索class文件 ###
+### 第二章-搜索class文件
 完成搜索class文件功能，类路径的查找，按照搜索的先后顺序，类路径可以从以下3个部分查找：启动类路径、扩展类路径、用户类路径。
 传入参数：
 > --Xjre "D:\JavaTools\jdk1.8.0_151\jre" java.lang.Object
@@ -28,3 +30,12 @@ PyCharm 版本：PyCharm 2018.3.7 (Professional Edition)
 1. pathListSeparator引用路径写死为分号“;”，Linux下面为冒号。
 2. 由于class是Python的关键字，所有代码中的class改为了class_name。
 3. 如果该结构体是数组，由于Python无法表示结构数组，故类初始化的时候初始一个数组。
+
+### 第三章-解析class文件
+完成解析class文件功能，将class文件加载之后，按照JVM规范，读取字节，存储class的版本号，类属性、方法、接口的对象。  
+传入参数：  
+> --Xjre "D:\JavaTools\jdk1.8.0_151\jre" java.lang.String
+
+![](images/ch03/解析class文件.png)
+1. 采用property注解，将一些方法设置为属性，以方便对象属性调用；
+2. 对于一些要使用len()函数的对象，添加了相关的内置函数__len__()实现。

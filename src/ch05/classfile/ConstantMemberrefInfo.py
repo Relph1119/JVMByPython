@@ -7,14 +7,14 @@ class ConstantMemberrefInfo(ConstantInfo):
         self.nameAndTypeIndex = 0
 
     def readInfo(self, classReader):
-        self.classIndex =  int.from_bytes(classReader.readUnit16(), byteorder="big")
-        self.nameAndTypeIndex =  int.from_bytes(classReader.readUnit16(), byteorder="big")
+        self.classIndex =  int.from_bytes(classReader.read_unit16(), byteorder="big")
+        self.nameAndTypeIndex =  int.from_bytes(classReader.read_unit16(), byteorder="big")
 
     def className(self):
-        return self.cp.getClassName(self.classIndex)
+        return self.cp.class_name(self.classIndex)
 
     def nameAndDescrptor(self):
-        return self.cp.getNameAndType(self.nameAndTypeIndex)
+        return self.cp.get_name_and_type(self.nameAndTypeIndex)
 
 class ConstantFieldrefInfo(ConstantMemberrefInfo):
 
