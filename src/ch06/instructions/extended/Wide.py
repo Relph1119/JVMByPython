@@ -18,52 +18,52 @@ class WIDE(NoOperandsInstruction):
         self.modifiedInstruction = None
 
     def fetchOperands(self, bytecodeReader):
-        opcode = bytecodeReader.readUint8()
+        opcode = bytecodeReader.read_uint8()
 
         if opcode == 0x15:
             inst = ILOAD()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x16:
             inst = LLOAD()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x17:
             inst = FLOAD()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x18:
             inst = DLOAD()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x19:
             inst = ALOAD()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x36:
             inst = ISTORE()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x37:
             inst = LSTORE()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x38:
             inst = FSTORE()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x39:
             inst = DSTORE()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x3a:
             inst = ASTORE()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
             self.modifiedInstruction = inst
         elif opcode == 0x84:
             inst = IINC()
-            inst.index = ctypes.c_uint(bytecodeReader.readUint16())
-            inst.const = ctypes.c_int32(bytecodeReader.readInt16())
+            inst.index = ctypes.c_uint(bytecodeReader.read_uint16())
+            inst.const = ctypes.c_int32(bytecodeReader.read_int16())
             self.modifiedInstruction = inst
         elif opcode == 0xa9:
             raise RuntimeError("Unsupported opcode: 0xa9!")

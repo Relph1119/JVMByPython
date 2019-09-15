@@ -1,18 +1,33 @@
-from abc import ABCMeta, abstractstaticmethod
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Entry.py
+@time: 2019/9/12 10:55
+@desc: 类路径项（基类）
+"""
+
+from abc import ABCMeta, abstractmethod
+
 
 class Entry(metaclass=ABCMeta):
-    pathListSeparator = ";"
+    # 路径分隔符
+    path_list_separator = ";"
 
-    @abstractstaticmethod
-    def readClass(self,className):
+    # 寻找和加载class文件，接口方法
+    @abstractmethod
+    def read_class(self, class_name):
         pass
 
-    def newEntry(path):
-        from ch05.classpath.CompositeEntry import CompositeEntry
-        from ch05.classpath.WildcardEntry import WildcardEntry
-        from ch05.classpath.ZipEntry import ZipEntry
-        from ch05.classpath.DirEntry import DirEntry
-        if Entry.pathListSeparator in path:
+    # 根据参数常见不同类型的Entry实例
+    @staticmethod
+    def new_entry(path):
+        from classpath.CompositeEntry import CompositeEntry
+        from classpath.WildcardEntry import WildcardEntry
+        from classpath.ZipEntry import ZipEntry
+        from classpath.DirEntry import DirEntry
+
+        if Entry.path_list_separator in path:
             return CompositeEntry(path)
         elif path.endswith("*"):
             return WildcardEntry(path)

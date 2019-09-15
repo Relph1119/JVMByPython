@@ -22,7 +22,7 @@ class BranchInstruction(Instruction):
         self.offset = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.offset = bytecodeReader.readInt16()
+        self.offset = bytecodeReader.read_int16()
 
     @abstractstaticmethod
     def execute(self, frame):
@@ -33,7 +33,7 @@ class Index8Instruction(Instruction):
         self.index = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.index = bytecodeReader.readUint8()
+        self.index = bytecodeReader.read_uint8()
 
     @abstractstaticmethod
     def execute(self, frame):
@@ -44,7 +44,7 @@ class Index16Instruction(Instruction):
         self.index = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.index = bytecodeReader.readUint16()
+        self.index = bytecodeReader.read_uint16()
 
     @abstractstaticmethod
     def execute(self, frame):

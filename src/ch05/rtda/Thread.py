@@ -1,21 +1,29 @@
-from ch05.rtda.Stack import Stack
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Thread.py
+@time: 2019/9/15 16:04
+@desc: 线程
+"""
+from rtda.Frame import Frame
+from rtda.Stack import Stack
 
-class Thread():
+
+class Thread:
     def __init__(self):
         self.pc = 0
         self.stack = Stack(1024)
 
-    def pushFrame(self, frame):
+    def push_frame(self, frame):
         self.stack.push(frame)
 
-    def popFrame(self):
+    def pop_frame(self):
         return self.stack.pop()
 
-    def currentFrame(self):
+    @property
+    def current_frame(self):
         return self.stack.top()
 
-    def newFrame(self, maxLocals, maxStack):
-        from ch05.rtda.Frame import Frame
-        return Frame(self, maxLocals, maxStack)
-
-
+    def new_frame(self, max_locals, max_stack) -> Frame:
+        return Frame(self, max_locals, max_stack)

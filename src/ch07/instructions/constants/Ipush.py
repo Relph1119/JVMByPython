@@ -5,7 +5,7 @@ class BIPUSH(Instruction):
         self.val = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.val = bytecodeReader.readInt8()
+        self.val = bytecodeReader.read_int8()
 
     def execute(self, frame):
         i = self.val
@@ -16,7 +16,7 @@ class SIPUSH(Instruction):
         self.val = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.val = bytecodeReader.readInt16()
+        self.val = bytecodeReader.read_int16()
 
     def execute(self, frame):
         i = self.val

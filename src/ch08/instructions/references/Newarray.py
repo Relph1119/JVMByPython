@@ -15,7 +15,7 @@ class NEW_ARRAY(Instruction):
         self.atype = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.atype = bytecodeReader.readUint8()
+        self.atype = bytecodeReader.read_uint8()
 
     def execute(self, frame):
         import ctypes

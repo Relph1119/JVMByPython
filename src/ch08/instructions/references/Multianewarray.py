@@ -27,8 +27,8 @@ class MULTI_ANEW_ARRAY(Instruction):
         self.dimensions = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.index = bytecodeReader.readUint16()
-        self.dimensions = bytecodeReader.readUint8()
+        self.index = bytecodeReader.read_uint16()
+        self.dimensions = bytecodeReader.read_uint8()
 
     def execute(self, frame):
         cp = frame.method.getClass().constantPool

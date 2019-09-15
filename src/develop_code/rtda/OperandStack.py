@@ -34,3 +34,14 @@ class OperandStack:
         ref = self.slots[self.size].ref
         self.slots[self.size].ref = None
         return ref
+
+    def push_slot(self, slot:Slot):
+        self.slots[self.size] = slot
+        self.size += 1
+
+    def pop_slot(self):
+        self.size -= 1
+        return self.slots[self.size]
+
+    def __str__(self):
+        return "size:{0} slots:{1}".format(self.size, [str(t) for t in self.slots])

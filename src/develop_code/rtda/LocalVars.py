@@ -27,3 +27,6 @@ class LocalVars:
 
     def get_ref(self, index):
         return self.slots[index].ref
+
+    def __str__(self):
+        return "slots:{0}".format([str(t) for t in self.slots])

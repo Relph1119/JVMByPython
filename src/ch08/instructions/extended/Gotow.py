@@ -7,7 +7,7 @@ class GOTO_W(NoOperandsInstruction):
         self.offset = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.offset = ctypes.c_int(bytecodeReader.readInt32())
+        self.offset = ctypes.c_int(bytecodeReader.read_int32())
 
     def execute(self, frame):
         BranchLogic.branch(frame, self.offset)

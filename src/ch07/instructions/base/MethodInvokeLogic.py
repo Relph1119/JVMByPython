@@ -9,7 +9,7 @@ class MethodInvokeLogic():
         argSlotSlot = method.argSlotCount
         if argSlotSlot > 0:
             for i in range(argSlotSlot-1, -1, -1):
-                slot = invokerFrame.operandStack.popSlot()
+                slot = invokerFrame.operandStack.pop_slot()
                 newFrame.localVars.setSlot(i, slot)
 
         if method.isNative():

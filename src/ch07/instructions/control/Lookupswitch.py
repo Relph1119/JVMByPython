@@ -9,10 +9,10 @@ class LOOKUP_SWITCH(NoOperandsInstruction):
         self.matchOffsets = []
 
     def fetchOperands(self, bytecodeReader):
-        bytecodeReader.skipPadding()
-        self.defaultOffset = bytecodeReader.readInt32()
-        self.npairs = bytecodeReader.readInt32()
-        self.matchOffsets = bytecodeReader.readInt32s(self.npairs * 2)
+        bytecodeReader.skip_padding()
+        self.defaultOffset = bytecodeReader.read_int32()
+        self.npairs = bytecodeReader.read_int32()
+        self.matchOffsets = bytecodeReader.read_int32s(self.npairs * 2)
 
     def execute(self, frame):
         key = frame.operandStack.pop_numeric()

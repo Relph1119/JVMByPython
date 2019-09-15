@@ -6,6 +6,9 @@
 @time: 2019/9/14 22:49
 @desc: 统一的类表示字段和方法
 """
+from typing import Optional
+
+from classfile.AttrCode import CodeAttribute
 
 
 class MemberInfo():
@@ -46,3 +49,13 @@ class MemberInfo():
     @property
     def descriptor(self):
         return self.cp.get_utf8(self.descriptor_index)
+
+    # 得到MemberInfo的Code属性
+    @property
+    def code_attribute(self) -> Optional[CodeAttribute]:
+        for attrInfo in self.attributes:
+
+            if isinstance(attrInfo, CodeAttribute):
+                return attrInfo
+
+        return None

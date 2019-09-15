@@ -14,3 +14,6 @@ class Slot:
         self.num = 0
         # 存放引用
         self.ref = None
+
+    def __str__(self):
+        return "num:{0} ref:{1}".format(self.num, self.ref)

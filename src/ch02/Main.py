@@ -36,13 +36,13 @@ def main(input_args):
 # 启动JVM函数
 def start_JVM(cmd):
     # 解析类路径
-    cp = Classpath.Classpath.parse(cmd.XjreOption, cmd.cpOption)
+    class_path = Classpath.Classpath.parse(cmd.XjreOption, cmd.cpOption)
     # 打印命令行参数
-    print("classpath: {0} class: {1} args: {2}".format(cp, cmd.class_name, cmd.args))
+    print("classpath: {0} class: {1} args: {2}".format(class_path, cmd.class_name, cmd.args))
 
     # 读取主类数据
     class_name = cmd.class_name.replace(".", "/")
-    class_data, _, error = cp.read_class(class_name)
+    class_data, _, error = class_path.read_class(class_name)
     if error:
         print("Could not find or load main class {0}\n".format(cmd.class_name))
         exit(0)

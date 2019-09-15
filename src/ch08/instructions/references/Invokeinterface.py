@@ -6,9 +6,9 @@ class INVOKE_INTERFACE(Instruction):
         self.index = 0
 
     def fetchOperands(self, bytecodeReader):
-        self.index = ctypes.c_uint(bytecodeReader.readUint16()).value
-        bytecodeReader.readUint8()
-        bytecodeReader.readUint8()
+        self.index = ctypes.c_uint(bytecodeReader.read_uint16()).value
+        bytecodeReader.read_uint8()
+        bytecodeReader.read_uint8()
 
     def execute(self, frame):
         from ch08.rtda.heap.MethodLookup import MethodLookup

@@ -30,7 +30,7 @@ class Interpreter():
             reader.reset(bytecode, pc)
             opcode = reader.readUint8()
             inst = Factory.newInstruction(opcode)
-            inst.fetchOperands(reader)
+            inst.fetch_operands(reader)
             frame.nextPC = reader.pc
 
             print("pc:{0} opcode:{1} inst:{2} [{3}]".format(pc, hex(opcode), inst.__class__.__name__ ,Interpreter.prn_obj(inst)))

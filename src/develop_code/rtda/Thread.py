@@ -6,6 +6,7 @@
 @time: 2019/9/15 16:04
 @desc: 线程
 """
+from rtda.Frame import Frame
 from rtda.Stack import Stack
 
 
@@ -23,3 +24,6 @@ class Thread:
     @property
     def current_frame(self):
         return self.stack.top()
+
+    def new_frame(self, max_locals, max_stack) -> Frame:
+        return Frame(self, max_locals, max_stack)

@@ -9,12 +9,12 @@ class TABLE_SWITCH(NoOperandsInstruction):
         self.jumpOffsets = []
 
     def fetchOperands(self, bytecodeReader):
-        bytecodeReader.skipPadding()
-        self.defaultOffset = bytecodeReader.readInt32()
-        self.low = bytecodeReader.readInt32()
-        self.high = bytecodeReader.readInt32()
+        bytecodeReader.skip_padding()
+        self.defaultOffset = bytecodeReader.read_int32()
+        self.low = bytecodeReader.read_int32()
+        self.high = bytecodeReader.read_int32()
         jumpOffsetsCount = self.high - self.low + 1
-        self.jumpOffsets = bytecodeReader.readInt32s(jumpOffsetsCount)
+        self.jumpOffsets = bytecodeReader.read_int32s(jumpOffsetsCount)
 
     def execute(self, frame):
         index = frame.operandStack.pop_numeric()

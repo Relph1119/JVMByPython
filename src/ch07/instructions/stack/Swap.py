@@ -3,7 +3,7 @@ from ch07.instructions.base.Instruction import NoOperandsInstruction
 class SWAP(NoOperandsInstruction):
     def execute(self, frame):
         stack = frame.operandStack()
-        slot1 = stack.popSlot()
-        slot2 = stack.popSlot()
-        stack.pushSlot(slot1)
-        stack.pushSlot(slot2)
+        slot1 = stack.pop_slot()
+        slot2 = stack.pop_slot()
+        stack.push_slot(slot1)
+        stack.push_slot(slot2)

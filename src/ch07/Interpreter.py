@@ -31,7 +31,7 @@ class Interpreter():
             reader.reset(frame.method.code, pc)
             opcode = reader.readUint8()
             inst = Factory.newInstruction(opcode)
-            inst.fetchOperands(reader)
+            inst.fetch_operands(reader)
             frame.nextPC = reader.pc
 
             if logInst:

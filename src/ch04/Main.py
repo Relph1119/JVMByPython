@@ -30,16 +30,17 @@ def main(input_args=None):
 
         if not options.version_flag:
             # 启动JVM
-            start_JVM(cmd)
+            start_JVM()
 
 
 # 启动JVM函数
-def start_JVM(cmd):
+def start_JVM():
     frame = Frame(100, 100)
     test_local_vars(frame.localVars)
     test_operand_stack(frame.operandStack)
 
 
+# 测试局部变量表
 def test_local_vars(local_vars: LocalVars):
     local_vars.set_numeric(0, 100)
     local_vars.set_numeric(1, -100)
@@ -57,6 +58,7 @@ def test_local_vars(local_vars: LocalVars):
     print(local_vars.get_ref(6))
 
 
+# 测试操作数栈
 def test_operand_stack(ops):
     ops.push_numeric(100)
     ops.push_numeric(-100)
