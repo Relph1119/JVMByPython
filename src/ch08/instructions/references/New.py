@@ -4,8 +4,8 @@ class NEW(Index16Instruction):
     def execute(self, frame):
         from ch08.instructions.base.ClassInitLogic import ClassInitLogic
 
-        cp = frame.method.getClass().constantPool
-        classRef = cp.getConstant(self.index)
+        cp = frame.method.get_class().constantPool
+        classRef = cp.get_constant(self.index)
         clazz = classRef.resolvedClass()
 
         if not clazz.initStarted:
@@ -13,8 +13,8 @@ class NEW(Index16Instruction):
             ClassInitLogic.initClass(frame.thread, clazz)
             return
 
-        if clazz.isInterface() or clazz.isAbstract():
+        if clazz.is_interface() or clazz.is_abstract():
             raise RuntimeError("java.lang.InstantiationError")
 
-        ref = clazz.newObject()
+        ref = clazz.new_object()
         frame.operandStack.push_ref(ref)

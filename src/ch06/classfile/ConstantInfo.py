@@ -1,11 +1,21 @@
-from abc import ABCMeta, abstractstaticmethod
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: ConstantInfo.py
+@time: 2019/9/14 22:56
+@desc: 常量类
+"""
+
+from abc import ABCMeta, abstractmethod
+
 
 class ConstantInfo(metaclass=ABCMeta):
-
+    # tag 常量值定义
     CONSTANT_Class = 7
-    CONSTANT_Fieldref = 9
-    CONSTANT_Methodref = 10
-    CONSTANT_InterfaceMethodref = 11
+    CONSTANT_FieldRef = 9
+    CONSTANT_MethodRef = 10
+    CONSTANT_InterfaceMethodRef = 11
     CONSTANT_String = 8
     CONSTANT_Integer = 3
     CONSTANT_Float = 4
@@ -17,31 +27,31 @@ class ConstantInfo(metaclass=ABCMeta):
     CONSTANT_MethodType = 16
     CONSTANT_InvokeDynamic = 18
 
-    @abstractstaticmethod
-    def readInfo(self, classReader):
+    @abstractmethod
+    def read_info(self, class_reader):
         pass
 
     @staticmethod
-    def readConstantInfo(classReader, constantPool):
-        tag = int.from_bytes(classReader.read_unit8(), byteorder="big")
-        c = ConstantInfo.newConstatnInfo(tag, constantPool)
-        c.readInfo(classReader)
+    def read_constant_info(class_reader, constant_pool):
+        tag = int.from_bytes(class_reader.read_unit8(), byteorder="big")
+        c = ConstantInfo.new_constant_info(tag, constant_pool)
+        c.read_info(class_reader)
         return c
 
     @staticmethod
-    def newConstatnInfo(tag, constantPool):
-        from ch06.classfile.CpNumeric import ConstantDoubleInfo, ConstantLongInfo, ConstantFloatInfo, ConstantIntgerInfo
-        from ch06.classfile.ConstantUtf8Info import ConstantUtf8Info
-        from ch06.classfile.ConstantStringInfo import ConstantStringInfo
-        from ch06.classfile.ConstantMemberrefInfo import ConstantFieldrefInfo, ConstantInterfaceMethodrefInfo, \
-            ConstantMethodrefInfo
-        from ch06.classfile.ConstantNameAndTypeInfo import ConstantNameAndTypeInfo
-        from ch06.classfile.ConstantClassInfo import ConstantClassInfo
-        from ch06.classfile.CpInvokeDynamic import ConstantInvokeDynamicInfo, ConstantMethodHandleInfo, \
+    def new_constant_info(tag, constantPool):
+        from .CpNumeric import ConstantDoubleInfo, ConstantLongInfo, ConstantFloatInfo, ConstantIntegerInfo
+        from .ConstantUtf8Info import ConstantUtf8Info
+        from .ConstantStringInfo import ConstantStringInfo
+        from .ConstantMemberRefInfo import ConstantFieldRefInfo, ConstantInterfaceMethodRefInfo, \
+            ConstantMethodRefInfo
+        from .ConstantNameAndTypeInfo import ConstantNameAndTypeInfo
+        from .ConstantClassInfo import ConstantClassInfo
+        from .CpInvokeDynamic import ConstantInvokeDynamicInfo, ConstantMethodHandleInfo, \
             ConstantMethodTypeInfo
 
         if tag == ConstantInfo.CONSTANT_Integer:
-            return ConstantIntgerInfo()
+            return ConstantIntegerInfo()
         elif tag == ConstantInfo.CONSTANT_Float:
             return ConstantFloatInfo()
         elif tag == ConstantInfo.CONSTANT_Long:
@@ -54,12 +64,12 @@ class ConstantInfo(metaclass=ABCMeta):
             return ConstantStringInfo(constantPool)
         elif tag == ConstantInfo.CONSTANT_Class:
             return ConstantClassInfo(constantPool)
-        elif tag == ConstantInfo.CONSTANT_Fieldref:
-            return ConstantFieldrefInfo(constantPool)
-        elif tag == ConstantInfo.CONSTANT_Methodref:
-            return ConstantMethodrefInfo(constantPool)
-        elif tag == ConstantInfo.CONSTANT_InterfaceMethodref:
-            return ConstantInterfaceMethodrefInfo(constantPool)
+        elif tag == ConstantInfo.CONSTANT_FieldRef:
+            return ConstantFieldRefInfo(constantPool)
+        elif tag == ConstantInfo.CONSTANT_MethodRef:
+            return ConstantMethodRefInfo(constantPool)
+        elif tag == ConstantInfo.CONSTANT_InterfaceMethodRef:
+            return ConstantInterfaceMethodRefInfo(constantPool)
         elif tag == ConstantInfo.CONSTANT_NameAndType:
             return ConstantNameAndTypeInfo()
         elif tag == ConstantInfo.CONSTANT_MethodHandler:
@@ -70,4 +80,3 @@ class ConstantInfo(metaclass=ABCMeta):
             return ConstantInvokeDynamicInfo()
         else:
             raise RuntimeError("java.lang.ClassFormatError: constant pool tag!")
-

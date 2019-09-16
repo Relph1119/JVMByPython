@@ -7,11 +7,12 @@
 @desc: int类型变量存储指令
 """
 from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from rtda.Frame import Frame
 
 
-def _istore(frame, index):
-    val = frame.operandStack.pop_numeric()
-    frame.localVars.set_numeric(index, val)
+def _istore(frame: Frame, index):
+    val = frame.operand_stack.pop_numeric()
+    frame.local_vars.set_numeric(index, val)
 
 
 class ISTORE(Index8Instruction):

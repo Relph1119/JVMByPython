@@ -10,7 +10,7 @@ from instructions.base.Instruction import NoOperandsInstruction
 
 
 def _dcmp(frame, gFlag):
-    stack = frame.operandStack
+    stack = frame.operand_stack
     v2 = stack.pop_numeric()
     v1 = stack.pop_numeric()
     if v1 > v2:

@@ -19,11 +19,11 @@ class INVOKE_VIRTURL(Index16Instruction):
         from ch08.rtda.heap.MethodLookup import MethodLookup
         from ch08.instructions.base.MethodInvokeLogic import MethodInvokeLogic
 
-        currentClass = frame.method.getClass()
+        currentClass = frame.method.get_class()
         cp = currentClass.constantPool
-        methodRef = cp.getConstant(self.index)
+        methodRef = cp.get_constant(self.index)
         resolvedMethod = methodRef.resolvedMethod()
-        if resolvedMethod.isStatic():
+        if resolvedMethod.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         ref = frame.operandStack.getRefFromTop(resolvedMethod.argSlotCount - 1)
@@ -33,16 +33,16 @@ class INVOKE_VIRTURL(Index16Instruction):
                 return
             raise RuntimeError("java.lang.NullPointerException")
 
-        if resolvedMethod.isProtected() \
-                and resolvedMethod.getClass().isSuperClassOf(currentClass) \
-                and resolvedMethod.getClass().getPackageName() != currentClass.getPackageName() \
-                and ref.getClass() != currentClass \
-                and not ref.getClass().isSubClassOf(currentClass):
+        if resolvedMethod.is_protected() \
+                and resolvedMethod.get_class().isSuperClassOf(currentClass) \
+                and resolvedMethod.get_class().get_package_name() != currentClass.get_package_name() \
+                and ref.get_class() != currentClass \
+                and not ref.get_class().is_sub_class_of(currentClass):
             raise RuntimeError("java.lang.IllegalAccessError")
 
         methodToBeInvoked = MethodLookup.lookupMethodInClass(
-            ref.getClass(), methodRef.name, methodRef.descriptor)
-        if not methodToBeInvoked or methodToBeInvoked.isAbstract():
+            ref.get_class(), methodRef.name, methodRef.descriptor)
+        if not methodToBeInvoked or methodToBeInvoked.is_abstract():
             raise RuntimeError("java.lang.AbstractMethodError")
 
         MethodInvokeLogic.invokeMethod(frame, methodToBeInvoked)

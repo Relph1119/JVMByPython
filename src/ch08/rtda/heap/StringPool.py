@@ -11,9 +11,9 @@ class StringPool:
             return internedStr
 
         chars = StringPool.stringToUtf16(goStr)
-        jChars = Object(loader.loadClass("[C"), chars)
+        jChars = Object(loader.load_class("[C"), chars)
 
-        jStr = loader.loadClass("java/lang/String").newObject()
+        jStr = loader.load_class("java/lang/String").new_object()
         jStr.setRefVar("value", "[C", jChars)
 
         StringPool.internedStrings[goStr] = jStr

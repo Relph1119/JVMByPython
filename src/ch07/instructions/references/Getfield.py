@@ -2,11 +2,11 @@ from ch07.instructions.base.Instruction import Index16Instruction
 
 class GET_FIELD(Index16Instruction):
     def execute(self, frame):
-        cp = frame.method.getClass().constantPool
-        fieldRef = cp.getConstant(self.index)
-        field = fieldRef.resolveField()
+        cp = frame.method.get_class().constantPool
+        fieldRef = cp.get_constant(self.index)
+        field = fieldRef.resolve_field()
 
-        if field.isStatic():
+        if field.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         stack = frame.operandStack

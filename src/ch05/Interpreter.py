@@ -26,8 +26,8 @@ class Interpreter:
         try:
             Interpreter.loop(thread, bytecode)
         except RuntimeError as e:
-            print("LocalVars: {0}".format(frame.localVars))
-            print("OperandStack: {0}".format(frame.operandStack))
+            print("LocalVars: {0}".format(frame.local_vars))
+            print("OperandStack: {0}".format(frame.operand_stack))
             print(e)
 
     @staticmethod

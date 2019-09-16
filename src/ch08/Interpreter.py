@@ -8,7 +8,7 @@ class Interpreter():
         frame = thread.newFrame(method)
         thread.pushFrame(frame)
 
-        jArgs = Interpreter.createArgsArray(method.getClass().loader, args)
+        jArgs = Interpreter.createArgsArray(method.get_class().loader, args)
         frame.localVars.set_ref(0, jArgs)
 
         try:
@@ -50,13 +50,13 @@ class Interpreter():
         while not thread.isStackEmpty():
             frame = thread.pop_frame()
             method = frame.method
-            className = method.getClass().name
+            className = method.get_class().name
             print(">> pc: {0:4} {1}.{2}{3}".format(frame.nextPC, className, method.name, method.descriptor))
 
     @staticmethod
     def logInstruction(frame, inst):
         method = frame.method
-        className = method.getClass().name
+        className = method.get_class().name
         methodName = method.name
         pc = frame.thread.pc
         print("{0}.{1} #{2:<2} {3} {4}".format(className, methodName, pc, inst.__class__.__name__, Interpreter.prn_obj(inst)))
@@ -65,7 +65,7 @@ class Interpreter():
     def createArgsArray(loader, args):
         from ch08.rtda.heap.StringPool import StringPool
 
-        stringClass = loader.loadClass("java/lang/String")
+        stringClass = loader.load_class("java/lang/String")
         argsArr = stringClass.arrayClass().newArray(len(args))
         jArgs = argsArr.refs
         for i, arg in args:

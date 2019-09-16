@@ -3,15 +3,15 @@ from ch08.instructions.base.Instruction import Index16Instruction
 class PUT_FIELD(Index16Instruction):
     def execute(self, frame):
         currentMethod = frame.method
-        currentClass = currentMethod.getClass()
+        currentClass = currentMethod.get_class()
         cp = currentClass.constantPool
-        fieldRef = cp.getConstant(self.index)
-        field = fieldRef.resolveField()
+        fieldRef = cp.get_constant(self.index)
+        field = fieldRef.resolve_field()
 
-        if field.isStatic():
+        if field.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
-        if field.isFinal():
-            if currentClass != field.getClass() or currentMethod.name != "<init>":
+        if field.is_final():
+            if currentClass != field.get_class() or currentMethod.name != "<init>":
                 raise RuntimeError("java.lang.IllegalAccessError")
 
         descriptor = field.descriptor

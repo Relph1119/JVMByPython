@@ -41,6 +41,16 @@ from instructions.math.Rem import *
 from instructions.math.Sh import *
 from instructions.math.Sub import *
 from instructions.math.Xor import *
+from instructions.references.Checkcast import CHECK_CAST
+from instructions.references.Getfield import GET_FIELD
+from instructions.references.Getstatic import GET_STATIC
+from instructions.references.Instanceof import INSTANCE_OF
+from instructions.references.Invokespecial import INVOKE_SPECIAL
+from instructions.references.Invokevirtual import INVOKE_VIRTURL
+from instructions.references.Ldc import *
+from instructions.references.New import NEW
+from instructions.references.Putfield import PUT_FIELD
+from instructions.references.Putstatic import PUT_STATIC
 from instructions.stack.Dup import *
 from instructions.stack.Pop import *
 from instructions.stack.Swap import *
@@ -91,6 +101,12 @@ class Factory:
             return BIPUSH()
         elif opcode == 0x11:
             return SIPUSH()
+        elif opcode == 0x12:
+            return LDC()
+        elif opcode == 0x13:
+            return LDC_W()
+        elif opcode == 0x14:
+            return LDC2_W()
         elif opcode == 0x15:
             return ILOAD()
         elif opcode == 0x16:
@@ -191,6 +207,7 @@ class Factory:
             return ASTORE_2()
         elif opcode == 0x4e:
             return ASTORE_3()
+
         elif opcode == 0x57:
             return POP()
         elif opcode == 0x58:
@@ -353,12 +370,36 @@ class Factory:
             return IF_ACMPNE()
         elif opcode == 0xa7:
             return GOTO()
+
         elif opcode == 0xaa:
             return TABLE_SWITCH()
         elif opcode == 0xab:
             return LOOKUP_SWITCH()
+
+        elif opcode == 0xb2:
+            return GET_STATIC()
+        elif opcode == 0xb3:
+            return PUT_STATIC()
+        elif opcode == 0xb4:
+            return GET_FIELD()
+        elif opcode == 0xb5:
+            return PUT_FIELD()
+        elif opcode == 0xb6:
+            return INVOKE_VIRTURL()
+        elif opcode == 0xb7:
+            return INVOKE_SPECIAL()
+
+        elif opcode == 0xbb:
+            return NEW()
+
+        elif opcode == 0xc0:
+            return CHECK_CAST()
+        elif opcode == 0xc1:
+            return INSTANCE_OF()
+
         elif opcode == 0xc4:
             return WIDE()
+
         elif opcode == 0xc6:
             return IFNULL()
         elif opcode == 0xc7:

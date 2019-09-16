@@ -6,28 +6,23 @@
 @time: 2019/9/15 21:59
 @desc: 解释器
 """
-from classfile import MemberInfo
 
 from rtda.Thread import Thread
+from rtda.heap.Method import Method
 
 
 class Interpreter:
 
     @staticmethod
-    def interpret(methodInfo: MemberInfo):
-        code_attr = methodInfo.code_attribute
-        max_locals = code_attr.max_locals
-        max_stack = code_attr.max_stack
-        bytecode = code_attr.code
-
+    def interpret(method: Method):
         thread = Thread()
-        frame = thread.new_frame(max_locals, max_stack)
+        frame = thread.new_frame(method)
         thread.push_frame(frame)
         try:
-            Interpreter.loop(thread, bytecode)
+            Interpreter.loop(thread, method.code)
         except RuntimeError as e:
-            print("LocalVars: {0}".format(frame.localVars))
-            print("OperandStack: {0}".format(frame.operandStack))
+            print("LocalVars: {0}".format(frame.local_vars))
+            print("OperandStack: {0}".format(frame.operand_stack))
             print(e)
 
     @staticmethod

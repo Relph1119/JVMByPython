@@ -41,9 +41,12 @@ class ClassFile:
         self.attributes = []
 
     def parse(self):
-        class_reader = ClassReader(self.class_data)
-        self.read(class_reader)
-        return self
+        try:
+            class_reader = ClassReader(self.class_data)
+            self.read(class_reader)
+            return self, None
+        except Exception as err:
+            return self, err
 
     def read(self, class_reader):
         self.read_and_check_magic(class_reader)
@@ -52,14 +55,14 @@ class ClassFile:
         self.constant_pool = ConstantPool()
         self.constant_pool.read_constant_pool(class_reader)
 
-        self.access_flags = class_reader.read_unit16()
+        self.access_flags = int.from_bytes(class_reader.read_unit16(), byteorder="big")
         self.this_class = int.from_bytes(class_reader.read_unit16(), byteorder="big")
         self.super_class = int.from_bytes(class_reader.read_unit16(), byteorder="big")
         self.interfaces = class_reader.read_unit16s()
 
-        memberInfo = MemberInfo(self.constant_pool)
-        self.fields = memberInfo.read_members(class_reader, self.constant_pool)
-        self.methods = memberInfo.read_members(class_reader, self.constant_pool)
+        member_info = MemberInfo(self.constant_pool)
+        self.fields = member_info.read_members(class_reader, self.constant_pool)
+        self.methods = member_info.read_members(class_reader, self.constant_pool)
         self.attributes = AttributeInfo.read_attributes(class_reader, self.constant_pool)
 
     # 读取并检查Class文件的起始字节，必须以0xCAFEBABE固定字节开头

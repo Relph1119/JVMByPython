@@ -46,13 +46,13 @@ class Interpreter():
         while not thread.isStackEmpty():
             frame = thread.pop_frame()
             method = frame.method
-            className = method.getClass().name
+            className = method.get_class().name
             print(">> pc: {0:4} {1}.{2}{3}".format(frame.nextPC, className, method.name, method.descriptor))
 
     @staticmethod
     def logInstruction(frame, inst):
         method = frame.method
-        className = method.getClass().name
+        className = method.get_class().name
         methodName = method.name
         pc = frame.thread.pc
         print("{0}.{1} #{2:<2} {3} {4}".format(className, methodName, pc, inst.__class__.__name__, Interpreter.prn_obj(inst)))

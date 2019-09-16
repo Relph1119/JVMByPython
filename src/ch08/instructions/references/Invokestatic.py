@@ -5,13 +5,13 @@ class INVOKE_STATIC(Index16Instruction):
     def execute(self, frame):
         from ch08.instructions.base.ClassInitLogic import ClassInitLogic
 
-        cp = frame.method.getClass().constantPool
-        methodRef = cp.getConstant(self.index)
+        cp = frame.method.get_class().constantPool
+        methodRef = cp.get_constant(self.index)
         resolvedMethod = methodRef.resolvedMethod()
-        if not resolvedMethod.isStatic():
+        if not resolvedMethod.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
-        clazz = resolvedMethod.getClass()
+        clazz = resolvedMethod.get_class()
         if not clazz.initStarted:
             frame.revertNextPC()
             ClassInitLogic.initClass(frame.thread, clazz)

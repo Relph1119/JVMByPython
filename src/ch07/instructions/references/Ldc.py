@@ -2,8 +2,8 @@ from ch07.instructions.base.Instruction import Index8Instruction, Index16Instruc
 
 def _ldc(frame, index):
     stack = frame.operandStack
-    cp = frame.method.getClass().constantPool
-    c = cp.getConstant(index)
+    cp = frame.method.get_class().constantPool
+    c = cp.get_constant(index)
 
     if isinstance(c, int):
         stack.push_numeric(c)
@@ -24,8 +24,8 @@ class LDC_W(Index16Instruction):
 class LDC2_W(Index16Instruction):
     def execute(self, frame):
         stack = frame.operandStack
-        cp = frame.method.getClass().constantPool
-        c = cp.getConstant(self.index)
+        cp = frame.method.get_class().constantPool
+        c = cp.get_constant(self.index)
 
         if isinstance(c, int):
             stack.push_numeric(c)

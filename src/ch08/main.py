@@ -28,8 +28,8 @@ def startJVM(cmd):
     classLoader = ClassLoader.newClassLoader(cp, cmd.verboseClassFlag)
 
     className = cmd.class_name.replace(".", "/")
-    mainClass = classLoader.loadClass(className)
-    mainMethod = mainClass.getMainMethod()
+    mainClass = classLoader.load_class(className)
+    mainMethod = mainClass.get_main_method()
 
     if mainMethod:
         Interpreter.interpret(mainMethod, cmd.verboseInstFlag, cmd.args)

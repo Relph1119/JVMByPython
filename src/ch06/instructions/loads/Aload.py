@@ -1,24 +1,39 @@
-from ch06.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Aload.py
+@time: 2019/9/15 19:16
+@desc: 引用类型变量加载指令
+"""
+from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from rtda import Frame
 
-def _aload(frame, index):
-    ref = frame.localVars.get_ref(index)
-    frame.operandStack.push_ref(ref)
+
+def _aload(frame: Frame, index):
+    ref = frame.local_vars.get_ref(index)
+    frame.operand_stack.push_ref(ref)
+
 
 class ALOAD(Index8Instruction):
     def execute(self, frame):
         _aload(frame, self.index)
 
+
 class ALOAD_0(NoOperandsInstruction):
     def execute(self, frame):
         _aload(frame, 0)
+
 
 class ALOAD_1(NoOperandsInstruction):
     def execute(self, frame):
         _aload(frame, 1)
 
+
 class ALOAD_2(NoOperandsInstruction):
     def execute(self, frame):
         _aload(frame, 2)
+
 
 class ALOAD_3(NoOperandsInstruction):
     def execute(self, frame):

@@ -6,7 +6,7 @@
 @time: 2019/9/15 16:13
 @desc: Java虚拟机栈
 """
-from rtda import Frame
+from rtda.Frame import Frame
 
 
 class Stack:
@@ -26,7 +26,7 @@ class Stack:
         self.size += 1
 
     # 把栈顶帧弹出
-    def pop(self) -> Frame:
+    def pop(self):
         if not self.__top:
             raise RuntimeError("jvm stack is empty!")
 

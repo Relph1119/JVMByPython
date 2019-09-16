@@ -36,8 +36,8 @@ def main(input_args=None):
 # 启动JVM函数
 def start_JVM():
     frame = Frame(100, 100)
-    test_local_vars(frame.localVars)
-    test_operand_stack(frame.operandStack)
+    test_local_vars(frame.local_vars)
+    test_operand_stack(frame.operand_stack)
 
 
 # 测试局部变量表

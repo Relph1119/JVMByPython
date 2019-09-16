@@ -10,7 +10,7 @@ from instructions.base.Instruction import NoOperandsInstruction
 
 
 def _neg(frame):
-    stack = frame.operandStack
+    stack = frame.operand_stack
     val = stack.pop_numeric()
     stack.push_numeric(-val)
 

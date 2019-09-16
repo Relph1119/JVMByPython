@@ -6,12 +6,13 @@
 @time: 2019/9/15 16:04
 @desc: 线程
 """
-from rtda.Frame import Frame
-from rtda.Stack import Stack
+
+from rtda.heap.Method import Method
 
 
 class Thread:
     def __init__(self):
+        from rtda.Stack import Stack
         self.pc = 0
         self.stack = Stack(1024)
 
@@ -25,5 +26,6 @@ class Thread:
     def current_frame(self):
         return self.stack.top()
 
-    def new_frame(self, max_locals, max_stack) -> Frame:
-        return Frame(self, max_locals, max_stack)
+    def new_frame(self, method: Method):
+        from rtda.Frame import Frame
+        return Frame(self, method)

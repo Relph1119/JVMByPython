@@ -58,7 +58,7 @@ class Class():
         return 0 != self.accessFlags & AccessFlags.ACC_ENUM
 
     def isAccessibleTo(self, otherClass):
-        return self.isPublic() or self.getPackageName() == otherClass.getPackageName()
+        return self.isPublic() or self.getPackageName() == otherClass.get_package_name()
 
     def getPackageName(self):
         i = self.name.rfind("/")
@@ -72,9 +72,9 @@ class Class():
             return True
 
         if not t.isInterface():
-            return s.isSubClassOf(t)
+            return s.is_sub_class_of(t)
         else:
-            return s.isImplements(t)
+            return s.is_implements(t)
 
     def isSubClassOf(self, otherClass):
         c = self.superClass
@@ -89,27 +89,27 @@ class Class():
         c = self
         while c:
             for interface in c.interfaces:
-                if interface == iface or interface.isSubInterfaceOf(iface):
+                if interface == iface or interface.is_sub_interface_of(iface):
                     return True
 
         return False
 
     def isSubInterfaceOf(self, iface):
         for superInterface in self.interfaces:
-            if superInterface == iface or superInterface.isSubInterfaceOf(iface):
+            if superInterface == iface or superInterface.is_sub_interface_of(iface):
                 return True
 
         return False
 
     def isSuperClassOf(self, otherClass):
-        return otherClass.isSubClassOf(self)
+        return otherClass.is_sub_class_of(self)
 
     def getMainMethod(self):
         return self.getStaticMethod("main", "([Ljava/lang/String;)V")
 
     def getStaticMethod(self, name, descriptor):
         for method in self.methods:
-            if method.isStatic() and method.name == name and  method.descriptor == descriptor:
+            if method.is_static() and method.name == name and  method.descriptor == descriptor:
                 return method
         return None
 

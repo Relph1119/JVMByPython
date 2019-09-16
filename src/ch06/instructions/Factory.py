@@ -1,60 +1,70 @@
-from ch06.instructions.constants.Nop import *
-from ch06.instructions.constants.Const import *
-from ch06.instructions.constants.Ipush import *
-from ch06.instructions.loads.Aload import *
-from ch06.instructions.loads.Dload import *
-from ch06.instructions.loads.Fload import *
-from ch06.instructions.loads.Lload import *
-from ch06.instructions.loads.Iload import *
-from ch06.instructions.stores.Lstore import *
-from ch06.instructions.stores.Astore import *
-from ch06.instructions.stores.Dstore import *
-from ch06.instructions.stores.Fstore import *
-from ch06.instructions.stores.Istore import *
-from ch06.instructions.stack.Dup import *
-from ch06.instructions.stack.Pop import *
-from ch06.instructions.stack.Swap import *
-from ch06.instructions.math.Add import *
-from ch06.instructions.math.And import *
-from ch06.instructions.math.Div import *
-from ch06.instructions.math.Mul import *
-from ch06.instructions.math.Neg import *
-from ch06.instructions.math.Or import *
-from ch06.instructions.math.Rem import *
-from ch06.instructions.math.Sh import *
-from ch06.instructions.math.Sub import *
-from ch06.instructions.math.Xor import *
-from ch06.instructions.conversions.D2x import *
-from ch06.instructions.conversions.F2x import *
-from ch06.instructions.conversions.I2x import *
-from ch06.instructions.conversions.L2x import *
-from ch06.instructions.comparisons.Dcmp import *
-from ch06.instructions.comparisons.Fcmp import *
-from ch06.instructions.comparisons.Ifacmp import *
-from ch06.instructions.comparisons.Ifcond import *
-from ch06.instructions.comparisons.Ificmp import *
-from ch06.instructions.comparisons.Lcmp import *
-from ch06.instructions.control.Goto import *
-from ch06.instructions.control.Lookupswitch import *
-from ch06.instructions.control.Tableswitch import *
-from ch06.instructions.extended.Gotow import *
-from ch06.instructions.extended.Ifnull import *
-from ch06.instructions.extended.Wide import *
-from ch06.instructions.references.Checkcast import *
-from ch06.instructions.references.Getfield import *
-from ch06.instructions.references.Getstatic import *
-from ch06.instructions.references.Putfield import *
-from ch06.instructions.references.Putstatic import *
-from ch06.instructions.references.Instanceof import *
-from ch06.instructions.references.Ldc import *
-from ch06.instructions.references.New import *
-from ch06.instructions.references.Invokespecial import *
-from ch06.instructions.references.Invokevirtual import *
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Factory.py
+@time: 2019/9/15 22:28
+@desc: 根据操作码创建具体的指令
+"""
 
-class Factory():
+from instructions.comparisons.Dcmp import *
+from instructions.comparisons.Fcmp import *
+from instructions.comparisons.Ifacmp import *
+from instructions.comparisons.Ifcond import *
+from instructions.comparisons.Ificmp import *
+from instructions.comparisons.Lcmp import *
+from instructions.constants.Const import *
+from instructions.constants.Ipush import *
+from instructions.constants.Nop import *
+from instructions.control.Goto import *
+from instructions.control.Lookupswitch import *
+from instructions.control.Tableswitch import *
+from instructions.conversions.D2x import *
+from instructions.conversions.F2x import *
+from instructions.conversions.I2x import *
+from instructions.conversions.L2x import *
+from instructions.extended.Gotow import *
+from instructions.extended.Ifnull import *
+from instructions.extended.Wide import *
+from instructions.loads.Aload import *
+from instructions.loads.Dload import *
+from instructions.loads.Fload import *
+from instructions.loads.Iload import *
+from instructions.loads.Lload import *
+from instructions.math.Add import *
+from instructions.math.And import *
+from instructions.math.Div import *
+from instructions.math.Mul import *
+from instructions.math.Neg import *
+from instructions.math.Or import *
+from instructions.math.Rem import *
+from instructions.math.Sh import *
+from instructions.math.Sub import *
+from instructions.math.Xor import *
+from instructions.references.Checkcast import CHECK_CAST
+from instructions.references.Getfield import GET_FIELD
+from instructions.references.Getstatic import GET_STATIC
+from instructions.references.Instanceof import INSTANCE_OF
+from instructions.references.Invokespecial import INVOKE_SPECIAL
+from instructions.references.Invokevirtual import INVOKE_VIRTURL
+from instructions.references.Ldc import *
+from instructions.references.New import NEW
+from instructions.references.Putfield import PUT_FIELD
+from instructions.references.Putstatic import PUT_STATIC
+from instructions.stack.Dup import *
+from instructions.stack.Pop import *
+from instructions.stack.Swap import *
+from instructions.stores.Astore import *
+from instructions.stores.Dstore import *
+from instructions.stores.Fstore import *
+from instructions.stores.Istore import *
+from instructions.stores.Lstore import *
+
+
+class Factory:
 
     @staticmethod
-    def newInstruction(opcode):
+    def new_instruction(opcode):
         if opcode == 0x00:
             return NOP()
         elif opcode == 0x01:

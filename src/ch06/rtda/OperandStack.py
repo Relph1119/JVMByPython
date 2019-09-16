@@ -1,35 +1,45 @@
-from ch06.rtda.Slot import Slot
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: OperandStack.py
+@time: 2019/9/15 16:29
+@desc: 操作数栈，用于python的列表能存储任何数据类型，所以将基本数据类型和引用类型都用一个Slot表示。
+"""
 
-class OperandStack():
-    def __init__(self, maxStack):
+from rtda.Slot import Slot
+
+
+class OperandStack:
+    def __init__(self, max_stack):
         self.slots = []
-        if maxStack > 0:
-            self.slots = [Slot() for i in range(maxStack)]
+        if max_stack > 0:
+            self.slots = [Slot() for _ in range(max_stack)]
         self.size = 0
 
-    def pushNumeric(self, val):
+    def push_numeric(self, val):
         self.slots[self.size].num = val
         self.size += 1
 
-    def popNumeric(self):
+    def pop_numeric(self):
         self.size -= 1
         return self.slots[self.size].num
 
-    def pushRef(self, ref):
+    def push_ref(self, ref):
         self.slots[self.size].ref = ref
         self.size += 1
 
-    def popRef(self):
+    def pop_ref(self):
         self.size -= 1
         ref = self.slots[self.size].ref
         self.slots[self.size].ref = None
         return ref
 
-    def pushSlot(self, slot):
+    def push_slot(self, slot:Slot):
         self.slots[self.size] = slot
         self.size += 1
 
-    def popSlot(self):
+    def pop_slot(self):
         self.size -= 1
         return self.slots[self.size]
 

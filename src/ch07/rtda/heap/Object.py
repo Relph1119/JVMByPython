@@ -19,4 +19,4 @@ class Object():
         return obj
 
     def isInstanceOf(self, clazz):
-        return clazz.isAssignableFrom(self._class)
+        return clazz.is_assignable_from(self._class)

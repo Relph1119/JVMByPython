@@ -24,7 +24,7 @@ class DUP(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operandStack
+        stack = frame.operand_stack
         slot = stack.pop_slot()
         stack.push_slot(slot)
         # 采用deepcopy对象深拷贝，复制slot
@@ -42,7 +42,7 @@ class DUP_X1(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operandStack
+        stack = frame.operand_stack
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         stack.push_slot(copy.deepcopy(slot1))
@@ -61,7 +61,7 @@ class DUP_X2(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operandStack
+        stack = frame.operand_stack
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()
@@ -82,7 +82,7 @@ class DUP2(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         stack.push_slot(slot2)
@@ -102,7 +102,7 @@ class DUP2_X1(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()
@@ -124,7 +124,7 @@ class DUP2_X2(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()

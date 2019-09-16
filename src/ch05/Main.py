@@ -72,9 +72,15 @@ def get_main_method(classFile):
 
 if __name__ == '__main__':
     Xjre_path = os.path.join(os.environ.get("JAVA_HOME"), "jre")
+    # 得到项目路径的绝对地址
     root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+    # 得到java的用户类路径
     resources_path = os.path.join(os.path.dirname(root_path), "java")
 
-    # 指定-Xjre选项和类名
+    # 采用指定用户类路径--cp，执行GaussTest程序
     fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch05.GaussTest']
     main(fake_args)
+
+    # 采用指定用户类路径--cp，执行ShTest程序
+    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch05.ShTest']
+    # main(fake_args)

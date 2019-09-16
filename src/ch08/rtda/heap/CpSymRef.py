@@ -14,8 +14,8 @@ class SymRef():
         return self.getClass()
 
     def resolveClassRef(self):
-        d = self.cp.getClass()
-        c = d.loader.loadClass(self.className)
-        if not c.isAccessibleTo(d):
+        d = self.cp.get_class()
+        c = d.loader.load_class(self.className)
+        if not c.is_accessible_to(d):
             raise RuntimeError("java.lang.IllegalAccessError")
         self._class = c

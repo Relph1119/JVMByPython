@@ -34,7 +34,7 @@ class MemberInfo():
 
         # 初始化MemberInfo对象
         member = MemberInfo(constant_pool)
-        member.access_flags = class_reader.read_unit16()
+        member.access_flags = int.from_bytes(class_reader.read_unit16(), byteorder="big")
         member.name_index = int.from_bytes(class_reader.read_unit16(), byteorder="big")
         member.descriptor_index = int.from_bytes(class_reader.read_unit16(), byteorder="big")
         member.attributes = AttributeInfo.read_attributes(class_reader, constant_pool)
@@ -56,6 +56,16 @@ class MemberInfo():
         for attrInfo in self.attributes:
 
             if isinstance(attrInfo, CodeAttribute):
+                return attrInfo
+
+        return None
+
+    # 得到MemberInfo的constantValue属性
+    @property
+    def constant_value_index(self):
+        for attrInfo in self.attributes:
+            from classfile.AttrConstantValue import ConstantValueAttribute
+            if isinstance(attrInfo, ConstantValueAttribute):
                 return attrInfo
 
         return None

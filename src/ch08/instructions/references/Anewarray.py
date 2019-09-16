@@ -4,8 +4,8 @@ class ANEW_ARRAY(Index16Instruction):
     def execute(self, frame):
         import ctypes
 
-        cp = frame.method.getClass().constantPool
-        classRef = cp.getConstant(self.index)
+        cp = frame.method.get_class().constantPool
+        classRef = cp.get_constant(self.index)
         componentClass = classRef.resolvedClass()
 
         stack = frame.operandStack

@@ -31,8 +31,8 @@ class MULTI_ANEW_ARRAY(Instruction):
         self.dimensions = bytecodeReader.read_uint8()
 
     def execute(self, frame):
-        cp = frame.method.getClass().constantPool
-        classRef = cp.getConstant(ctypes.c_uint(self.index).value)
+        cp = frame.method.get_class().constantPool
+        classRef = cp.get_constant(ctypes.c_uint(self.index).value)
         arrClass = classRef.resolvedClass()
 
         stack = frame.operandStack

@@ -11,7 +11,7 @@ from instructions.base.Instruction import BranchInstruction
 
 
 def _acmpPop(frame):
-    stack = frame.operandStack
+    stack = frame.operand_stack
     val2 = stack.pop_ref()
     val1 = stack.pop_ref()
     return val1, val2

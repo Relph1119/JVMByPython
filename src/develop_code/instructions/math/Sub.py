@@ -10,7 +10,7 @@ from instructions.base.Instruction import NoOperandsInstruction
 
 
 def _sub(frame):
-    stack = frame.operandStack
+    stack = frame.operand_stack
     v1 = stack.pop_numeric()
     v2 = stack.pop_numeric()
     result = v1 - v2

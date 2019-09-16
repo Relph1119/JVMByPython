@@ -4,17 +4,17 @@ class GET_STATIC(Index16Instruction):
     def execute(self, frame):
         from ch07.instructions.base.ClassInitLogic import ClassInitLogic
 
-        cp = frame.method.getClass().constantPool
-        fieldRef = cp.getConstant(self.index)
-        field = fieldRef.resolveField()
-        clazz = field.getClass()
+        cp = frame.method.get_class().constantPool
+        fieldRef = cp.get_constant(self.index)
+        field = fieldRef.resolve_field()
+        clazz = field.get_class()
 
         if not clazz.initStarted:
             frame.revertNextPC()
             ClassInitLogic.initClass(frame.thread, clazz)
             return
 
-        if not field.isStatic():
+        if not field.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         descriptor = field.descriptor

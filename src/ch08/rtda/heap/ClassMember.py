@@ -42,9 +42,9 @@ class ClassMember():
 
         c = self._class
         if self.isProtected():
-            return d == c or d.isSubClassOf(c) or c.getPackageName() == d.getPackageName()
+            return d == c or d.is_sub_class_of(c) or c.get_package_name() == d.get_package_name()
 
         if not self.isPrivate():
-            return c.getPackageName() == d.getPackageName()
+            return c.get_package_name() == d.get_package_name()
 
         return d == c

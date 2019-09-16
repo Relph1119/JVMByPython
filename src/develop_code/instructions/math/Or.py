@@ -11,7 +11,7 @@ from rtda import Frame
 
 
 def _or(frame: Frame):
-    stack = frame.operandStack
+    stack = frame.operand_stack
     v2 = stack.pop_numeric()
     v1 = stack.pop_numeric()
     result = v1 | v2

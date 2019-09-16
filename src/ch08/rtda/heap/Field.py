@@ -29,7 +29,7 @@ class Field(ClassMember):
         return 0 != self.accessFlags & AccessFlags.ACC_ENUM
 
     def copyAttributes(self, cfField):
-        valAttr = cfField.constantValueIndex()
+        valAttr = cfField.constant_value_index()
         if valAttr:
-            self.constValueIndex = valAttr.constantValueIndex
+            self.constValueIndex = valAttr.constant_value_index
 

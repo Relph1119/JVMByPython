@@ -6,20 +6,20 @@ class PUT_STATIC(Index16Instruction):
 
 
         currentMethod = frame.method
-        currentClass = currentMethod.getClass()
+        currentClass = currentMethod.get_class()
         cp = currentClass.constantPool
-        fieldRef = cp.getConstant(self.index)
-        field = fieldRef.resolveField()
-        clazz = field.getClass()
+        fieldRef = cp.get_constant(self.index)
+        field = fieldRef.resolve_field()
+        clazz = field.get_class()
 
         if not clazz.initStarted:
             frame.revertNextPC()
             ClassInitLogic.initClass(frame.thread, clazz)
             return
 
-        if not field.isStatic():
+        if not field.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
-        if field.isFinal():
+        if field.is_final():
             if currentClass != clazz or currentMethod.name != "<clinit>":
                 raise RuntimeError("java.lang.IllegalAccessError")
 

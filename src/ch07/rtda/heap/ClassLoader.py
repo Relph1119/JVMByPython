@@ -56,14 +56,14 @@ class ClassLoader():
     @staticmethod
     def resolveSuperClass(clazz):
         if clazz.name != "java/lang/object" and clazz.super_class_name:
-            clazz.superClass = clazz.loader.loadClass(clazz.super_class_name)
+            clazz.superClass = clazz.loader.load_class(clazz.super_class_name)
 
     @staticmethod
     def resolveInterfaces(clazz):
         interfaceCount = len(clazz.interface_names)
         if interfaceCount > 0:
             for interfaceName in clazz.interface_names:
-                clazz.interfaces.append(clazz.loader.loadClass(interfaceName))
+                clazz.interfaces.append(clazz.loader.load_class(interfaceName))
 
     @staticmethod
     def link(clazz):
@@ -86,7 +86,7 @@ class ClassLoader():
         if clazz.superClass:
             slotId = clazz.superClass.instanceSlotCount
         for field in clazz.fields:
-            if not field.isStatic():
+            if not field.is_static():
                 field.slotId = slotId
                 slotId += 1
                 ##不需要判断long和double，每一个slot可设置为一个对象
@@ -97,7 +97,7 @@ class ClassLoader():
     def calcStaticFieldSlotIds(clazz):
         slotId = 0
         for field in clazz.fields:
-            if field.isStatic():
+            if field.is_static():
                 field.slotId = slotId
                 slotId += 1
 
@@ -109,7 +109,7 @@ class ClassLoader():
 
         clazz.staticVars = LocalVars(clazz.staticSlotCount)
         for field in clazz.fields:
-            if field.isStatic() and field.isFinal():
+            if field.is_static() and field.is_final():
                 ClassLoader.initStaticFinalVar(clazz, field)
 
     @staticmethod
@@ -121,7 +121,7 @@ class ClassLoader():
 
         if cpIndex > 0:
             if field.descriptor in {"Z", "B", "C", "S", "I","J", "F", "D"}:
-                val = cp.getConstant(cpIndex)
+                val = cp.get_constant(cpIndex)
                 vars.set_numeric(slotId, val)
             elif field.descriptor == "Ljava/lang/String":
                 raise RuntimeError("todo")

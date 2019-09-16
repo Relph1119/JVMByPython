@@ -9,10 +9,10 @@ class INSTANCE_OF(Index16Instruction):
             stack.push_numeric(0)
             return
 
-        cp = frame.method.getClass().constantPool
-        classRef = cp.getConstant(self.index)
+        cp = frame.method.get_class().constantPool
+        classRef = cp.get_constant(self.index)
         clazz = classRef.resolvedClass()
-        if ref.isInstanceOf(clazz):
+        if ref.is_instance_of(clazz):
             stack.push_numeric(1)
         else:
             stack.push_numeric(0)

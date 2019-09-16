@@ -12,7 +12,7 @@ from rtda import Frame
 
 
 def _icmpPop(frame: Frame):
-    stack = frame.operandStack
+    stack = frame.operand_stack
     val2 = stack.pop_numeric()
     val1 = stack.pop_numeric()
     return val1, val2

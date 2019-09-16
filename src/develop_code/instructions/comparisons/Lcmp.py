@@ -11,7 +11,7 @@ from instructions.base.Instruction import NoOperandsInstruction
 
 class LCMP(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack
+        stack = frame.operand_stack
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v1 > v2:

@@ -16,4 +16,4 @@ class MethodInvokeLogic():
             if method.name == "registerNatives":
                 thread.pop_frame()
             else:
-                raise RuntimeError("native method: {0}.{1}{2}".format(method.getClass().name, method.name, method.descriptor))
+                raise RuntimeError("native method: {0}.{1}{2}".format(method.get_class().name, method.name, method.descriptor))

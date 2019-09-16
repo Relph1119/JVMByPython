@@ -28,7 +28,7 @@ class LOOKUP_SWITCH(NoOperandsInstruction):
 
     def execute(self, frame):
         # 先从操作数栈中弹出一个int变量
-        key = frame.operandStack.pop_numeric()
+        key = frame.operand_stack.pop_numeric()
         # 然后用它查找match_offsets，看能否找到匹配的key
         for i in range(0, self.n_pairs * 2, 2):
             if self.match_offsets[i] == key:

@@ -25,7 +25,7 @@ class NEW_ARRAY(Instruction):
         if count < 0:
             raise RuntimeError("java.lang.NegativeArraySizeException")
 
-        classLoader = frame.method.getClass().loader
+        classLoader = frame.method.get_class().loader
         arrClass = NEW_ARRAY.getPrimitiveArrayClass(classLoader, self.atype)
         arr = arrClass.newArray(ctypes.c_uint(count).value)
         stack.push_ref(arr)
@@ -33,20 +33,20 @@ class NEW_ARRAY(Instruction):
     @staticmethod
     def getPrimitiveArrayClass(loader, atype):
         if atype == NEW_ARRAY.AT_BOOLEAN:
-            return loader.loadClass("[Z")
+            return loader.load_class("[Z")
         elif atype == NEW_ARRAY.AT_BYTE:
-            return loader.loadClass("[B")
+            return loader.load_class("[B")
         elif atype == NEW_ARRAY.AT_CHAR:
-            return loader.loadClass("[C")
+            return loader.load_class("[C")
         elif atype == NEW_ARRAY.AT_SHORT:
-            return loader.loadClass("[S")
+            return loader.load_class("[S")
         elif atype == NEW_ARRAY.AT_INT:
-            return loader.loadClass("[I")
+            return loader.load_class("[I")
         elif atype == NEW_ARRAY.AT_LONG:
-            return loader.loadClass("[J")
+            return loader.load_class("[J")
         elif atype == NEW_ARRAY.AT_FLOAT:
-            return loader.loadClass("[F")
+            return loader.load_class("[F")
         elif atype == NEW_ARRAY.AT_DOUBLE:
-            return loader.loadClass("[D")
+            return loader.load_class("[D")
         else:
             raise RuntimeError("Invalid atype!")

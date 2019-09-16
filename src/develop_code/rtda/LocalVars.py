@@ -10,23 +10,21 @@
 from rtda.Slot import Slot
 
 
-class LocalVars:
+class LocalVars(list):
     def __init__(self, max_locals):
-        self.slots = []
-        if max_locals > 0:
-            self.slots = [Slot() for _ in range(max_locals)]
+        super().__init__([Slot() for _ in range(max_locals)])
 
     def set_numeric(self, index, val):
-        self.slots[index].num = val
+        self[index].num = val
 
     def get_numeric(self, index):
-        return self.slots[index].num
+        return self[index].num
 
     def set_ref(self, index, ref):
-        self.slots[index].ref = ref
+        self[index].ref = ref
 
     def get_ref(self, index):
-        return self.slots[index].ref
+        return self[index].ref
 
     def __str__(self):
-        return "slots:{0}".format([str(t) for t in self.slots])
+        return "slots:{0}".format([str(t) for t in self])
