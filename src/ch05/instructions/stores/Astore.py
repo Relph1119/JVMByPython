@@ -10,8 +10,8 @@ from instructions.base.Instruction import Index8Instruction, NoOperandsInstructi
 
 
 def _astore(frame, index):
-    ref = frame.operandStack.pop_ref()
-    frame.localVars.set_ref(index, ref)
+    ref = frame.operand_stack.pop_ref()
+    frame.local_vars.set_ref(index, ref)
 
 
 class ASTORE(Index8Instruction):

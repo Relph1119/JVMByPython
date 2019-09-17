@@ -18,6 +18,7 @@ from instructions.constants.Ipush import *
 from instructions.constants.Nop import *
 from instructions.control.Goto import *
 from instructions.control.Lookupswitch import *
+from instructions.control.Return import *
 from instructions.control.Tableswitch import *
 from instructions.conversions.D2x import *
 from instructions.conversions.F2x import *
@@ -45,9 +46,11 @@ from instructions.references.Checkcast import CHECK_CAST
 from instructions.references.Getfield import GET_FIELD
 from instructions.references.Getstatic import GET_STATIC
 from instructions.references.Instanceof import INSTANCE_OF
+from instructions.references.Invokeinterface import INVOKE_INTERFACE
 from instructions.references.Invokespecial import INVOKE_SPECIAL
+from instructions.references.Invokestatic import INVOKE_STATIC
 from instructions.references.Invokevirtual import INVOKE_VIRTURL
-from instructions.references.Ldc import *
+from instructions.constants.Ldc import *
 from instructions.references.New import NEW
 from instructions.references.Putfield import PUT_FIELD
 from instructions.references.Putstatic import PUT_STATIC
@@ -157,6 +160,7 @@ class Factory:
             return ALOAD_2()
         elif opcode == 0x2d:
             return ALOAD_3()
+
         elif opcode == 0x36:
             return ISTORE()
         elif opcode == 0x37:
@@ -375,7 +379,18 @@ class Factory:
             return TABLE_SWITCH()
         elif opcode == 0xab:
             return LOOKUP_SWITCH()
-
+        elif opcode == 0xac:
+            return IRETURN()
+        elif opcode == 0xad:
+            return LRETURN()
+        elif opcode == 0xae:
+            return FRETURN()
+        elif opcode == 0xaf:
+            return DRETURN()
+        elif opcode == 0xb0:
+            return ARETURN()
+        elif opcode == 0xb1:
+            return RETURN()
         elif opcode == 0xb2:
             return GET_STATIC()
         elif opcode == 0xb3:
@@ -388,6 +403,10 @@ class Factory:
             return INVOKE_VIRTURL()
         elif opcode == 0xb7:
             return INVOKE_SPECIAL()
+        elif opcode == 0xb8:
+            return INVOKE_STATIC()
+        elif opcode == 0xb9:
+            return INVOKE_INTERFACE()
 
         elif opcode == 0xbb:
             return NEW()

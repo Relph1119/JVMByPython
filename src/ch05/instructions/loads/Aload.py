@@ -11,8 +11,8 @@ from rtda import Frame
 
 
 def _aload(frame: Frame, index):
-    ref = frame.localVars.get_ref(index)
-    frame.operandStack.push_ref(ref)
+    ref = frame.local_vars.get_ref(index)
+    frame.operand_stack.push_ref(ref)
 
 
 class ALOAD(Index8Instruction):

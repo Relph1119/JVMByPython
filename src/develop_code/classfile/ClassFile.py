@@ -14,11 +14,7 @@ from .AttributeInfo import AttributeInfo
 
 
 class ClassFile:
-    def __init__(self, class_data):
-        # class文件数据
-        self.class_data = class_data
-        # 魔数
-        self.magic = ""
+    def __init__(self):
         # 小版本号
         self.minor_version = ""
         # 主版本号
@@ -40,9 +36,9 @@ class ClassFile:
         # 属性
         self.attributes = []
 
-    def parse(self):
+    def parse(self, class_data):
         try:
-            class_reader = ClassReader(self.class_data)
+            class_reader = ClassReader(class_data)
             self.read(class_reader)
             return self, None
         except Exception as err:
@@ -92,7 +88,7 @@ class ClassFile:
     # 从常量池中查找超类类名
     @property
     def super_class_name(self):
-        if self.super_class:
+        if self.super_class > 0:
             return self.constant_pool.get_class_name(self.super_class)
         # 只有java.lang.Object没有超类
         return ""

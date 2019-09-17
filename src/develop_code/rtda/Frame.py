@@ -23,3 +23,6 @@ class Frame:
         # 保存操作数栈指针
         self.operand_stack = OperandStack(method.max_stack)
         self.next_pc = 0
+
+    def revert_next_pc(self):
+        self.next_pc = self.thread.pc

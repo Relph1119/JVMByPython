@@ -42,6 +42,8 @@ class Class:
         self.static_slot_count = 1
         # 静态变量
         self.static_vars = Slots()
+        # 表示类的<clinit>方法是否已经开始执行
+        self.init_started = False
 
     # 用来把classFile类转换成Class类
     @staticmethod
@@ -147,6 +149,10 @@ class Class:
 
         return False
 
+    # 判断S是否是T的超类
+    def is_super_class_of(self, otherClass):
+        return otherClass.is_sub_class_of(self)
+
     def get_main_method(self):
         return self.get_static_method("main", "([Ljava/lang/String;)V")
 
@@ -159,3 +165,9 @@ class Class:
     def new_object(self):
         from rtda.heap.Object import Object
         return Object(self)
+
+    def start_init(self):
+        self.init_started = True
+
+    def get_clinit_method(self):
+        return self.get_static_method("<clinit>", "()V")

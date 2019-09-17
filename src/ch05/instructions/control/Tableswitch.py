@@ -31,7 +31,7 @@ class TABLE_SWITCH(NoOperandsInstruction):
 
     def execute(self, frame):
         # 先从操作数栈中弹出一个int变量
-        index = frame.operandStack.pop_numeric()
+        index = frame.operand_stack.pop_numeric()
         # 然后看它是否在low和high给定的范围内
         if self.low <= index <= self.high:
             # 如果在，则从jump_offset表中查出偏移量进行跳转

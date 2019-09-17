@@ -48,7 +48,7 @@ class MethodDescriptorParser():
         while True:
             t = self.parseFieldType()
             if t:
-                self.parsed.addParameterType(t)
+                self.parsed.add_parameter_type(t)
             else:
                 break
 

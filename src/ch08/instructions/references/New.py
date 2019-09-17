@@ -9,7 +9,7 @@ class NEW(Index16Instruction):
         clazz = classRef.resolvedClass()
 
         if not clazz.initStarted:
-            frame.revertNextPC()
+            frame.revert_next_pc()
             ClassInitLogic.initClass(frame.thread, clazz)
             return
 

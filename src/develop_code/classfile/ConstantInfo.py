@@ -39,7 +39,7 @@ class ConstantInfo(metaclass=ABCMeta):
         return c
 
     @staticmethod
-    def new_constant_info(tag, constantPool):
+    def new_constant_info(tag, constant_pool):
         from .CpNumeric import ConstantDoubleInfo, ConstantLongInfo, ConstantFloatInfo, ConstantIntegerInfo
         from .ConstantUtf8Info import ConstantUtf8Info
         from .ConstantStringInfo import ConstantStringInfo
@@ -61,15 +61,15 @@ class ConstantInfo(metaclass=ABCMeta):
         elif tag == ConstantInfo.CONSTANT_Utf8:
             return ConstantUtf8Info()
         elif tag == ConstantInfo.CONSTANT_String:
-            return ConstantStringInfo(constantPool)
+            return ConstantStringInfo(constant_pool)
         elif tag == ConstantInfo.CONSTANT_Class:
-            return ConstantClassInfo(constantPool)
+            return ConstantClassInfo(constant_pool)
         elif tag == ConstantInfo.CONSTANT_FieldRef:
-            return ConstantFieldRefInfo(constantPool)
+            return ConstantFieldRefInfo(constant_pool)
         elif tag == ConstantInfo.CONSTANT_MethodRef:
-            return ConstantMethodRefInfo(constantPool)
+            return ConstantMethodRefInfo(constant_pool)
         elif tag == ConstantInfo.CONSTANT_InterfaceMethodRef:
-            return ConstantInterfaceMethodRefInfo(constantPool)
+            return ConstantInterfaceMethodRefInfo(constant_pool)
         elif tag == ConstantInfo.CONSTANT_NameAndType:
             return ConstantNameAndTypeInfo()
         elif tag == ConstantInfo.CONSTANT_MethodHandler:

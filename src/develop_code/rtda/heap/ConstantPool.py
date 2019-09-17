@@ -30,7 +30,7 @@ class ConstantPool:
         from rtda.heap.CpInterfaceMethodRef import InterfaceMethodRef
 
         cp_count = len(cfConstantPool.cp)
-        consts = [None for i in range(cp_count)]
+        consts = [None for _ in range(cp_count)]
         rt_constant_pool = ConstantPool(clazz, consts)
 
         for i in range(1, cp_count):

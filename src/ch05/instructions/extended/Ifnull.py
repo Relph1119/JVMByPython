@@ -12,13 +12,13 @@ from instructions.base.Instruction import BranchInstruction
 
 class IFNULL(BranchInstruction):
     def execute(self, frame):
-        ref = frame.operandStack.pop_ref()
+        ref = frame.operand_stack.pop_ref()
         if not ref:
             branch(frame, self.offset)
 
 
 class IFNONNULL(BranchInstruction):
     def execute(self, frame):
-        ref = frame.operandStack.pop_ref()
+        ref = frame.operand_stack.pop_ref()
         if ref:
             branch(frame, self.offset)

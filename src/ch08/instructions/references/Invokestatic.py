@@ -7,13 +7,13 @@ class INVOKE_STATIC(Index16Instruction):
 
         cp = frame.method.get_class().constantPool
         methodRef = cp.get_constant(self.index)
-        resolvedMethod = methodRef.resolvedMethod()
+        resolvedMethod = methodRef.resolved_method()
         if not resolvedMethod.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         clazz = resolvedMethod.get_class()
         if not clazz.initStarted:
-            frame.revertNextPC()
+            frame.revert_next_pc()
             ClassInitLogic.initClass(frame.thread, clazz)
             return
 

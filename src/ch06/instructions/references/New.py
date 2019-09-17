@@ -20,7 +20,7 @@ class NEW(Index16Instruction):
         """
         cp = frame.method.get_class().constant_pool
         class_ref = cp.get_constant(self.index)
-        clazz = class_ref.resolve_class()
+        clazz = class_ref.resolved_class()
 
         if clazz.is_interface() or clazz.is_abstract():
             raise RuntimeError("java.lang.InstantiationError")

@@ -15,7 +15,7 @@ from instructions.base.Instruction import NoOperandsInstruction
 # double remainder
 class DREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0.0:
@@ -28,7 +28,7 @@ class DREM(NoOperandsInstruction):
 # float remainder
 class FREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0.0:
@@ -41,7 +41,7 @@ class FREM(NoOperandsInstruction):
 # int remainder
 class IREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0:
@@ -53,7 +53,7 @@ class IREM(NoOperandsInstruction):
 # long remainder
 class LREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0:

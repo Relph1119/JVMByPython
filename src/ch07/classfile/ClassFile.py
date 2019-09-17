@@ -1,68 +1,99 @@
-from ch07.classfile.ClassReader import ClassReader
-from ch07.classfile.ConstantPool import ConstantPool
-from ch07.classfile.MemberInfo import MemberInfo
-from ch07.classfile.AttributeInfo import AttributeInfo
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: ClassFile.py
+@time: 2019/9/12 15:05
+@desc: 解析class文件
+"""
 
-class ClassFile():
-    def __init__(self, classData):
-        self.classData = classData
-        self.magic = ""
-        self.minorVersion = ""
-        self.majorVersion = ""
-        self.constantPool = None
-        self.accessFlags = ""
-        self.thisClass = ""
-        self.superClass = ""
+from .ClassReader import ClassReader
+from .ConstantPool import ConstantPool
+from .MemberInfo import MemberInfo
+from .AttributeInfo import AttributeInfo
+
+
+class ClassFile:
+    def __init__(self):
+        # 小版本号
+        self.minor_version = ""
+        # 主版本号
+        self.major_version = ""
+        # 常量池
+        self.constant_pool = None
+        # 类访问标志，用于指出class文件定义的是类还是接口，访问级别是public还是private
+        self.access_flags = ""
+        # 类索引
+        self.this_class = ""
+        # 超类索引
+        self.super_class = ""
+        # 接口索引表
         self.interfaces = []
+        # 变量
         self.fields = []
+        # 方法
         self.methods = []
+        # 属性
         self.attributes = []
 
-    def parse(self):
+    def parse(self, class_data):
         try:
-            cr = ClassReader(self.classData)
-            self.read(cr)
+            class_reader = ClassReader(class_data)
+            self.read(class_reader)
             return self, None
-        except Exception as e:
-            return self, e
+        except Exception as err:
+            return self, err
 
-    def read(self, classReader):
-        self.readAndCheckMaigc(classReader)
-        self.readAndCheckVersion(classReader)
-        self.constantPool = ConstantPool()
-        self.constantPool.readConstantPool(classReader)
-        self.accessFlags = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        self.thisClass = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        self.superClass = int.from_bytes(classReader.read_unit16(), byteorder="big")
-        self.interfaces = classReader.read_unit16s()
-        memberInfo = MemberInfo(self.constantPool)
-        self.fields = memberInfo.readMembers(classReader, self.constantPool)
-        self.methods = memberInfo.readMembers(classReader, self.constantPool)
-        self.attributes = AttributeInfo.readAttributes(classReader, self.constantPool)
+    def read(self, class_reader):
+        self.read_and_check_magic(class_reader)
+        self.read_and_check_version(class_reader)
 
-    def readAndCheckMaigc(self, classReader):
-        magic = classReader.read_unit32()
+        self.constant_pool = ConstantPool()
+        self.constant_pool.read_constant_pool(class_reader)
+
+        self.access_flags = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        self.this_class = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        self.super_class = int.from_bytes(class_reader.read_unit16(), byteorder="big")
+        self.interfaces = class_reader.read_unit16s()
+
+        member_info = MemberInfo(self.constant_pool)
+        self.fields = member_info.read_members(class_reader, self.constant_pool)
+        self.methods = member_info.read_members(class_reader, self.constant_pool)
+        self.attributes = AttributeInfo.read_attributes(class_reader, self.constant_pool)
+
+    # 读取并检查Class文件的起始字节，必须以0xCAFEBABE固定字节开头
+    @staticmethod
+    def read_and_check_magic(class_reader):
+        magic = class_reader.read_unit32()
         if magic != b'\xca\xfe\xba\xbe':
-            raise RuntimeError("java.lang.ClassFormatError: magic")
+            raise RuntimeError("java.lang.ClassFormatError: magic!")
 
-    def readAndCheckVersion(self, classReader):
-        self.minorVersion = int.from_bytes(classReader.read_unit16(), byteorder ='big')
-        self.majorVersion = int.from_bytes(classReader.read_unit16(), byteorder ='big')
-        if self.majorVersion == 45:
+    # 读取并检查版本号，由于采用java1.8的编译器，故支持版本号为45.0~52.0的class文件
+    def read_and_check_version(self, class_reader):
+        self.minor_version = int.from_bytes(class_reader.read_unit16(), byteorder='big')
+        self.major_version = int.from_bytes(class_reader.read_unit16(), byteorder='big')
+
+        if self.major_version == 45:
             return
-        elif self.majorVersion in {46, 47, 48, 49, 50, 51, 52}:
-            if self.minorVersion == 0:
+        elif self.major_version in {46, 47, 48, 49, 50, 51, 52}:
+            if self.minor_version == 0:
                 return
         raise RuntimeError("java.lang.UnsupportedClassVersionError!")
 
-    def className(self):
-        return self.constantPool.class_name(self.thisClass)
+    # 从常量池中查找类名
+    @property
+    def class_name(self):
+        return self.constant_pool.get_class_name(self.this_class)
 
-    def superClassName(self):
-        if self.superClass:
-            return self.constantPool.class_name(self.superClass)
+    # 从常量池中查找超类类名
+    @property
+    def super_class_name(self):
+        if self.super_class > 0:
+            return self.constant_pool.get_class_name(self.super_class)
+        # 只有java.lang.Object没有超类
         return ""
 
-    def interfaceNames(self):
-        return [self.constantPool.class_name(cpName) for cpName in self.interfaces]
-
+    # 从常量池中查找接口名
+    @property
+    def interface_names(self):
+        return [self.constant_pool.get_class_name(cpName) for cpName in self.interfaces]

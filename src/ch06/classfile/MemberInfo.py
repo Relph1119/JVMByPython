@@ -62,7 +62,7 @@ class MemberInfo():
 
     # 得到MemberInfo的constantValue属性
     @property
-    def constant_value_index(self):
+    def constant_value_attribute(self):
         for attrInfo in self.attributes:
             from classfile.AttrConstantValue import ConstantValueAttribute
             if isinstance(attrInfo, ConstantValueAttribute):

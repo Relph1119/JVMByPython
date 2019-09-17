@@ -6,7 +6,7 @@
 @time: 2019/9/15 16:58
 @desc: 指令的接口类
 """
-
+import ctypes
 from abc import ABCMeta, abstractmethod
 
 from instructions.base import BytecodeReader
@@ -42,7 +42,7 @@ class BranchInstruction(Instruction):
         self.offset = 0
 
     def fetch_operands(self, reader):
-        self.offset = reader.read_int16()
+        self.offset = ctypes.c_int(reader.read_int16()).value
 
     def execute(self, frame):
         pass
@@ -56,7 +56,7 @@ class Index8Instruction(Instruction):
 
     # 从字节码中读取一个int8整数
     def fetch_operands(self, reader):
-        self.index = reader.read_uint8()
+        self.index = ctypes.c_uint(reader.read_uint8()).value
 
     def execute(self, frame):
         pass
@@ -69,7 +69,7 @@ class Index16Instruction(Instruction):
 
     # 从字节码中读取一个uint16整数
     def fetch_operands(self, reader):
-        self.index = reader.read_uint16()
+        self.index = ctypes.c_uint(reader.read_uint16()).value
 
     def execute(self, frame):
         pass

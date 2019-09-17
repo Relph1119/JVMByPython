@@ -1,22 +1,24 @@
-class Object():
-    def __init__(self):
-        self._class = None
-        self.fields = []
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Object.py
+@time: 2019/9/15 16:04
+@desc: 表示对象
+"""
+from rtda.LocalVars import LocalVars
+from rtda.heap.Class import Class
 
-    def setClass(self, clazz):
+
+class Object:
+    def __init__(self, clazz: Class):
+        # 存放对象的class
         self._class = clazz
+        # 存放实例变量
+        self.fields = LocalVars(clazz.instance_slot_count)
 
-    def getClass(self):
+    def get_class(self):
         return self._class
 
-    @staticmethod
-    def newObject(clazz):
-        from ch07.rtda.LocalVars import LocalVars
-
-        obj = Object()
-        obj._class = clazz
-        obj.fields = LocalVars(clazz.instanceSlotCount)
-        return obj
-
-    def isInstanceOf(self, clazz):
+    def is_instance_of(self, clazz: Class) -> bool:
         return clazz.is_assignable_from(self._class)

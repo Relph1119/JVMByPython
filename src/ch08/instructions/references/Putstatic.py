@@ -13,7 +13,7 @@ class PUT_STATIC(Index16Instruction):
         clazz = field.get_class()
 
         if not clazz.initStarted:
-            frame.revertNextPC()
+            frame.revert_next_pc()
             ClassInitLogic.initClass(frame.thread, clazz)
             return
 

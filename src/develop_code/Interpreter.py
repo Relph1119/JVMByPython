@@ -14,38 +14,60 @@ from rtda.heap.Method import Method
 class Interpreter:
 
     @staticmethod
-    def interpret(method: Method):
+    def interpret(method: Method, log_inst: bool):
         thread = Thread()
         frame = thread.new_frame(method)
         thread.push_frame(frame)
         try:
-            Interpreter.loop(thread, method.code)
+            Interpreter.loop(thread, log_inst)
         except RuntimeError as e:
+            Interpreter.log_frames(thread)
             print("LocalVars: {0}".format(frame.local_vars))
             print("OperandStack: {0}".format(frame.operand_stack))
             print(e)
 
     @staticmethod
-    def loop(thread, bytecode):
+    def loop(thread, log_inst):
         from instructions.base.BytecodeReader import BytecodeReader
         from instructions.Factory import Factory
 
-        frame = thread.pop_frame()
         reader = BytecodeReader()
 
         while True:
+            frame = thread.current_frame
             pc = frame.next_pc
             thread.pc = pc
 
-            reader.reset(bytecode, pc)
-            opcode = reader.read_uint8()
-            inst = Factory.new_instruction(opcode)
+            reader.reset(frame.method.code, pc)
+            op_code = reader.read_uint8()
+            inst = Factory.new_instruction(op_code)
             inst.fetch_operands(reader)
             frame.next_pc = reader.pc
 
-            print("pc:{0} opcode:{1} inst:{2} [{3}]".format(pc, hex(opcode), inst.__class__.__name__,
-                                                            Interpreter.print_obj(inst)))
+            if log_inst:
+                Interpreter.log_instruction(frame, inst)
+
             inst.execute(frame)
+
+            if thread.is_stack_empty():
+                break
+
+    @staticmethod
+    def log_frames(thread):
+        while not thread.is_stack_empty():
+            frame = thread.pop_frame()
+            method = frame.method
+            class_name = method.get_class().name
+            print(">> pc: {0:4} {1}.{2}{3}".format(frame.next_pc, class_name, method.name, method.descriptor))
+
+    @staticmethod
+    def log_instruction(frame, inst):
+        method = frame.method
+        class_name = method.get_class().name
+        method_name = method.name
+        pc = frame.thread.pc
+        print("{0}.{1}() #{2:<2} {3} {4}".format(class_name, method_name, pc, inst.__class__.__name__,
+                                                 Interpreter.print_obj(inst)))
 
     @staticmethod
     def print_obj(obj):

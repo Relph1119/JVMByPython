@@ -20,7 +20,7 @@ class BIPUSH(Instruction):
 
     def execute(self, frame):
         i = self.val
-        frame.operandStack.push_numeric(i)
+        frame.operand_stack.push_numeric(i)
 
 
 # 从操作数中获取一个short类型整数，扩展成int型，然后推入栈顶
@@ -33,4 +33,4 @@ class SIPUSH(Instruction):
 
     def execute(self, frame):
         i = self.val
-        frame.operandStack.push_numeric(i)
+        frame.operand_stack.push_numeric(i)

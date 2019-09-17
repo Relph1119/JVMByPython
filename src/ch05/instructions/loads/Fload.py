@@ -10,8 +10,8 @@ from instructions.base.Instruction import Index8Instruction, NoOperandsInstructi
 
 
 def _fload(frame, index):
-    val = frame.localVars.get_numeric(index)
-    frame.operandStack.push_numeric(val)
+    val = frame.local_vars.get_numeric(index)
+    frame.operand_stack.push_numeric(val)
 
 
 class FLOAD(Index8Instruction):

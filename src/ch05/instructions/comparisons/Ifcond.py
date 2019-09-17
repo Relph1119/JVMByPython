@@ -13,7 +13,7 @@ from instructions.base.Instruction import BranchInstruction
 # ifeq: x == 0
 class IFEQ(BranchInstruction):
     def execute(self, frame):
-        val = frame.operandStack.pop_numeric()
+        val = frame.operand_stack.pop_numeric()
         if val == 0:
             branch(frame, self.offset)
 
@@ -21,7 +21,7 @@ class IFEQ(BranchInstruction):
 # ifne: x != 0
 class IFNE(BranchInstruction):
     def execute(self, frame):
-        val = frame.operandStack.pop_numeric()
+        val = frame.operand_stack.pop_numeric()
         if val != 0:
             branch(frame, self.offset)
 
@@ -29,7 +29,7 @@ class IFNE(BranchInstruction):
 # iflt: x < 0
 class IFLT(BranchInstruction):
     def execute(self, frame):
-        val = frame.operandStack.pop_numeric()
+        val = frame.operand_stack.pop_numeric()
         if val < 0:
             branch(frame, self.offset)
 
@@ -37,7 +37,7 @@ class IFLT(BranchInstruction):
 # ifle: x <= 0
 class IFLE(BranchInstruction):
     def execute(self, frame):
-        val = frame.operandStack.pop_numeric()
+        val = frame.operand_stack.pop_numeric()
         if val <= 0:
             branch(frame, self.offset)
 
@@ -45,7 +45,7 @@ class IFLE(BranchInstruction):
 # ifgt: x > 0
 class IFGT(BranchInstruction):
     def execute(self, frame):
-        val = frame.operandStack.pop_numeric()
+        val = frame.operand_stack.pop_numeric()
         if val > 0:
             branch(frame, self.offset)
 
@@ -53,6 +53,6 @@ class IFGT(BranchInstruction):
 # ifge: x >= 0
 class IFGE(BranchInstruction):
     def execute(self, frame):
-        val = frame.operandStack.pop_numeric()
+        val = frame.operand_stack.pop_numeric()
         if val >= 0:
             branch(frame, self.offset)

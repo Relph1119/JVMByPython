@@ -6,6 +6,7 @@
 @time: 2019/9/15 16:22
 @desc: 局部变量表，用于python的列表能存储任何数据类型，所以将基本数据类型和引用类型都用一个Slot表示。
 """
+import copy
 
 from rtda.Slot import Slot
 
@@ -25,6 +26,11 @@ class LocalVars(list):
 
     def get_ref(self, index):
         return self[index].ref
+
+    def set_slot(self, index, slot: Slot):
+        # todo:
+        # self[index] = copy.deepcopy(slot)
+        self[index] = slot
 
     def __str__(self):
         return "slots:{0}".format([str(t) for t in self])

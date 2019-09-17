@@ -6,7 +6,6 @@
 @time: 2019/9/14 22:49
 @desc: 统一的类表示字段和方法
 """
-from typing import Optional
 
 from classfile.AttrCode import CodeAttribute
 
@@ -52,7 +51,7 @@ class MemberInfo():
 
     # 得到MemberInfo的Code属性
     @property
-    def code_attribute(self) -> Optional[CodeAttribute]:
+    def code_attribute(self):
         for attrInfo in self.attributes:
 
             if isinstance(attrInfo, CodeAttribute):
@@ -62,7 +61,7 @@ class MemberInfo():
 
     # 得到MemberInfo的constantValue属性
     @property
-    def constant_value_index(self):
+    def constant_value_attribute(self):
         for attrInfo in self.attributes:
             from classfile.AttrConstantValue import ConstantValueAttribute
             if isinstance(attrInfo, ConstantValueAttribute):

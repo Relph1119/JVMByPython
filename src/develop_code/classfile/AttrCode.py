@@ -18,7 +18,7 @@ class CodeAttribute(AttributeInfo):
         # 局部变量表大小
         self.max_locals = 0
         # 字节码，存在u1表中
-        self.code = None
+        self.code = []
         # 异常处理表
         self.exception_table = []
         # 属性表

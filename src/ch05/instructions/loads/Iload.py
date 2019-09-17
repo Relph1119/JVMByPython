@@ -11,8 +11,8 @@ from rtda import Frame
 
 
 def _iload(frame: Frame, index):
-    val = frame.localVars.get_numeric(index)
-    frame.operandStack.push_numeric(val)
+    val = frame.local_vars.get_numeric(index)
+    frame.operand_stack.push_numeric(val)
 
 
 class ILOAD(Index8Instruction):

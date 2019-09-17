@@ -29,3 +29,10 @@ class Thread:
     def new_frame(self, method: Method):
         from rtda.Frame import Frame
         return Frame(self, method)
+
+    @property
+    def top_frame(self):
+        return self.stack.top()
+
+    def is_stack_empty(self):
+        return self.stack.is_empty()

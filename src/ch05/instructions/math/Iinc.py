@@ -24,7 +24,7 @@ class IINC(NoOperandsInstruction):
 
     # 从局部变量表中读取变量，给它加上常量值，再把结果写回局部变量表
     def execute(self, frame):
-        local_vars = frame.localVars
+        local_vars = frame.local_vars
         val = local_vars.get_numeric(self.index)
         val += self.const
         local_vars.set_numeric(self.index, val)

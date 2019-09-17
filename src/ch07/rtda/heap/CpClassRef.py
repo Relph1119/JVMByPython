@@ -1,12 +1,18 @@
-from ch07.rtda.heap.CpSymRef import SymRef
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: CpClassRef.py
+@time: 2019/9/16 17:57
+@desc: 类符号引用
+"""
+from classfile.ConstantClassInfo import ConstantClassInfo
+from rtda.heap.CpSymRef import SymRef
+
 
 class ClassRef(SymRef):
 
-    @staticmethod
-    def newClassRef(constantPool, classInfo):
-        ref = ClassRef()
-        ref.cp = constantPool
-        ref.className = classInfo.name()
-        return ref
-
-
+    def __init__(self, constant_pool, class_info: ConstantClassInfo):
+        super().__init__()
+        self.cp = constant_pool
+        self.class_name = class_info.name

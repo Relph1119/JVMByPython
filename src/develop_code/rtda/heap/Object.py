@@ -17,9 +17,6 @@ class Object:
         # 存放实例变量
         self.fields = LocalVars(clazz.instance_slot_count)
 
-    def set_class(self, clazz):
-        self._class = clazz
-
     def get_class(self):
         return self._class
 

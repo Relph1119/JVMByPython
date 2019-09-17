@@ -11,6 +11,10 @@
 class Cmd:
     # 版本号
     version_flag = False
+    # 控制是否把类加载信息输出到控制台
+    verbose_class_flag = False
+    # 控制是否把指令执行信息输出到控制台
+    verbose_inst_flag = False
     # 指定用户类路径
     cpOption = ""
     # 类名
@@ -27,6 +31,8 @@ class Cmd:
         else:
             self.cpOption = options.cpOption or ""
             self.XjreOption = options.XjreOption or ""
+            self.verbose_class_flag = options.verbose_class_flag or False
+            self.verbose_inst_flag = options.verbose_inst_flag or False
 
         if argvs:
             self.class_name = argvs[0]

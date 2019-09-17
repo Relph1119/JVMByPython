@@ -1,9 +1,21 @@
-from ch07.instructions.base.Instruction import NoOperandsInstruction
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Rem.py
+@time: 2019/9/15 20:04
+@desc: 求余(rem)指令
+"""
+
 import math
 
+from instructions.base.Instruction import NoOperandsInstruction
+
+
+# double remainder
 class DREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0.0:
@@ -12,9 +24,11 @@ class DREM(NoOperandsInstruction):
             result = math.fmod(v1, v2)
         stack.push_numeric(result)
 
+
+# float remainder
 class FREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0.0:
@@ -23,9 +37,11 @@ class FREM(NoOperandsInstruction):
             result = math.fmod(v1, v2)
         stack.push_numeric(result)
 
+
+# int remainder
 class IREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0:
@@ -33,9 +49,11 @@ class IREM(NoOperandsInstruction):
         result = v1 % v2
         stack.push_numeric(result)
 
+
+# long remainder
 class LREM(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack()
+        stack = frame.operand_stack()
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
         if v2 == 0:

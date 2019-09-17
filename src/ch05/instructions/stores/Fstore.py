@@ -10,8 +10,8 @@ from instructions.base.Instruction import Index8Instruction, NoOperandsInstructi
 
 
 def _fstore(frame, index):
-    val = frame.operandStack.pop_numeric()
-    frame.localVars.set_numeric(index, val)
+    val = frame.operand_stack.pop_numeric()
+    frame.local_vars.set_numeric(index, val)
 
 
 class FSTORE(Index8Instruction):

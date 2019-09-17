@@ -34,7 +34,7 @@ class FieldRef(MemberRef):
         :return:
         """
         d = self.cp.get_class()
-        c = self.resolve_class()
+        c = self.resolved_class()
         field = self.lookup_field(c, self.name, self.descriptor)
 
         if not field:

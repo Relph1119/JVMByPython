@@ -19,7 +19,7 @@ class ConstantPool:
         from .ConstantInfo import ConstantInfo
 
         cp_count = int.from_bytes(class_reader.read_unit16(), byteorder="big")
-        self.cp = [0 for i in range(cp_count)]
+        self.cp = [None for _ in range(cp_count)]
 
         # 索引从1开始
         i = 1

@@ -2,13 +2,13 @@ class ClassInitLogic():
 
     @staticmethod
     def initClass(thread, clazz):
-        clazz.startInit()
+        clazz.start_init()
         ClassInitLogic.scheduleClinit(thread, clazz)
         ClassInitLogic.initSuperClass(thread, clazz)
 
     @staticmethod
     def scheduleClinit(thread, clazz):
-       clinit = clazz.getClinitMethod()
+       clinit = clazz.get_clinit_method()
        if clinit:
            newFrame = thread.newFrame(clinit)
            thread.push_frame(newFrame)

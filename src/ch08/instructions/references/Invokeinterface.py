@@ -16,11 +16,11 @@ class INVOKE_INTERFACE(Instruction):
 
         cp = frame.method.get_class().constantPool
         methodRef = cp.get_constant(self.index)
-        resolveMethod = methodRef.resolvedInterfaceMethod()
+        resolveMethod = methodRef.resolved_interface_method()
         if resolveMethod.is_static() or resolveMethod.is_private():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
-        ref = frame.operandStack.getRefFromTop(resolveMethod.argSlotCount - 1)
+        ref = frame.operandStack.get_ref_from_top(resolveMethod.argSlotCount - 1)
         if not ref:
             raise RuntimeError("java.lang.NullPointerException")
 

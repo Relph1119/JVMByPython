@@ -11,8 +11,8 @@ from instructions.base.Instruction import NoOperandsInstruction
 
 def _mul(frame):
     stack = frame.operand_stack
-    v1 = stack.pop_numeric()
     v2 = stack.pop_numeric()
+    v1 = stack.pop_numeric()
     result = v1 * v2
     stack.push_numeric(result)
 

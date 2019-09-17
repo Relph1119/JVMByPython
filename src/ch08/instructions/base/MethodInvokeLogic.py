@@ -10,9 +10,9 @@ class MethodInvokeLogic():
         if argSlotSlot > 0:
             for i in range(argSlotSlot-1, -1, -1):
                 slot = invokerFrame.operandStack.pop_slot()
-                newFrame.localVars.setSlot(i, slot)
+                newFrame.localVars.set_slot(i, slot)
 
-        if method.isNative():
+        if method.is_native():
             if method.name == "registerNatives":
                 thread.pop_frame()
             else:

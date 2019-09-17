@@ -9,6 +9,7 @@
 解析这个符号引用就可以知道要给类的哪个静态变量赋值。
 第二个操作数是要赋值给静态变量的值，从操作数栈中弹出。
 """
+from instructions.base import ClassInitLogic
 from instructions.base.Instruction import Index16Instruction
 
 
@@ -22,6 +23,11 @@ class PUT_STATIC(Index16Instruction):
         field_ref = cp.get_constant(self.index)
         field = field_ref.resolve_field()
         clazz = field.get_class()
+
+        if not clazz.init_started:
+            frame.revert_next_pc()
+            ClassInitLogic.init_class(frame.thread, clazz)
+            return
 
         # 如果解析后的字段是实例字段而非静态字段，则抛出IncompatibleClassChangeError异常
         if not field.is_static():

@@ -22,11 +22,11 @@ class INVOKE_VIRTURL(Index16Instruction):
         currentClass = frame.method.get_class()
         cp = currentClass.constantPool
         methodRef = cp.get_constant(self.index)
-        resolvedMethod = methodRef.resolvedMethod()
+        resolvedMethod = methodRef.resolved_method()
         if resolvedMethod.is_static():
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
-        ref = frame.operandStack.getRefFromTop(resolvedMethod.argSlotCount - 1)
+        ref = frame.operandStack.get_ref_from_top(resolvedMethod.argSlotCount - 1)
         if not ref:
             if methodRef.name == "println":
                 _println(frame.operandStack, methodRef.descriptor)
@@ -34,7 +34,7 @@ class INVOKE_VIRTURL(Index16Instruction):
             raise RuntimeError("java.lang.NullPointerException")
 
         if resolvedMethod.is_protected() \
-                and resolvedMethod.get_class().isSuperClassOf(currentClass) \
+                and resolvedMethod.get_class().is_super_class_of(currentClass) \
                 and resolvedMethod.get_class().get_package_name() != currentClass.get_package_name() \
                 and ref.get_class() != currentClass \
                 and not ref.get_class().is_sub_class_of(currentClass):

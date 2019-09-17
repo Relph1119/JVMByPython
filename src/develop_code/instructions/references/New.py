@@ -6,7 +6,7 @@
 @time: 2019/9/16 19:44
 @desc: new指令
 """
-
+from instructions.base import ClassInitLogic
 from instructions.base.Instruction import Index16Instruction
 from rtda.Frame import Frame
 
@@ -18,9 +18,15 @@ class NEW(Index16Instruction):
         :param frame:
         :return:
         """
+
         cp = frame.method.get_class().constant_pool
         class_ref = cp.get_constant(self.index)
-        clazz = class_ref.resolve_class()
+        clazz = class_ref.resolved_class()
+
+        if not clazz.init_started:
+            frame.revert_next_pc()
+            ClassInitLogic.init_class(frame.thread, clazz)
+            return
 
         if clazz.is_interface() or clazz.is_abstract():
             raise RuntimeError("java.lang.InstantiationError")

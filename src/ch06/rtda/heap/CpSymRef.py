@@ -21,7 +21,7 @@ class SymRef:
         return self._class
 
     # 解析类
-    def resolve_class(self):
+    def resolved_class(self):
         if not self.get_class():
             self.resolve_class_ref()
 

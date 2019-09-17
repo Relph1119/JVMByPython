@@ -25,7 +25,7 @@ class INSTANCE_OF(Index16Instruction):
 
         cp = frame.method.get_class().constant_pool
         class_ref = cp.get_constant(self.index)
-        clazz = class_ref.resolve_class()
+        clazz = class_ref.resolved_class()
         if ref.is_instance_of(clazz):
             stack.push_numeric(1)
         else:

@@ -6,6 +6,7 @@
 @time: 2019/9/16 20:04
 @desc: getstatic指令和putstatic指令正好相反，它取出类的某个静态变量值，然后推入栈顶。
 """
+from instructions.base import ClassInitLogic
 from instructions.base.Instruction import Index16Instruction
 from rtda.Frame import Frame
 
@@ -16,6 +17,11 @@ class GET_STATIC(Index16Instruction):
         field_ref = cp.get_constant(self.index)
         field = field_ref.resolve_field()
         clazz = field.get_class()
+
+        if not clazz.init_started:
+            frame.revert_next_pc()
+            ClassInitLogic.init_class(frame.thread, clazz)
+            return
 
         # 如果解析后的字段不是静态字段，抛出IncompatibleClassChangeError异常
         if not field.is_static():

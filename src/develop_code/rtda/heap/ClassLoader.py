@@ -13,9 +13,11 @@ from rtda.heap.Field import Field
 
 
 class ClassLoader:
-    def __init__(self, class_path: Classpath):
+    def __init__(self, class_path: Classpath, verbose_flag: bool):
         # 保存Classpath
         self.cp = class_path
+        # 加载信息选项
+        self.verbose_flag = verbose_flag
         # 记录已经加载的类数据
         self.class_map = dict()
 
@@ -36,7 +38,8 @@ class ClassLoader:
         clazz = self.define_class(data)
         # 进行链接
         self.link(clazz)
-        print("[Loaded {0} from {1}]".format(name, entry))
+        if self.verbose_flag:
+            print("[Loaded {0} from {1}]".format(name, entry))
         return clazz
 
     # 读取class文件，将数据读取到内存中
@@ -62,8 +65,8 @@ class ClassLoader:
     def parse_class(data):
         from classfile.ClassFile import ClassFile
 
-        class_file = ClassFile(data)
-        cf, err = class_file.parse()
+        class_file = ClassFile()
+        cf, err = class_file.parse(data)
         if err:
             raise RuntimeError("java.lang.ClassFormatError!")
         else:

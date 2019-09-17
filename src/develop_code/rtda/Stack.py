@@ -42,3 +42,6 @@ class Stack:
         if not self.__top:
             raise RuntimeError("jvm stack is empty!")
         return self.__top
+
+    def is_empty(self):
+        return self.__top is None

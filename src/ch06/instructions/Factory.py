@@ -47,7 +47,7 @@ from instructions.references.Getstatic import GET_STATIC
 from instructions.references.Instanceof import INSTANCE_OF
 from instructions.references.Invokespecial import INVOKE_SPECIAL
 from instructions.references.Invokevirtual import INVOKE_VIRTURL
-from instructions.references.Ldc import *
+from instructions.constants.Ldc import *
 from instructions.references.New import NEW
 from instructions.references.Putfield import PUT_FIELD
 from instructions.references.Putstatic import PUT_STATIC

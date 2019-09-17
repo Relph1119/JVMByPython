@@ -43,6 +43,6 @@ class Field(ClassMember):
 
     # 从method_info结构中提取constant_value_index信息
     def copy_attributes(self, cfField: MemberInfo):
-        val_attr = cfField.constant_value_index
+        val_attr = cfField.constant_value_attribute
         if val_attr:
-            self.const_value_index = val_attr.constant_value_index
+            self.const_value_index = val_attr.constant_value_attribute

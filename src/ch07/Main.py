@@ -63,5 +63,6 @@ if __name__ == '__main__':
     resources_path = os.path.join(os.path.dirname(root_path), "java")
 
     # 指定-Xjre选项和类名
-    fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch07.FibonacciTest']
+    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch07.FibonacciTest']
+    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch07.FibonacciTest']
     main(fake_args)

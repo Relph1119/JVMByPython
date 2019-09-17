@@ -7,9 +7,9 @@ def main():
     parser = OptionParser(usage="%prog [-options] class [args...]")
 
     parser.add_option("-v", "--version", action="store_true", default=False, dest="version_flag", help="print version and exit.")
-    parser.add_option("--verbose", action="store_true", default=False, dest="verboseClassFlag", help="enable verbose output")
-    parser.add_option("--verbose:class", action="store_true", default=False, dest="verboseClassFlag", help="enable verbose output")
-    parser.add_option("--verbose:inst", action="store_true", default=False, dest="verboseInstFlag", help="enable verbose output")
+    parser.add_option("--verbose", action="store_true", default=False, dest="verbose_class_flag", help="enable verbose output")
+    parser.add_option("--verbose:class", action="store_true", default=False, dest="verbose_class_flag", help="enable verbose output")
+    parser.add_option("--verbose:inst", action="store_true", default=False, dest="verbose_inst_flag", help="enable verbose output")
     parser.add_option("--cp", action="store", type="string", dest="cpOption", help="classpath")
     parser.add_option("--classpath", action="store", type="string", dest="cpOption", help="classpath")
     parser.add_option("--Xjre", action="store", type="string", dest="XjreOption", help="path to jre")

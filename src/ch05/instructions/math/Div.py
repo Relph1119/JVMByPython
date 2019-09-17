@@ -15,9 +15,9 @@ from instructions.base.Instruction import NoOperandsInstruction
 # double div
 class DDIV(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack
-        v1 = stack.pop_numeric()
+        stack = frame.operand_stack
         v2 = stack.pop_numeric()
+        v1 = stack.pop_numeric()
         if v2 == 0.0:
             result = math.inf
         else:
@@ -28,7 +28,7 @@ class DDIV(NoOperandsInstruction):
 # float div
 class FDIV(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack
+        stack = frame.operand_stack
         v1 = stack.pop_numeric()
         v2 = stack.pop_numeric()
         if v2 == 0.0:
@@ -41,7 +41,7 @@ class FDIV(NoOperandsInstruction):
 # int div
 class IDIV(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack
+        stack = frame.operand_stack
         v1 = stack.pop_numeric()
         v2 = stack.pop_numeric()
         if v2 == 0:
@@ -53,7 +53,7 @@ class IDIV(NoOperandsInstruction):
 # long div
 class LDIV(NoOperandsInstruction):
     def execute(self, frame):
-        stack = frame.operandStack
+        stack = frame.operand_stack
         v1 = stack.pop_numeric()
         v2 = stack.pop_numeric()
         if v2 == 0:

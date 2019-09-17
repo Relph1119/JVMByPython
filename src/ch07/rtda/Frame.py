@@ -1,16 +1,28 @@
-from ch07.rtda.LocalVars import LocalVars
-from ch07.rtda.OperandStack import OperandStack
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Frame.py
+@time: 2019/9/15 16:19
+@desc: 帧
+"""
+from rtda.LocalVars import LocalVars
+from rtda.OperandStack import OperandStack
+from rtda.Thread import Thread
+from rtda.heap.Method import Method
 
-class Frame():
-    def __init__(self, thread, method):
+
+class Frame:
+    def __init__(self, thread: Thread, method: Method):
+        # 用来实现链表数据结构
         self.lower = None
-        self.method = method
-        self.localVars = LocalVars(method.maxLocals)
-        self.operandStack = OperandStack(method.maxStack)
         self.thread = thread
-        self.nextPC = 0
+        self.method = method
+        # 保存局部变量表指针
+        self.local_vars = LocalVars(method.max_locals)
+        # 保存操作数栈指针
+        self.operand_stack = OperandStack(method.max_stack)
+        self.next_pc = 0
 
-    def revertNextPC(self):
-        self.nextPC = self.thread.pc
-
-
+    def revert_next_pc(self):
+        self.next_pc = self.thread.pc
