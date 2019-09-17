@@ -15,6 +15,6 @@ class Frame:
         # 用来实现链表数据结构
         self.lower = None
         # 保存局部变量表指针
-        self.localVars = LocalVars(max_locals)
+        self.local_vars = LocalVars(max_locals)
         # 保存操作数栈指针
-        self.operandStack = OperandStack(max_stack)
+        self.operand_stack = OperandStack(max_stack)
