@@ -45,4 +45,4 @@ class Field(ClassMember):
     def copy_attributes(self, cfField: MemberInfo):
         val_attr = cfField.constant_value_attribute
         if val_attr:
-            self.const_value_index = val_attr.constant_value_attribute
+            self.const_value_index = val_attr.constant_value_index
