@@ -1,7 +1,15 @@
-from ch08.instructions.base.Instruction import BranchInstruction
-from ch08.instructions.base.BranchLogic import BranchLogic
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Goto.py
+@time: 2019/9/15 21:20
+@desc: goto指令，进行无条件跳转
+"""
+from instructions.base.BranchLogic import branch
+from instructions.base.Instruction import BranchInstruction
+
 
 class GOTO(BranchInstruction):
     def execute(self, frame):
-        BranchLogic.branch(frame, self.offset)
-
+        branch(frame, self.offset)

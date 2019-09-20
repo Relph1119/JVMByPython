@@ -13,6 +13,7 @@ from rtda.heap.Class import Class
 from rtda.heap.Field import Field
 
 
+
 class ClassLoader:
     def __init__(self, class_path: Classpath, verbose_flag: bool):
         # 保存Classpath
@@ -159,6 +160,8 @@ class ClassLoader:
     # 从常量池中加载常量值，然后给静态变量赋值
     @staticmethod
     def init_static_final_var(clazz: Class, field: Field):
+        from rtda.heap.StringPool import j_string
+
         static_vars = clazz.static_vars
         constant_pool = clazz.constant_pool
         cp_index = field.const_value_index
@@ -169,4 +172,6 @@ class ClassLoader:
                 val = constant_pool.get_constant(cp_index)
                 static_vars.set_numeric(slot_id, val)
             elif field.descriptor == "Ljava/lang/String":
-                raise RuntimeError("todo")
+                python_str = constant_pool.get_constant(cp_index)
+                j_str = j_string(clazz.loader, python_str)
+                static_vars.set_ref(slot_id, j_str)

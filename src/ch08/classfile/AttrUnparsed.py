@@ -1,10 +1,20 @@
-from ch08.classfile.AttributeInfo import AttributeInfo
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: UnparsedAttribute.py
+@time: 2019/9/15 09:37
+@desc: 未解析的属性
+"""
+
+from .AttributeInfo import AttributeInfo
+
 
 class UnparsedAttribute(AttributeInfo):
-    def __init__(self, attrName, attrLen):
-        self.name = attrName
-        self.length = attrLen
-        self.info = ""
+    def __init__(self, attr_name, attr_len):
+        self.name = attr_name
+        self.length = attr_len
+        self.info = []
 
-    def readInfo(self, classReader):
-        self.info = classReader.read_bytes(self.length)
+    def read_info(self, class_reader):
+        self.info = class_reader.read_bytes(self.length)

@@ -58,3 +58,16 @@ Java版本：1.8
 ![](images/ch07/解析Fibonacci程序.png)
 1. 程序需要运行好长时间，毕竟采用的是递归
 2. 目前有3个todo没有处理，其中没有采用深拷贝，不知道之后的程序会有什么问题。
+
+### 第8章-数组和字符串
+实现了数组和字符串的加载，终于可以运行HelloWorld程序了。
+1. 解析并执行BubbleSortTest（冒泡排序）算法
+![](images/ch08/解析并执行BubbleSortTest（冒泡排序）算法.png)
+2. 解析并执行HelloWorld程序，打印出Hello world!
+![](images/ch08/解析并执行HelloWorld程序.png)
+3. 解析并执行PrintArgs程序，打印出传入的参数
+![](images/ch08/解析并执行PrintArgs程序.png)
+
+**本章总结：**  
+1. 排查了冒泡排序算法执行时的问题，由于DUP指令的实现问题，之前采用的是slot的深拷贝，导致在对象引用置空的时候，不能将slot里的引用同时置空，解决方法：自己实现了一个copy_slot方法，创建一个Slot对象将num和ref都进行复制即可。
+2. 在测试HelloWorld程序时，解析java.lang.CharSequence类报错，最后查看到是由于ConstantMethodHandleInfo类中的read_info读取问题导致的。

@@ -10,6 +10,7 @@ from instructions.base import MethodInvokeLogic
 from instructions.base.Instruction import Index16Instruction
 from rtda.Frame import Frame
 from rtda.heap import MethodLookup
+from rtda.heap.StringPool import python_string
 
 
 class INVOKE_VIRTURL(Index16Instruction):
@@ -49,6 +50,10 @@ class INVOKE_VIRTURL(Index16Instruction):
             print("{0}".format(stack.pop_numeric() != 0))
         elif descriptor in {"(C)V", "(B)V", "(S)V", "(I)V", "(J)V", "(F)V", "(D)V"}:
             print("{0}".format(stack.pop_numeric()))
+        elif descriptor == "(Ljava/lang/String;)V":
+            j_str = stack.pop_ref()
+            python_str = python_string(j_str)
+            print("{0}".format(python_str))
         else:
             raise RuntimeError("println: " + descriptor)
         stack.pop_ref()

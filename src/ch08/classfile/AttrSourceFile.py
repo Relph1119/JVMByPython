@@ -1,12 +1,23 @@
-from ch08.classfile.AttributeInfo import AttributeInfo
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: AttrSourceFile.py
+@time: 2019/9/15 09:47
+@desc: SourceFile属性，用于指出源文件名。
+"""
+
+from .AttributeInfo import AttributeInfo
+
 
 class SourceFileAttribute(AttributeInfo):
-    def __init__(self, constantPool):
-        self.cp = constantPool
-        self.sourceFileIndex = 0
+    def __init__(self, constant_pool):
+        self.cp = constant_pool
+        self.sourceFile_index = 0
 
-    def readInfo(self, classReader):
-        self.sourceFileIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
+    def read_info(self, class_reader):
+        self.sourceFile_index = int.from_bytes(class_reader.read_unit16(), byteorder="big")
 
-    def fileName(self):
-        return self.cp.get_utf8(self.sourceFileIndex)
+    @property
+    def file_name(self):
+        return self.cp.get_utf8(self.sourceFile_index)

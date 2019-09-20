@@ -1,10 +1,18 @@
-from ch08.classfile.AttributeInfo import AttributeInfo
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: AttrConstantValue.py
+@time: 2019/9/15 09:49
+@desc: 用于表示常量表达式的值
+"""
+
+from .AttributeInfo import AttributeInfo
+
 
 class ConstantValueAttribute(AttributeInfo):
     def __init__(self):
-        self.constantValueIndex = 0
+        self.constant_value_index = 0
 
-    def readInfo(self, classReader):
-        self.constantValueIndex = int.from_bytes(classReader.read_unit16(), byteorder="big")
-
-    
+    def read_info(self, class_reader):
+        self.constant_value_index = int.from_bytes(class_reader.read_unit16(), byteorder="big")

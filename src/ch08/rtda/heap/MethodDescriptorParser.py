@@ -1,112 +1,128 @@
-from ch08.rtda.heap.MethodDescriptor import MethodDescriptor
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: MethodDescriptorParser.py
+@time: 2019/9/16 09:27
+@desc: 方法描述符解析器
+"""
+
 import copy
 
-class MethodDescriptorParser():
+from rtda.heap.MethodDescriptor import MethodDescriptor
+
+
+class MethodDescriptorParser:
     def __init__(self):
         self.raw = ""
         self.offset = 0
         self.parsed = None
 
-    def parseMethodDescriptor(descriptor):
+    @staticmethod
+    def parse_method_descriptor(descriptor):
         parser = MethodDescriptorParser()
         return parser.parse(descriptor)
 
     def parse(self, descriptor):
         self.raw = descriptor
         self.parsed = MethodDescriptor()
-        self.startParams()
-        self.parseParamTypes()
-        self.endParams()
-        self.parseReturnType()
+        self.start_params()
+        self.parse_param_types()
+        self.end_params()
+        self.parse_return_type()
         self.finish()
         return self.parsed
 
-    def startParams(self):
-        if self.readUint8() != '(':
-            self.causePanic()
+    def start_params(self):
+        if self.read_uint8() != '(':
+            self.cause_panic()
 
-    def endParams(self):
-        if self.readUint8() != ')':
-            self.causePanic()
+    def end_params(self):
+        if self.read_uint8() != ')':
+            self.cause_panic()
 
     def finish(self):
         if self.offset != len(self.raw):
-            self.causePanic()
+            self.cause_panic()
 
-    def causePanic(self):
+    def cause_panic(self):
         raise RuntimeError("BAD descriptor: {0}".format(self.raw))
 
-    def readUint8(self):
+    def read_uint8(self):
         b = self.raw[self.offset]
         self.offset += 1
         return b
 
-    def unreadUint8(self):
+    def unread_uint8(self):
         self.offset -= 1
 
-    def parseParamTypes(self):
+    def parse_param_types(self):
         while True:
-            t = self.parseFieldType()
-            if t:
+            t = self.parse_field_type()
+            if t != "":
                 self.parsed.add_parameter_type(t)
             else:
                 break
 
-    def parseReturnType(self):
-        if self.readUint8() == 'V':
+    def parse_return_type(self):
+        if self.read_uint8() == 'V':
             self.parsed.returnType = "V"
             return
 
-        self.unreadUint8()
-        t = self.parseFieldType()
-        if t:
+        self.unread_uint8()
+        t = self.parse_field_type()
+        if t != "":
             self.parsed.returnType = t
             return
 
-        self.causePanic()
+        self.cause_panic()
 
-    def parseFieldType(self):
-        type = self.readUint8()
-        if type == 'B':
+    def parse_field_type(self):
+        field_type = self.read_uint8()
+        if field_type == 'B':
             return 'B'
-        elif type == 'C':
+        elif field_type == 'C':
             return 'C'
-        elif type == 'D':
+        elif field_type == 'D':
             return 'D'
-        elif type == 'F':
+        elif field_type == 'F':
             return 'F'
-        elif type == 'I':
+        elif field_type == 'I':
             return 'I'
-        elif type == 'J':
+        elif field_type == 'J':
             return 'J'
-        elif type == 'S':
+        elif field_type == 'S':
             return 'S'
-        elif type == 'Z':
+        elif field_type == 'Z':
             return 'Z'
-        elif type == 'L':
-            return self.parseObjectType()
-        elif type == '[':
-            return self.parseArrayType()
+        elif field_type == 'L':
+            return self.parse_object_type()
+        elif field_type == '[':
+            return self.parse_array_type()
         else:
-            self.unreadUint8()
+            self.unread_uint8()
             return ""
 
-    def parseObjectType(self):
+    def parse_object_type(self):
         unread = self.raw[self.offset:]
-        semicolonIndex = unread.find(";")
-        if semicolonIndex == -1:
-            self.causePanic()
+        semicolon_index = unread.find(";")
+        if semicolon_index == -1:
+            self.cause_panic()
             return ""
         else:
-            objStart = self.offset - 1
-            objEnd = self.offset + semicolonIndex + 1
-            self.offset = objEnd
-            descriptor = copy.deepcopy(self.raw[objStart:objEnd])
+            obj_start = self.offset - 1
+            obj_end = self.offset + semicolon_index + 1
+            self.offset = obj_end
+            # todo:
+            # descriptor = copy.deepcopy(self.raw[obj_start:obj_end])
+            descriptor = self.raw[obj_start:obj_end]
             return descriptor
 
-    def parseArrayType(self):
-        arrStart = self.offset - 1
-        self.parseFieldType()
-        arrEnd = self.offset
-        descriptor = copy.deepcopy(self.raw[arrStart:arrEnd])
+    def parse_array_type(self):
+        arr_start = self.offset - 1
+        self.parse_field_type()
+        arr_end = self.offset
+        # todo:
+        # descriptor = copy.deepcopy(self.raw[arr_start:arr_end])
+        descriptor = self.raw[arr_start:arr_end]
         return descriptor

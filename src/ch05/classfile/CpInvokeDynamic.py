@@ -8,7 +8,7 @@ class ConstantMethodHandleInfo(ConstantInfo):
 
     def read_info(self, class_reader):
         self.referenceKind = class_reader.read_unit8()
-        self.referenceIndex = int.from_bytes(class_reader.read_unit8(), byteorder="big")
+        self.referenceIndex = int.from_bytes(class_reader.read_unit16(), byteorder="big")
 
 
 class ConstantMethodTypeInfo(ConstantInfo):

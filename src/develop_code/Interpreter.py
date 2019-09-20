@@ -9,15 +9,20 @@
 
 from rtda.Thread import Thread
 from rtda.heap.Method import Method
+from rtda.heap.StringPool import j_string
 
 
 class Interpreter:
 
     @staticmethod
-    def interpret(method: Method, log_inst: bool):
+    def interpret(method: Method, log_inst: bool, args):
         thread = Thread()
         frame = thread.new_frame(method)
         thread.push_frame(frame)
+
+        j_args = Interpreter.create_args_array(method.get_class().loader, args)
+        frame.local_vars.set_ref(0, j_args)
+
         try:
             Interpreter.loop(thread, log_inst)
         except RuntimeError as e:
@@ -68,6 +73,15 @@ class Interpreter:
         pc = frame.thread.pc
         print("{0}.{1}() #{2:<2} {3} {4}".format(class_name, method_name, pc, inst.__class__.__name__,
                                                  Interpreter.print_obj(inst)))
+
+    @staticmethod
+    def create_args_array(loader, args):
+        string_class = loader.load_class("java/lang/String")
+        args_array = string_class.array_class().new_array(len(args))
+        j_args = args_array.refs()
+        for i, arg in enumerate(args):
+            j_args[i] = j_string(loader, arg)
+        return args_array
 
     @staticmethod
     def print_obj(obj):

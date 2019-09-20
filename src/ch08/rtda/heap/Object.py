@@ -1,66 +1,77 @@
-from ch08.rtda.LocalVars import LocalVars
+#!/usr/bin/env python
+# encoding: utf-8
+"""
+@author: HuRuiFeng
+@file: Object.py
+@time: 2019/9/15 16:04
+@desc: 表示对象
+"""
+from rtda.Slot import Slots
+from rtda.heap.Class import Class
 
 
 class Object:
-    def __init__(self, clazz=None, count=0):
+    def __init__(self, clazz: Class, data=None):
+        # 存放对象的class
         self._class = clazz
-        self.data = LocalVars(count)
-
-    def setClass(self, clazz):
-        self._class = clazz
-
-    def getClass(self):
-        return self._class
+        # 存放实例变量
+        if data is None:
+            self.data = []
+        else:
+            self.data = data
 
     @staticmethod
-    def newObject(clazz):
-        obj = Object()
-        obj._class = clazz
-        obj.data = LocalVars(clazz.instanceSlotCount)
-        return obj
+    def new_object(clazz: Class):
+        return Object(clazz, Slots(clazz.instance_slot_count))
 
-    def isInstanceOf(self, clazz):
+    def get_class(self):
+        return self._class
+
+    def is_instance_of(self, clazz: Class) -> bool:
         return clazz.is_assignable_from(self._class)
 
     def fields(self):
-        return self.data.slots
+        return self.data
 
     def bytes(self):
-        return self.data.slots
+        return self.data
 
     def shorts(self):
-        return self.data.slots
+        return self.data
 
     def ints(self):
-        return self.data.slots
+        return self.data
 
     def longs(self):
-        return self.data.slots
+        return self.data
 
     def chars(self):
-        return self.data.slots
+        return self.data
 
     def floats(self):
-        return self.data.slots
+        return self.data
 
     def doubles(self):
-        return self.data.slots
+        return self.data
 
+    # 引用类型数组
     def refs(self):
-        return self.data.slots
+        return self.data
 
-    def arrayLength(self):
-        return len(self.data.slots)
+    # 数组长度
+    # 上述方法主要是供<t>aload、<t>astore和arraylength指令使用；
+    # <t>aload和<t>astore系列指令各有8条，针对每种类型都提供一个方法，返回相应的数组数据（由于python的数组中可以存放各种类型，故不区分数组类型）
+    # arraylength指令只有一条，只需要一个方法。
+    def array_length(self):
+        return len(self.data)
 
-    def setDataSlotsValueByIndex(self, index, value):
-        self.data.slots[index] = value
-
-    def setRefVar(self, name, descriptor, ref):
+    # 直接给对象的引用类型实例变量赋值
+    def set_ref_var(self, name, descriptor, ref):
         field = self._class.get_field(name, descriptor, False)
         slots = self.data
-        slots.setRef(field.slotId, ref)
+        slots.set_ref(field.slot_id, ref)
 
-    def getRefVar(self, name, descriptor):
+    def get_ref_var(self, name, descriptor):
         field = self._class.get_field(name, descriptor, False)
         slots = self.data
-        return slots.getRef(field.slotId)
+        return slots.get_ref(field.slot_id)

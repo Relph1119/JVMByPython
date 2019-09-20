@@ -235,13 +235,14 @@ class Class:
             component_type_descriptor = className[1:]
             return ClassNameHelper.to_class_name(component_type_descriptor)
 
-    def get_field(self, name, descriptor, isStatic):
+    # 根据字段名和描述符查找字段
+    def get_field(self, name, descriptor, is_static_flag):
         c = self
         while c:
             for field in c.fields:
-                if field.is_static() == isStatic \
+                if field.is_static() == is_static_flag \
                         and field.name == name and field.descriptor == descriptor:
                     return field
 
-            c = c.superClass
+            c = c.super_class
         return None

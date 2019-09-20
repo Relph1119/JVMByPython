@@ -65,12 +65,13 @@ class Object:
     def array_length(self):
         return len(self.data)
 
+    # 直接给对象的引用类型实例变量赋值
     def set_ref_var(self, name, descriptor, ref):
         field = self._class.get_field(name, descriptor, False)
         slots = self.data
-        slots.set_ref(field.slotId, ref)
+        slots.set_ref(field.slot_id, ref)
 
     def get_ref_var(self, name, descriptor):
         field = self._class.get_field(name, descriptor, False)
         slots = self.data
-        return slots.get_ref(field.slotId)
+        return slots.get_ref(field.slot_id)
