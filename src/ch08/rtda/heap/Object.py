@@ -1,5 +1,6 @@
 from ch08.rtda.LocalVars import LocalVars
 
+
 class Object:
     def __init__(self, clazz=None, count=0):
         self._class = clazz
@@ -55,12 +56,11 @@ class Object:
         self.data.slots[index] = value
 
     def setRefVar(self, name, descriptor, ref):
-        field = self._class.getField(name, descriptor, False)
+        field = self._class.get_field(name, descriptor, False)
         slots = self.data
         slots.setRef(field.slotId, ref)
 
     def getRefVar(self, name, descriptor):
-        field = self._class.getField(name, descriptor, False)
+        field = self._class.get_field(name, descriptor, False)
         slots = self.data
         return slots.getRef(field.slotId)
-

@@ -6,6 +6,7 @@
 @time: 2019/9/15 23:20
 @desc:
 """
+import ctypes
 
 from instructions.base.Instruction import Instruction
 
@@ -19,7 +20,7 @@ class BIPUSH(Instruction):
         self.val = reader.read_int8()
 
     def execute(self, frame):
-        i = self.val
+        i = ctypes.c_int32(self.val).value
         frame.operand_stack.push_numeric(i)
 
 
@@ -32,5 +33,5 @@ class SIPUSH(Instruction):
         self.val = reader.read_int16()
 
     def execute(self, frame):
-        i = self.val
+        i = ctypes.c_int32(self.val).value
         frame.operand_stack.push_numeric(i)

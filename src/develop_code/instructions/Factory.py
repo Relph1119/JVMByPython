@@ -15,6 +15,7 @@ from instructions.comparisons.Ificmp import *
 from instructions.comparisons.Lcmp import *
 from instructions.constants.Const import *
 from instructions.constants.Ipush import *
+from instructions.constants.Ldc import *
 from instructions.constants.Nop import *
 from instructions.control.Goto import *
 from instructions.control.Lookupswitch import *
@@ -32,6 +33,7 @@ from instructions.loads.Dload import *
 from instructions.loads.Fload import *
 from instructions.loads.Iload import *
 from instructions.loads.Lload import *
+from instructions.loads.Xaload import *
 from instructions.math.Add import *
 from instructions.math.And import *
 from instructions.math.Div import *
@@ -42,6 +44,8 @@ from instructions.math.Rem import *
 from instructions.math.Sh import *
 from instructions.math.Sub import *
 from instructions.math.Xor import *
+from instructions.references.Anewarray import ANEW_ARRAY
+from instructions.references.ArrayLength import ARRAY_LENGTH
 from instructions.references.Checkcast import CHECK_CAST
 from instructions.references.Getfield import GET_FIELD
 from instructions.references.Getstatic import GET_STATIC
@@ -50,8 +54,9 @@ from instructions.references.Invokeinterface import INVOKE_INTERFACE
 from instructions.references.Invokespecial import INVOKE_SPECIAL
 from instructions.references.Invokestatic import INVOKE_STATIC
 from instructions.references.Invokevirtual import INVOKE_VIRTURL
-from instructions.constants.Ldc import *
+from instructions.references.Multianewarray import MULTI_ANEW_ARRAY
 from instructions.references.New import NEW
+from instructions.references.Newarray import NEW_ARRAY
 from instructions.references.Putfield import PUT_FIELD
 from instructions.references.Putstatic import PUT_STATIC
 from instructions.stack.Dup import *
@@ -62,6 +67,7 @@ from instructions.stores.Dstore import *
 from instructions.stores.Fstore import *
 from instructions.stores.Istore import *
 from instructions.stores.Lstore import *
+from instructions.stores.Xastore import *
 
 
 class Factory:
@@ -160,7 +166,22 @@ class Factory:
             return ALOAD_2()
         elif opcode == 0x2d:
             return ALOAD_3()
-
+        elif opcode == 0x2e:
+            return IALOAD()
+        elif opcode == 0x2f:
+            return LALOAD()
+        elif opcode == 0x30:
+            return FALOAD()
+        elif opcode == 0x31:
+            return DALOAD()
+        elif opcode == 0x32:
+            return AALOAD()
+        elif opcode == 0x33:
+            return BALOAD()
+        elif opcode == 0x34:
+            return CALOAD()
+        elif opcode == 0x35:
+            return SALOAD()
         elif opcode == 0x36:
             return ISTORE()
         elif opcode == 0x37:
@@ -211,7 +232,22 @@ class Factory:
             return ASTORE_2()
         elif opcode == 0x4e:
             return ASTORE_3()
-
+        elif opcode == 0x4f:
+            return IASTORE()
+        elif opcode == 0x50:
+            return LASTORE()
+        elif opcode == 0x51:
+            return FASTORE()
+        elif opcode == 0x52:
+            return DASTORE()
+        elif opcode == 0x53:
+            return AASTORE()
+        elif opcode == 0x54:
+            return BASTORE()
+        elif opcode == 0x55:
+            return CASTORE()
+        elif opcode == 0x56:
+            return SASTORE()
         elif opcode == 0x57:
             return POP()
         elif opcode == 0x58:
@@ -375,6 +411,8 @@ class Factory:
         elif opcode == 0xa7:
             return GOTO()
 
+        # todo:
+
         elif opcode == 0xaa:
             return TABLE_SWITCH()
         elif opcode == 0xab:
@@ -408,22 +446,38 @@ class Factory:
         elif opcode == 0xb9:
             return INVOKE_INTERFACE()
 
+        # todo:
+
         elif opcode == 0xbb:
             return NEW()
+        elif opcode == 0xbc:
+            return NEW_ARRAY()
+        elif opcode == 0xbd:
+            return ANEW_ARRAY()
+        elif opcode == 0xbe:
+            return ARRAY_LENGTH()
+
+        # todo:
 
         elif opcode == 0xc0:
             return CHECK_CAST()
         elif opcode == 0xc1:
             return INSTANCE_OF()
 
+        # todo:
+
         elif opcode == 0xc4:
             return WIDE()
-
+        elif opcode == 0xc5:
+            return MULTI_ANEW_ARRAY()
         elif opcode == 0xc6:
             return IFNULL()
         elif opcode == 0xc7:
             return IFNONNULL()
         elif opcode == 0xc8:
             return GOTO_W()
+
+        # todo:
+
         else:
             raise RuntimeError("Unsupported opcode: {0}!".format(hex(opcode)))

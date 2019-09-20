@@ -7,9 +7,16 @@
 @desc: dup系列指令
 """
 
-import copy
-
 from instructions.base.Instruction import NoOperandsInstruction
+from rtda.Slot import Slot
+
+
+# slot拷贝，不能使用深拷贝copy.deepcopy函数，由于ref复制的是引用，需要将num和ref都进行拷贝。
+def copy_slot(slot):
+    new_slot = Slot()
+    new_slot.num = slot.num
+    new_slot.ref = slot.ref
+    return new_slot
 
 
 class DUP(NoOperandsInstruction):
@@ -27,8 +34,8 @@ class DUP(NoOperandsInstruction):
         stack = frame.operand_stack
         slot = stack.pop_slot()
         stack.push_slot(slot)
-        # 采用deepcopy对象深拷贝，复制slot
-        stack.push_slot(copy.deepcopy(slot))
+        # 采用自定义的对象深拷贝，复制slot
+        stack.push_slot(copy_slot(slot))
 
 
 class DUP_X1(NoOperandsInstruction):
@@ -45,7 +52,7 @@ class DUP_X1(NoOperandsInstruction):
         stack = frame.operand_stack
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
-        stack.push_slot(copy.deepcopy(slot1))
+        stack.push_slot(copy_slot(slot1))
         stack.push_slot(slot2)
         stack.push_slot(slot1)
 
@@ -65,7 +72,7 @@ class DUP_X2(NoOperandsInstruction):
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()
-        stack.push_slot(copy.deepcopy(slot1))
+        stack.push_slot(copy_slot(slot1))
         stack.push_slot(slot3)
         stack.push_slot(slot2)
         stack.push_slot(slot1)
@@ -87,8 +94,8 @@ class DUP2(NoOperandsInstruction):
         slot2 = stack.pop_slot()
         stack.push_slot(slot2)
         stack.push_slot(slot1)
-        stack.push_slot(copy.deepcopy(slot2))
-        stack.push_slot(copy.deepcopy(slot1))
+        stack.push_slot(copy_slot(slot2))
+        stack.push_slot(copy_slot(slot1))
 
 
 class DUP2_X1(NoOperandsInstruction):
@@ -106,8 +113,8 @@ class DUP2_X1(NoOperandsInstruction):
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()
-        stack.push_slot(copy.deepcopy(slot2))
-        stack.push_slot(copy.deepcopy(slot1))
+        stack.push_slot(copy_slot(slot2))
+        stack.push_slot(copy_slot(slot1))
         stack.push_slot(slot3)
         stack.push_slot(slot2)
         stack.push_slot(slot1)
@@ -129,8 +136,8 @@ class DUP2_X2(NoOperandsInstruction):
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()
         slot4 = stack.pop_slot()
-        stack.push_slot(copy.deepcopy(slot2))
-        stack.push_slot(copy.deepcopy(slot1))
+        stack.push_slot(copy_slot(slot2))
+        stack.push_slot(copy_slot(slot1))
         stack.push_slot(slot4)
         stack.push_slot(slot3)
         stack.push_slot(slot2)

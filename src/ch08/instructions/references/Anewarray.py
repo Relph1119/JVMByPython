@@ -13,8 +13,8 @@ class ANEW_ARRAY(Index16Instruction):
         if count < 0:
             raise RuntimeError("java.lang.NegativeArraySizeException")
 
-        arrClass = componentClass.arrayClass()
-        arr = arrClass.newArray(ctypes.c_uint(count))
+        arrClass = componentClass.array_class()
+        arr = arrClass.new_array(ctypes.c_uint(count))
         stack.push_ref(arr)
 
     

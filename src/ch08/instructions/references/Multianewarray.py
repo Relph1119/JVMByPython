@@ -13,12 +13,12 @@ def popAndCheckCounts(stack, dimensions):
 
 def newMultiDimensionalArray(counts, arrClass):
     count = ctypes.c_uint(counts[0]).value
-    arr = arrClass.newArray(count)
+    arr = arrClass.new_array(count)
 
     if len(counts) > 1:
         refs = arr.refs()
         for i in range(refs):
-            refs[i] = newMultiDimensionalArray(copy.deepcopy(counts[1:]), arrClass.componentClass())
+            refs[i] = newMultiDimensionalArray(copy.deepcopy(counts[1:]), arrClass.component_class())
 
 
 class MULTI_ANEW_ARRAY(Instruction):

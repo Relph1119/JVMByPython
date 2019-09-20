@@ -14,7 +14,7 @@ class StringPool:
         jChars = Object(loader.load_class("[C"), chars)
 
         jStr = loader.load_class("java/lang/String").new_object()
-        jStr.setRefVar("value", "[C", jChars)
+        jStr.set_ref_var("value", "[C", jChars)
 
         StringPool.internedStrings[goStr] = jStr
         return jStr
@@ -25,7 +25,7 @@ class StringPool:
 
     @staticmethod
     def goString(jStr):
-        charArr = jStr.getRefVar("value", "[C")
+        charArr = jStr.get_ref_var("value", "[C")
         return StringPool.utf16ToString(charArr.chars)
 
     @staticmethod

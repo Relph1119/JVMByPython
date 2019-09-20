@@ -6,7 +6,7 @@
 @time: 2019/9/15 16:04
 @desc: 表示对象
 """
-from rtda.LocalVars import LocalVars
+from rtda.Slot import Slots
 from rtda.heap.Class import Class
 
 
@@ -15,7 +15,7 @@ class Object:
         # 存放对象的class
         self._class = clazz
         # 存放实例变量
-        self.fields = LocalVars(clazz.instance_slot_count)
+        self.fields = Slots(clazz.instance_slot_count)
 
     def set_class(self, clazz):
         self._class = clazz

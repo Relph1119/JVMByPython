@@ -66,7 +66,7 @@ class Interpreter():
         from ch08.rtda.heap.StringPool import StringPool
 
         stringClass = loader.load_class("java/lang/String")
-        argsArr = stringClass.arrayClass().newArray(len(args))
+        argsArr = stringClass.array_class().new_array(len(args))
         jArgs = argsArr.refs
         for i, arg in args:
             jArgs[i] = StringPool.JString(loader, arg)

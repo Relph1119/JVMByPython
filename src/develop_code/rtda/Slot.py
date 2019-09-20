@@ -22,7 +22,10 @@ class Slot:
 # Slot数组类
 class Slots(list):
     def __init__(self, slot_count=1):
-        super().__init__([Slot() for _ in range(slot_count)])
+        if slot_count > 0:
+            super().__init__([Slot() for _ in range(slot_count)])
+        else:
+            super().__init__()
 
     def set_numeric(self, index, val):
         self[index].num = val

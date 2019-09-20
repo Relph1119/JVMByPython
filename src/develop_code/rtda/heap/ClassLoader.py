@@ -8,6 +8,7 @@
 """
 from classpath.Classpath import Classpath
 from rtda.Slot import Slots
+from rtda.heap import AccessFlags
 from rtda.heap.Class import Class
 from rtda.heap.Field import Field
 
@@ -27,8 +28,25 @@ class ClassLoader:
         if clazz:
             # 类已经加载
             return clazz
+        elif name[0] == '[':
+            return self.load_array_class(name)
         else:
             return self.load_non_array_class(name)
+
+    # 数组类加载
+    def load_array_class(self, name):
+        clazz = Class()
+        clazz.access_flags = AccessFlags.ACC_PUBLIC
+        clazz.name = name
+        clazz.loader = self
+        # 数组类不需要初始化，把init_started字段设置成True
+        clazz.init_started = True
+        # 数组类的超类是java.lang.Object
+        clazz.super_class = self.load_class("java/lang/Object")
+        # 并实现了java.lang.Cloneable和java.io.Serializable接口
+        clazz.interfaces = [self.load_class("java/lang/Cloneable"), self.load_class("java/io/Serializable")]
+        self.class_map[name] = clazz
+        return clazz
 
     # 非数组类（普通类）加载
     def load_non_array_class(self, name):

@@ -7,5 +7,5 @@ class ARRAY_LENGTH(NoOperandsInstruction):
         if not arrRef:
             raise RuntimeError("java.lang.NullPointerException")
 
-        arrLen = arrRef.arrayLength()
+        arrLen = arrRef.array_length()
         stack.push_numeric(arrLen)

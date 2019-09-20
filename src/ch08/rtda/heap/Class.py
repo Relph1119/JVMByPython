@@ -71,7 +71,7 @@ class Class:
         if s == t:
             return True
 
-        if not s.isArray():
+        if not s.is_array():
             if not s.is_interface():
                 if not t.isInterface():
                     return s.is_sub_class_of(t)
@@ -89,7 +89,7 @@ class Class:
                 else:
                     return t.isJlCloneable() or t.isJioSerializable()
             else:
-                sc = s.componentClass()
+                sc = s.component_class()
                 tc = t.componentClass()
                 return sc == tc or tc.is_assignable_from(sc)
 

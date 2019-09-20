@@ -27,7 +27,7 @@ class NEW_ARRAY(Instruction):
 
         classLoader = frame.method.get_class().loader
         arrClass = NEW_ARRAY.getPrimitiveArrayClass(classLoader, self.atype)
-        arr = arrClass.newArray(ctypes.c_uint(count).value)
+        arr = arrClass.new_array(ctypes.c_uint(count).value)
         stack.push_ref(arr)
 
     @staticmethod

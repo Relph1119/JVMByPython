@@ -8,7 +8,7 @@
 """
 from classfile.ClassFile import ClassFile
 from rtda.Slot import Slots
-from rtda.heap import AccessFlags
+from rtda.heap import AccessFlags, ClassNameHelper
 from rtda.heap.ConstantPool import ConstantPool
 from rtda.heap.Field import Field
 from rtda.heap.Method import Method
@@ -116,10 +116,27 @@ class Class:
         if s == t:
             return True
 
-        if not t.is_interface():
-            return s.is_sub_class_of(t)
+        if not s.is_array():
+            if not s.is_interface():
+                if not t.is_interface():
+                    return s.is_sub_class_of(t)
+                else:
+                    return s.is_implements(t)
+            else:
+                if not t.is_interface():
+                    return t.is_jl_object()
+                else:
+                    return t.is_super_interface_of(s)
         else:
-            return s.is_implements(t)
+            if not t.is_array():
+                if not t.is_interface():
+                    return t.is_jl_object()
+                else:
+                    return t.is_jl_cloneable() or t.is_jio_serializable()
+            else:
+                sc = s.component_class()
+                tc = t.component_class()
+                return sc == tc or tc.is_assignable_from(sc)
 
     # 判断S是否是T的子类，也就是判断T是否是S的（直接或间接）超类
     def is_sub_class_of(self, otherClass):
@@ -153,6 +170,9 @@ class Class:
     def is_super_class_of(self, otherClass):
         return otherClass.is_sub_class_of(self)
 
+    def is_super_interface_of(self, iface):
+        return iface.is_sub_interface_of(self)
+
     def get_main_method(self):
         return self.get_static_method("main", "([Ljava/lang/String;)V")
 
@@ -164,10 +184,64 @@ class Class:
 
     def new_object(self):
         from rtda.heap.Object import Object
-        return Object(self)
+        return Object.new_object(self)
 
     def start_init(self):
         self.init_started = True
 
     def get_clinit_method(self):
         return self.get_static_method("<clinit>", "()V")
+
+    # 数组类
+    def new_array(self, count):
+        from rtda.heap.Object import Object
+        if not self.is_array():
+            raise RuntimeError("Not array class: " + self.name)
+        return Object(self, [0 for _ in range(count)])
+
+    def is_array(self) -> bool:
+        return self.name[0] == '['
+
+    def is_jl_object(self):
+        return self.name == "java/lang/Object"
+
+    def is_jl_cloneable(self):
+        return self.name == "java/lang/Cloneable"
+
+    def is_jio_serializable(self):
+        return self.name == "java/io/Serializable"
+
+    def array_class(self):
+        """
+        先根据类名得到数组类名，然后调用类加载器加载数组类。
+        :return:
+        """
+        array_class_name = ClassNameHelper.get_array_class_name(self.name)
+        return self.loader.load_class(array_class_name)
+
+    # 返回数组类的元素类型
+    def component_class(self):
+        """
+        先根据数组类名推测出数组元素类名，然后用类加载器加载元素类
+        :return:
+        """
+        component_class_name = self.get_component_class_name(self.name)
+        return self.loader.load_class(component_class_name)
+
+    @staticmethod
+    def get_component_class_name(className):
+        # 数组类名以[开头，把它去掉就是数组元素的类型描述符
+        if className[0] == '[':
+            component_type_descriptor = className[1:]
+            return ClassNameHelper.to_class_name(component_type_descriptor)
+
+    def get_field(self, name, descriptor, isStatic):
+        c = self
+        while c:
+            for field in c.fields:
+                if field.is_static() == isStatic \
+                        and field.name == name and field.descriptor == descriptor:
+                    return field
+
+            c = c.superClass
+        return None

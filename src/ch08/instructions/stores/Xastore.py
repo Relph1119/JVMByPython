@@ -21,7 +21,7 @@ class AASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         refs = arrRef.refs()
         checkIndex(len(refs), index)
-        arrRef.setDataSlotsValueByIndex(index, ref)
+        arrRef.set_data_slots_value_by_index(index, ref)
 
 class BASTORE(NoOperandsInstruction):
     def execute(self, frame):
@@ -33,7 +33,7 @@ class BASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         bytes = arrRef.bytes()
         checkIndex(len(bytes), index)
-        arrRef.setDataSlotsValueByIndex(index, ctypes.c_int8(val).value)
+        arrRef.set_data_slots_value_by_index(index, ctypes.c_int8(val).value)
 
 class CASTORE(NoOperandsInstruction):
     def execute(self, frame):
@@ -45,7 +45,7 @@ class CASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         chars = arrRef.chars()
         checkIndex(len(chars), index)
-        arrRef.setDataSlotsValueByIndex(index, ctypes.c_uint16(val).value)
+        arrRef.set_data_slots_value_by_index(index, ctypes.c_uint16(val).value)
 
 class DASTORE(NoOperandsInstruction):
     def execute(self, frame):
@@ -57,7 +57,7 @@ class DASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         doubles = arrRef.doubles()
         checkIndex(len(doubles), index)
-        arrRef.setDataSlotsValueByIndex(index, ctypes.c_float(val).value)
+        arrRef.set_data_slots_value_by_index(index, ctypes.c_float(val).value)
 
 class FASTORE(NoOperandsInstruction):
     def execute(self, frame):
@@ -69,7 +69,7 @@ class FASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         floats = arrRef.floats()
         checkIndex(len(floats), index)
-        arrRef.setDataSlotsValueByIndex(index, ctypes.c_float(val).value)
+        arrRef.set_data_slots_value_by_index(index, ctypes.c_float(val).value)
 
 class IASTORE(NoOperandsInstruction):
     def execute(self, frame):
@@ -81,7 +81,7 @@ class IASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         ints = arrRef.ints()
         checkIndex(len(ints), index)
-        arrRef.setDataSlotsValueByIndex(index, ctypes.c_int32(val).value)
+        arrRef.set_data_slots_value_by_index(index, ctypes.c_int32(val).value)
 
 class LASTORE(NoOperandsInstruction):
     def execute(self, frame):
@@ -93,7 +93,7 @@ class LASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         longs = arrRef.longs()
         checkIndex(len(longs), index)
-        arrRef.setDataSlotsValueByIndex(index, ctypes.c_int64(val).value)
+        arrRef.set_data_slots_value_by_index(index, ctypes.c_int64(val).value)
 
 class SASTORE(NoOperandsInstruction):
     def execute(self, frame):
@@ -105,4 +105,4 @@ class SASTORE(NoOperandsInstruction):
         checkNotNone(arrRef)
         shorts = arrRef.shorts()
         checkIndex(len(shorts), index)
-        arrRef.setDataSlotsValueByIndex(index, ctypes.c_int16(val).value)
+        arrRef.set_data_slots_value_by_index(index, ctypes.c_int16(val).value)
