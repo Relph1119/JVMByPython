@@ -35,7 +35,7 @@ class INVOKE_INTERFACE(Instruction):
         # 从操作数中弹出this引用，如果引用是null，则抛出NullPointerException异常。
         # 如果引用所指对象的类没有实现解析出来的接口，则抛出IncompatibleClassChangeError异常。
         ref = frame.operand_stack.get_ref_from_top(resolve_method.arg_slot_count - 1)
-        if not ref:
+        if ref is None:
             raise RuntimeError("java.lang.NullPointerException")
 
         if not ref.get_class().is_implements(method_ref.resolved_class()):

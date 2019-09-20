@@ -59,6 +59,7 @@ from instructions.references.New import NEW
 from instructions.references.Newarray import NEW_ARRAY
 from instructions.references.Putfield import PUT_FIELD
 from instructions.references.Putstatic import PUT_STATIC
+from instructions.reserved.Invokenative import INVOKE_NATIVE
 from instructions.stack.Dup import *
 from instructions.stack.Pop import *
 from instructions.stack.Swap import *
@@ -478,6 +479,9 @@ class Factory:
             return GOTO_W()
 
         # todo:
+        elif opcode == 0xfe:
+            return INVOKE_NATIVE()
+
 
         else:
             raise RuntimeError("Unsupported opcode: {0}!".format(hex(opcode)))

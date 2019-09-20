@@ -10,8 +10,8 @@ from classpath.Classpath import Classpath
 from rtda.Slot import Slots
 from rtda.heap import AccessFlags
 from rtda.heap.Class import Class
+from rtda.heap.ClassNameHelper import PrimitiveTypes
 from rtda.heap.Field import Field
-
 
 
 class ClassLoader:
@@ -22,6 +22,8 @@ class ClassLoader:
         self.verbose_flag = verbose_flag
         # 记录已经加载的类数据
         self.class_map = dict()
+        self.load_basic_classes()
+        self.load_primitive_classes()
 
     # 把类数据加载到方法区
     def load_class(self, name):
@@ -30,9 +32,18 @@ class ClassLoader:
             # 类已经加载
             return clazz
         elif name[0] == '[':
-            return self.load_array_class(name)
+            clazz = self.load_array_class(name)
         else:
-            return self.load_non_array_class(name)
+            clazz = self.load_non_array_class(name)
+
+        # 在类加载完之后，判断java.lang.Class是否已经加载。
+        jl_class_class = self.class_map.get('java/lang/Class')
+        if jl_class_class:
+            # 如果加载，则给类关联类对象
+            clazz.j_class = jl_class_class.new_object()
+            clazz.j_class.extra = clazz
+
+        return clazz
 
     # 数组类加载
     def load_array_class(self, name):
@@ -175,3 +186,38 @@ class ClassLoader:
                 python_str = constant_pool.get_constant(cp_index)
                 j_str = j_string(clazz.loader, python_str)
                 static_vars.set_ref(slot_id, j_str)
+
+    def load_basic_classes(self):
+        # 先加载java.lang.Class类
+        jl_class_class = self.load_class("java/lang/Class")
+        # 遍历class_map，给已经加载的每个类关联类的对象。
+        for _, clazz in self.class_map.items():
+            if clazz.j_class is None:
+                clazz.j_class = jl_class_class.new_object()
+                clazz.j_class.extra = clazz
+
+    # 加载基本类型的类
+    def load_primitive_classes(self):
+        for primitive_type, _ in PrimitiveTypes.items():
+            # primitive_type是void、int、float等
+            self.load_primitive_class(primitive_type)
+
+    # 加载基本类型的单个类
+    def load_primitive_class(self, class_name):
+        """
+        有3点说明：1. void和基本类型的类名就是void、int、float等。
+        2. 基本类型的类没有超类，也没有实现任何接口。
+        3. 非基本类型的类对象是通过ldc指令加载到操作数栈中的。
+        而基本类型的类对象，虽然在Java代码中看起来是通过字面量获取的，但是编译之后的指令并不是ldc，而是getstatic。
+        :param class_name:
+        :return:
+        """
+        clazz = Class()
+        clazz.access_flags = AccessFlags.ACC_PUBLIC
+        clazz.name = class_name
+        clazz.loader = self
+        clazz.init_started = True
+
+        clazz.j_class = self.class_map.get('java/lang/Class').new_object()
+        clazz.j_class.extra = clazz
+        self.class_map[class_name] = clazz

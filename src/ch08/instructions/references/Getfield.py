@@ -22,7 +22,7 @@ class GET_FIELD(Index16Instruction):
 
         stack = frame.operand_stack
         ref = stack.pop_ref()
-        if not ref:
+        if ref is None:
             raise RuntimeError("java.lang.NollPointerException")
 
         descriptor = field.descriptor

@@ -55,7 +55,7 @@ class Class:
         clazz.interface_names = classFile.interface_names
         clazz.constant_pool = ConstantPool.new_constant_pool(clazz, classFile.constant_pool)
         clazz.fields = Field.new_fields(clazz, classFile.fields)
-        clazz.methods = Method.new_method(clazz, classFile.methods)
+        clazz.methods = Method.new_methods(clazz, classFile.methods)
         return clazz
 
     # 用于判断public访问标志是否被设置

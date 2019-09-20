@@ -25,7 +25,7 @@ class Method(ClassMember):
 
     # 根据class文件中的方法信息创建Method表
     @staticmethod
-    def new_method(clazz, cfMethods):
+    def new_methods(clazz, cfMethods):
         methods = []
         for cfMethod in cfMethods:
             method = Method()
@@ -39,7 +39,7 @@ class Method(ClassMember):
     # 从method_info结构中提取max_stack、max_locals、code信息
     def copy_attributes(self, cfMethod: MemberInfo):
         code_attr = cfMethod.code_attribute
-        if code_attr:
+        if code_attr is not None:
             self.max_stack = code_attr.max_stack
             self.max_locals = code_attr.max_locals
             self.code = code_attr.code

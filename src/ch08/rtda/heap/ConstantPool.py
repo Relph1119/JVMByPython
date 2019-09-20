@@ -63,7 +63,7 @@ class ConstantPool:
     # 根据索引返回常量
     def get_constant(self, index):
         c = self.consts[index]
-        if c:
+        if c is not None:
             return c
         else:
             raise RuntimeError("No constants at index {0}".format(index))

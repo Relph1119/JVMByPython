@@ -21,7 +21,7 @@ class InterfaceMethodRef(MemberRef):
 
     # 解析接口方法
     def resolved_interface_method(self):
-        if not self.method:
+        if self.method is None:
             self.resolve_interface_method_ref()
         return self.method
 
@@ -33,7 +33,7 @@ class InterfaceMethodRef(MemberRef):
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         method = self.lookup_interface_method(c, self.name, self.descriptor)
-        if not method:
+        if method is None:
             raise RuntimeError("java.lang.NoSuchMethodError")
         if not method.is_accessible_to(d):
             raise RuntimeError("java.lang.IllegalAccessError")

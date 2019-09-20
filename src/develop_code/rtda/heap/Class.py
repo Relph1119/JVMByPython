@@ -44,6 +44,8 @@ class Class:
         self.static_vars = Slots()
         # 表示类的<clinit>方法是否已经开始执行
         self.init_started = False
+        # 表示java.lang.Class实例
+        self.j_class = None
 
     # 用来把classFile类转换成Class类
     @staticmethod
@@ -55,7 +57,7 @@ class Class:
         clazz.interface_names = classFile.interface_names
         clazz.constant_pool = ConstantPool.new_constant_pool(clazz, classFile.constant_pool)
         clazz.fields = Field.new_fields(clazz, classFile.fields)
-        clazz.methods = Method.new_method(clazz, classFile.methods)
+        clazz.methods = Method.new_methods(clazz, classFile.methods)
         return clazz
 
     # 用于判断public访问标志是否被设置
@@ -246,3 +248,9 @@ class Class:
 
             c = c.super_class
         return None
+
+
+    # 返回转换后的类名,self.name形如java/lang/Object，转换后为java.lang.Object
+    @property
+    def java_name(self):
+        return self.name.replace("/", ".", -1)

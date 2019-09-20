@@ -21,7 +21,7 @@ class FieldRef(MemberRef):
 
     # 字段解析
     def resolve_field(self):
-        if not self.field:
+        if self.field is None:
             self.resolve_field_ref()
         return self.field
 
@@ -37,7 +37,7 @@ class FieldRef(MemberRef):
         c = self.resolved_class()
         field = self.lookup_field(c, self.name, self.descriptor)
 
-        if not field:
+        if field is None:
             raise RuntimeError("java.lang.NoSuchFieldError")
 
         if not field.is_accessible_to(d):

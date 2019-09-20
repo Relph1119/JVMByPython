@@ -34,12 +34,12 @@ class PUT_FIELD(Index16Instruction):
         if descriptor[0] in {"Z", "B", "C", "S", "I", "F", "J", "D"}:
             val = stack.pop_numeric()
             ref = stack.pop_ref()
-            if not ref:
+            if ref is None:
                 raise RuntimeError("java.lang.NollPointerException")
             ref.fields.set_numeric(slot_id, val)
         elif descriptor[0] in {"L", "["}:
             val = stack.pop_ref()
             ref = stack.pop_ref()
-            if not ref:
+            if ref is None:
                 raise RuntimeError("java.lang.NollPointerException")
             ref.fields.set_ref(slot_id, val)

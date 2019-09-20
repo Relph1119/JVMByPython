@@ -19,7 +19,7 @@ class INSTANCE_OF(Index16Instruction):
         ref = stack.pop_ref()
 
         # 如果是null，则把0推入操作数栈。
-        if not ref:
+        if ref is None:
             stack.push_numeric(0)
             return
 

@@ -22,12 +22,12 @@ class GET_FIELD(Index16Instruction):
 
         stack = frame.operand_stack
         ref = stack.pop_ref()
-        if not ref:
+        if ref is None:
             raise RuntimeError("java.lang.NollPointerException")
 
         descriptor = field.descriptor
         slot_id = field.slot_id
-        slots = ref.fields
+        slots = ref.fields()
 
         if descriptor[0] in {"Z", "B", "C", "S", "I", "F", "J", "D"}:
             stack.push_numeric(slots.get_numeric(slot_id))

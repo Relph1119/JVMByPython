@@ -11,7 +11,7 @@ from rtda.heap.Class import Class
 
 
 class Object:
-    def __init__(self, clazz: Class, data=None):
+    def __init__(self, clazz: Class, data=None, extra=None):
         # 存放对象的class
         self._class = clazz
         # 存放实例变量
@@ -19,6 +19,11 @@ class Object:
             self.data = []
         else:
             self.data = data
+        # 用来记录Object结构体实例的额外信息
+        if extra is None:
+            self.extra = []
+        else:
+            self.extra = extra
 
     @staticmethod
     def new_object(clazz: Class):

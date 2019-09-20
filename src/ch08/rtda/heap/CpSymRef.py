@@ -22,7 +22,7 @@ class SymRef:
 
     # 解析类
     def resolved_class(self):
-        if not self.get_class():
+        if self.get_class() is None:
             self.resolve_class_ref()
 
         return self.get_class()

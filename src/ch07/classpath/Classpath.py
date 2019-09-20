@@ -47,7 +47,7 @@ class Classpath:
         if self.__exists("./jre"):
             return "./jre"
         jh = os.environ.get("JAVA_HOME")
-        if jh:
+        if jh is not None:
             return os.path.join(jh, "jre")
         raise RuntimeError("Can not find jre folder!")
 

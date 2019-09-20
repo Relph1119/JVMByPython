@@ -26,7 +26,7 @@ class ClassLoader:
     # 把类数据加载到方法区
     def load_class(self, name):
         clazz = self.class_map.get(name)
-        if clazz:
+        if clazz is not None:
             # 类已经加载
             return clazz
         elif name[0] == '[':
@@ -128,7 +128,7 @@ class ClassLoader:
     @staticmethod
     def calc_instantce_field_slot_ids(clazz: Class):
         slot_id = 0
-        if clazz.super_class:
+        if clazz.super_class is not None:
             slot_id = clazz.super_class.instance_slot_count
         for field in clazz.fields:
             if not field.is_static():

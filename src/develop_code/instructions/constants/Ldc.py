@@ -10,6 +10,7 @@ ldc2_w指令用于加载long和double常量。
 """
 from instructions.base.Instruction import Index8Instruction, Index16Instruction
 from rtda.Frame import Frame
+from rtda.heap.CpClassRef import ClassRef
 from rtda.heap.StringPool import j_string
 
 
@@ -27,6 +28,9 @@ def _ldc(frame: Frame, index):
         interned_str = j_string(clazz.loader, c)
         # 把引用推入操作数栈顶
         stack.push_ref(interned_str)
+    elif isinstance(c, ClassRef):
+        class_obj = c.resolved_class().j_class
+        stack.push_ref(class_obj)
     else:
         raise RuntimeError("todo: ldc!")
 

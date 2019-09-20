@@ -59,7 +59,7 @@ class Classpath:
         return False
 
     def parse_user_classpath(self, cp_option):
-        if not cp_option:
+        if len(cp_option) == 0:
             cp_option = "."
         self.user_classpath = Entry.new_entry(cp_option)
 

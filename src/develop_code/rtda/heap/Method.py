@@ -25,16 +25,52 @@ class Method(ClassMember):
 
     # 根据class文件中的方法信息创建Method表
     @staticmethod
-    def new_method(clazz, cfMethods):
+    def new_methods(clazz, cfMethods):
         methods = []
         for cfMethod in cfMethods:
-            method = Method()
-            method.set_class(clazz)
-            method.copy_member_info(cfMethod)
-            method.copy_attributes(cfMethod)
-            method.calc_arg_slot_count()
+            method = Method.new_method(clazz, cfMethod)
             methods.append(method)
         return methods
+
+    #
+    @staticmethod
+    def new_method(clazz, cfMethod):
+        method = Method()
+        method.set_class(clazz)
+        method.copy_member_info(cfMethod)
+        method.copy_attributes(cfMethod)
+        md = MethodDescriptorParser.parse_method_descriptor(method.descriptor)
+        # 先计算arg_slot_count字段
+        method.calc_arg_slot_count(md.parameter_types)
+        # 如果是本地方法，则注入字节码和其他信息。
+        if method.is_native():
+            method.inject_code_attribute(md.return_type)
+
+        return method
+
+    def inject_code_attribute(self, return_type):
+        # 由于本地方法在class文件中没有Code属性，所以需要给max_stack和max_locals赋值。
+        self.max_stack = 4
+        self.max_locals = self.arg_slot_count
+        # code字段是本地方法的字节码，第一条指令都是0xfe，第二条指令则根据函数的返回值选择相应的返回指令。
+        if return_type[0] == 'V':
+            # 对应指令return
+            self.code = [0xfe, 0xb1]
+        elif return_type[0] == 'D':
+            # 对应指令dreturn
+            self.code = [0xfe, 0xaf]
+        elif return_type[0] == 'F':
+            # 对应指令freturn
+            self.code = [0xfe, 0xae]
+        elif return_type[0] == 'J':
+            # 对应指令lreturn
+            self.code = [0xfe, 0xad]
+        elif return_type[0] in {'L', '['}:
+            # 对应指令areturn
+            self.code = [0xfe, 0xb0]
+        else:
+            # 对应指令ireturn
+            self.code = [0xfe, 0xac]
 
     # 从method_info结构中提取max_stack、max_locals、code信息
     def copy_attributes(self, cfMethod: MemberInfo):
@@ -45,9 +81,8 @@ class Method(ClassMember):
             self.code = code_attr.code
 
     # 计算参数在局部变量表中占用多少位置
-    def calc_arg_slot_count(self):
-        parsed_descriptor = MethodDescriptorParser.parse_method_descriptor(self.descriptor)
-        for _ in parsed_descriptor.parameter_types:
+    def calc_arg_slot_count(self, param_types):
+        for _, param_type in enumerate(param_types):
             self.arg_slot_count += 1
 
         if not self.is_static():

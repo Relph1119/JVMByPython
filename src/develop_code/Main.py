@@ -62,14 +62,7 @@ if __name__ == '__main__':
     root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
     resources_path = os.path.join(os.path.dirname(root_path), "java")
 
-    # 1. 冒泡排序算法测试
-    # fake_args = ['--Xjre', Xjre_path, '--verbose:class', '--cp', resources_path, 'jvmgo.book.ch08.BubbleSortTest']
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch08.BubbleSortTest']
-
-    # 2. HelloWorld程序
-    # fake_args = ['--Xjre', Xjre_path, '--verbose:class', '--cp', resources_path, 'jvmgo.book.ch01.HelloWorld']
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch01.HelloWorld']
-
-    # 3. PrintArgs程序
-    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch08.PrintArgs', 'foo', 'bar', '你好，世界！']
+    # 1. 执行GetClassTest程序
+    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch09.GetClassTest']
+    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.GetClassTest']
     main(fake_args)

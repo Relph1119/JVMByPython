@@ -16,7 +16,7 @@ class CHECK_CAST(Index16Instruction):
         stack = frame.operand_stack
         ref = stack.pop_ref()
         stack.push_ref(ref)
-        if not ref:
+        if ref is None:
             return
 
         cp = frame.method.get_class().constant_pool

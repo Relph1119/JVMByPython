@@ -32,7 +32,7 @@ class INVOKE_SPECIAL(Index16Instruction):
 
         # 从操作数栈中弹出this引用，如果该引用是null，抛出NullPointerException异常。
         ref = frame.operand_stack.get_ref_from_top(resolved_method.arg_slot_count - 1)
-        if not ref:
+        if ref is None:
             raise RuntimeError("java.lang.NullPointerException")
 
         # 确保protected方法只能被声明该方法的类或子类调用，如果违反这一规定，则抛出IllegalAccessError异常。

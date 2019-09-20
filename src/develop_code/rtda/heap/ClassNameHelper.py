@@ -43,7 +43,7 @@ def to_class_name(descriptor):
     if descriptor[0] == 'L':
         return descriptor[1: len(descriptor) - 1]
     # 判断是否是基本类型描述符，如果是，返回基本类型名称
-    for class_name, d in PrimitiveTypes:
+    for class_name, d in PrimitiveTypes.items():
         if d == descriptor:
             return class_name
 

@@ -27,7 +27,7 @@ class Stack:
 
     # 把栈顶帧弹出
     def pop(self):
-        if not self.__top:
+        if self.__top is None:
             raise RuntimeError("jvm stack is empty!")
 
         top = self.__top
@@ -39,7 +39,7 @@ class Stack:
 
     # 返回栈顶帧，但并不弹出
     def top(self):
-        if not self.__top:
+        if self.__top is None:
             raise RuntimeError("jvm stack is empty!")
         return self.__top
 

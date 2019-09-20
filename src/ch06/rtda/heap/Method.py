@@ -22,7 +22,7 @@ class Method(ClassMember):
 
     # 根据class文件中的方法信息创建Method表
     @staticmethod
-    def new_method(clazz, cfMethods):
+    def new_methods(clazz, cfMethods):
         methods = []
         for cfMethod in cfMethods:
             method = Method()

@@ -28,7 +28,7 @@ class ZipEntry(Entry):
                         error = e
                         return None, None, error
                     break
-        if not data:
+        if data is None:
             error = "class not found:{0}".format(class_name)
             return None, None, error
         return data, self, error

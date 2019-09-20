@@ -23,7 +23,7 @@ class INVOKE_VIRTURL(Index16Instruction):
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         ref = frame.operand_stack.get_ref_from_top(resolved_method.arg_slot_count - 1)
-        if not ref:
+        if ref is None:
             if method_ref.name == "println":
                 self._println(frame.operand_stack, method_ref.descriptor)
                 return

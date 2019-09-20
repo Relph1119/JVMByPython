@@ -12,7 +12,7 @@ from rtda.heap.Object import Object
 
 
 def check_not_none(ref: Object):
-    if not ref:
+    if ref is None:
         raise RuntimeError("java.lang.NullPointerException")
 
 

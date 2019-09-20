@@ -27,7 +27,7 @@ def lookup_method_in_interfaces(ifaces, name, descriptor):
             if method.name == name and method.descriptor == descriptor:
                 return method
         method = lookup_method_in_interfaces(iface.interfaces, name, descriptor)
-        if method:
+        if method is not None:
             return method
 
     return None

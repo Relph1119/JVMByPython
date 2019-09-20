@@ -7,10 +7,10 @@
 @desc: 解析class文件
 """
 
+from .AttributeInfo import AttributeInfo
 from .ClassReader import ClassReader
 from .ConstantPool import ConstantPool
 from .MemberInfo import MemberInfo
-from .AttributeInfo import AttributeInfo
 
 
 class ClassFile:
@@ -97,3 +97,6 @@ class ClassFile:
     @property
     def interface_names(self):
         return [self.constant_pool.get_class_name(cpName) for cpName in self.interfaces]
+
+    def fields(self):
+        return self.fields

@@ -22,7 +22,7 @@ class MethodRef(MemberRef):
 
     # 解析非接口方法
     def resolved_method(self):
-        if not self.method:
+        if self.method is None:
             self.resolve_method_ref()
         return self.method
 
@@ -41,7 +41,7 @@ class MethodRef(MemberRef):
             raise RuntimeError("java.lang.IncompatibleClassChangeError")
 
         method = self.lookup_method(c, self.name, self.descriptor)
-        if not method:
+        if method is None:
             raise RuntimeError("java.lang.NoSuchMethodError")
         if not method.is_accessible_to(d):
             raise RuntimeError("java.lang.IllegalAccessError")
@@ -59,6 +59,6 @@ class MethodRef(MemberRef):
         :return:
         """
         method = MethodLookup.lookup_method_in_class(clazz, name, descriptor)
-        if not method:
+        if method is None:
             method = MethodLookup.lookup_method_in_interfaces(clazz.interfaces, name, descriptor)
         return method

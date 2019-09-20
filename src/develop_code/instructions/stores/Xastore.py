@@ -14,7 +14,7 @@ from rtda.Frame import Frame
 
 
 def check_not_none(ref):
-    if not ref:
+    if ref is None:
         raise RuntimeError("java.lang.NullPointerException")
 
 
