@@ -92,3 +92,9 @@ class Object:
             dest.data[dest_pos: dest_pos + length] = list(src.data[src_pos: src_pos + length])
         else:
             raise RuntimeError("Not array!")
+
+    def clone(self):
+        return Object(self._class, self.clone_data())
+
+    def clone_data(self):
+        return list(self.data)

@@ -6,6 +6,8 @@
 @time: 2019/9/20 20:51
 @desc: java.lang.Object类
 """
+import ctypes
+
 from native.Registry import register
 from rtda.Frame import Frame
 
@@ -25,4 +27,22 @@ def get_class(frame: Frame):
     frame.operand_stack.push_ref(clazz)
 
 
-register('java/lang/Object', 'getClass', '()Ljava/lang/Class;', get_class)
+def hash_code(frame: Frame):
+    this = frame.local_vars.get_this()
+    hash_value = hash(this)
+    frame.operand_stack.push_numeric(hash_value)
+
+
+def clone(frame: Frame):
+    this = frame.local_vars.get_this()
+    cloneable = this.get_class().loader.load_class("java/lang/Cloneable")
+    if not this.get_class().is_implements(cloneable):
+        raise RuntimeError("java.lang.CloneNotSupportedException")
+
+    frame.operand_stack.push_ref(this.clone())
+
+
+jlObject = 'java/lang/Object'
+register(jlObject, 'getClass', '()Ljava/lang/Class;', get_class)
+register(jlObject, "hashCode", "()I", hash_code)
+register(jlObject, "clone", "()Ljava/lang/Object;", clone)

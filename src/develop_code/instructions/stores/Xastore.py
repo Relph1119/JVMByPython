@@ -53,7 +53,7 @@ class CASTORE(NoOperandsInstruction):
     def execute(self, frame: Frame):
         stack = frame.operand_stack
         val = stack.pop_numeric()
-        index = stack.pop_numeric()
+        index = int(stack.pop_numeric())
         arr_ref = stack.pop_ref()
 
         check_not_none(arr_ref)
@@ -66,7 +66,7 @@ class DASTORE(NoOperandsInstruction):
     def execute(self, frame: Frame):
         stack = frame.operand_stack
         val = stack.pop_numeric()
-        index = stack.pop_numeric()
+        index = int(stack.pop_numeric())
         arr_ref = stack.pop_ref()
 
         check_not_none(arr_ref)

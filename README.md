@@ -78,6 +78,8 @@ Java版本：1.8
 ![](images/ch09/执行GetClassTest程序.png)
 2. 执行StringTest程序，得到字符串判断的结果
 ![](images/ch09/执行StringTest程序.png)
+3. 执行ObjectTest程序，得到对象的hashCode值
+![](images/ch09/执行ObjectTest程序.png)
 
 **本章总结：**  
 1. 由于invokenative指令是动态执行本地方法，又因为本地方法在不同的模块里，因此自己实现了动态加载模块，并执行对应的函数方法。

@@ -32,7 +32,7 @@ class NEW_ARRAY(Instruction):
         import ctypes
 
         stack = frame.operand_stack
-        count = stack.pop_numeric()
+        count = int(stack.pop_numeric())
         # 如果count小于0，则抛出NegativeArraySizeException异常
         if count < 0:
             raise RuntimeError("java.lang.NegativeArraySizeException")

@@ -29,7 +29,7 @@ class ISHR(NoOperandsInstruction):
         stack = frame.operand_stack
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
-        s = v2 & 0x1f
+        s = ctypes.c_uint32(v2).value & 0x1f
         result = v1 >> s
         stack.push_numeric(result)
 
@@ -40,7 +40,7 @@ class IUSHR(NoOperandsInstruction):
         stack = frame.operand_stack
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
-        s = v2 & 0x1f
+        s = ctypes.c_uint32(v2).value & 0x1f
         result = ctypes.c_int32(ctypes.c_uint32(v1).value >> s).value
         stack.push_numeric(result)
 
@@ -51,7 +51,7 @@ class LSHL(NoOperandsInstruction):
         stack = frame.operand_stack
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
-        s = v2 & 0x3f
+        s = ctypes.c_uint32(v2).value & 0x3f
         result = v1 << s
         stack.push_numeric(result)
 
@@ -62,7 +62,7 @@ class LSHR(NoOperandsInstruction):
         stack = frame.operand_stack
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
-        s = v2 & 0x3f
+        s = ctypes.c_uint32(v2).value & 0x3f
         result = v1 >> s
         stack.push_numeric(result)
 
@@ -73,6 +73,6 @@ class LUSHR(NoOperandsInstruction):
         stack = frame.operand_stack
         v2 = stack.pop_numeric()
         v1 = stack.pop_numeric()
-        s = v2 & 0x3f
-        result = ctypes.c_int32(ctypes.c_uint32(v1).value >> s).value
+        s = ctypes.c_uint32(v2).value & 0x3f
+        result = ctypes.c_int64(ctypes.c_uint64(v1).value >> s).value
         stack.push_numeric(result)
