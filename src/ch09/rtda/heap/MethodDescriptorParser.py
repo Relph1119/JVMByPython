@@ -7,8 +7,6 @@
 @desc: 方法描述符解析器
 """
 
-import copy
-
 from rtda.heap.MethodDescriptor import MethodDescriptor
 
 
@@ -113,8 +111,6 @@ class MethodDescriptorParser:
             obj_start = self.offset - 1
             obj_end = self.offset + semicolon_index + 1
             self.offset = obj_end
-            # todo:
-            # descriptor = copy.deepcopy(self.raw[obj_start:obj_end])
             descriptor = self.raw[obj_start:obj_end]
             return descriptor
 
@@ -122,7 +118,5 @@ class MethodDescriptorParser:
         arr_start = self.offset - 1
         self.parse_field_type()
         arr_end = self.offset
-        # todo:
-        # descriptor = copy.deepcopy(self.raw[arr_start:arr_end])
         descriptor = self.raw[arr_start:arr_end]
         return descriptor

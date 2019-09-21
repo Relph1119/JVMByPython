@@ -46,8 +46,6 @@ class LocalVars(list):
         return self[index].ref
 
     def set_slot(self, index, slot: Slot):
-        # todo:
-        # self[index] = copy.deepcopy(slot)
         self[index] = slot
 
     def get_this(self):

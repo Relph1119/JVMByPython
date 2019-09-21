@@ -411,9 +411,6 @@ class Factory:
             return IF_ACMPNE()
         elif opcode == 0xa7:
             return GOTO()
-
-        # todo:
-
         elif opcode == 0xaa:
             return TABLE_SWITCH()
         elif opcode == 0xab:
@@ -446,9 +443,6 @@ class Factory:
             return INVOKE_STATIC()
         elif opcode == 0xb9:
             return INVOKE_INTERFACE()
-
-        # todo:
-
         elif opcode == 0xbb:
             return NEW()
         elif opcode == 0xbc:
@@ -457,16 +451,10 @@ class Factory:
             return ANEW_ARRAY()
         elif opcode == 0xbe:
             return ARRAY_LENGTH()
-
-        # todo:
-
         elif opcode == 0xc0:
             return CHECK_CAST()
         elif opcode == 0xc1:
             return INSTANCE_OF()
-
-        # todo:
-
         elif opcode == 0xc4:
             return WIDE()
         elif opcode == 0xc5:
@@ -477,11 +465,7 @@ class Factory:
             return IFNONNULL()
         elif opcode == 0xc8:
             return GOTO_W()
-
-        # todo:
         elif opcode == 0xfe:
             return INVOKE_NATIVE()
-
-
         else:
             raise RuntimeError("Unsupported opcode: {0}!".format(hex(opcode)))
