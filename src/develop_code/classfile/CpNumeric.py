@@ -6,9 +6,10 @@
 @time: 2019/9/15 00:05
 @desc: 用一个module编写数值常量类
 """
+import ctypes
+import struct
 
 from .ConstantInfo import ConstantInfo
-import ctypes
 
 
 # 使用4字节存储整数常量
@@ -30,7 +31,7 @@ class ConstantFloatInfo(ConstantInfo):
     # 先读取一个uint32数据，然后把它转型成int32类型
     def read_info(self, class_reader):
         bytes_data = int.from_bytes(class_reader.read_unit32(), byteorder='big')
-        self.val = ctypes.c_float(bytes_data).value
+        self.val = struct.unpack('>f', struct.pack('>l', bytes_data))[0]
 
 
 # 使用8字节存储整数常量
@@ -51,4 +52,4 @@ class ConstantDoubleInfo(ConstantInfo):
 
     def read_info(self, class_reader):
         bytes_data = int.from_bytes(class_reader.read_unit64(), byteorder='big')
-        self.val = ctypes.c_float(bytes_data).value
+        self.val = struct.unpack('>d', struct.pack('>q', bytes_data))[0]

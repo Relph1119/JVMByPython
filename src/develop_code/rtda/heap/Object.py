@@ -7,7 +7,7 @@
 @desc: 表示对象
 """
 
-from rtda.Slot import Slots
+from rtda.Slot import Slots, copy_slot
 from rtda.heap.Class import Class
 
 
@@ -97,4 +97,11 @@ class Object:
         return Object(self._class, self.clone_data())
 
     def clone_data(self):
-        return list(self.data)
+        if not isinstance(self.data, Slots):
+            new_data = list(self.data)
+            return new_data
+        else:
+            new_data = Slots(len(self.data))
+            for i, slot in enumerate(self.data):
+                new_data[i] = copy_slot(slot)
+            return new_data

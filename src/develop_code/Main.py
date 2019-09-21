@@ -73,6 +73,10 @@ if __name__ == '__main__':
 
     # 3. 执行ObjectTest程序
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch09.ObjectTest']
-    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.ObjectTest']
+    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.ObjectTest']
+
+    # 4. 执行CloneTest程序
+    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch09.CloneTest']
+    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.CloneTest']
 
     main(fake_args)

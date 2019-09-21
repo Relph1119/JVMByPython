@@ -38,3 +38,11 @@ class Slots(list):
 
     def get_ref(self, index):
         return self[index].ref
+
+
+# slot拷贝，不能使用深拷贝copy.deepcopy函数，由于ref复制的是引用，需要将num和ref都进行拷贝。
+def copy_slot(slot):
+    new_slot = Slot()
+    new_slot.num = slot.num
+    new_slot.ref = slot.ref
+    return new_slot

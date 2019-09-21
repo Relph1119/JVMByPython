@@ -80,10 +80,14 @@ Java版本：1.8
 ![](images/ch09/执行StringTest程序.png)
 3. 执行ObjectTest程序，得到对象的hashCode值
 ![](images/ch09/执行ObjectTest程序.png)
+4. 执行CloneTest程序，可以观察到克隆的对象与原始对象的pi值不一样
+![](images/ch09/执行CloneTest程序.png)
 
 **本章总结：**  
 1. 由于invokenative指令是动态执行本地方法，又因为本地方法在不同的模块里，因此自己实现了动态加载模块，并执行对应的函数方法。
 2. 在doubleToRawLongBits本地方法中处理大数值超长的bits转换采用了如下代码：  
     > s = struct.pack('>q', ctypes.c_uint64(bits).value)  
     value = struct.unpack('>d', s)[0]
-
+3. 在产生运行时常量池时，ConstantDoubleInfo类的read_info不能直接使用ctypes进行转换，会导致float转换异常，需要用struct进行数值转换。
+    > bytes_data = int.from_bytes(class_reader.read_unit64(), byteorder='big')  
+    self.val = struct.unpack('>d', struct.pack('>q', bytes_data))[0]
