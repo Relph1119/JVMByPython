@@ -4,7 +4,7 @@
 @author: HuRuiFeng
 @file: Object.py
 @time: 2019/9/20 20:51
-@desc: java/lang/Object类
+@desc: java.lang.Object类
 """
 from native.Registry import register
 from rtda.Frame import Frame

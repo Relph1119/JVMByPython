@@ -4,7 +4,7 @@
 @author: HuRuiFeng
 @file: Class.py
 @time: 2019/9/20 20:57
-@desc: java/lang/Class类
+@desc: java.lang.Class类
 """
 from native.Registry import register
 from rtda.Frame import Frame

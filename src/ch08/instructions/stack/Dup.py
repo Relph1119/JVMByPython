@@ -89,7 +89,7 @@ class DUP2(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operand_stack()
+        stack = frame.operand_stack
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         stack.push_slot(slot2)
@@ -109,7 +109,7 @@ class DUP2_X1(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operand_stack()
+        stack = frame.operand_stack
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()
@@ -131,7 +131,7 @@ class DUP2_X2(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operand_stack()
+        stack = frame.operand_stack
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         slot3 = stack.pop_slot()

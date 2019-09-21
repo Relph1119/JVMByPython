@@ -49,9 +49,26 @@ def string_to_utf16(s):
 def python_string(j_str):
     # 拿到String对象的value变量值
     char_array = j_str.get_ref_var("value", "[C")
+    if not isinstance(char_array, bytes):
+        char_array.data = bytes(char_array.data)
     # 把字符数组转换成python字符串
     return utf16_to_string(char_array.chars())
 
 
 def utf16_to_string(s):
     return s.decode('utf-8')
+
+
+def intern_string(j_str):
+    """
+    如果字符串还没有入池，把它放入并返回该字符串，否则找到已入池字符串并返回。
+    :param j_str:
+    :return:
+    """
+    python_str = python_string(j_str)
+    interned = interned_strings.get(python_str)
+    if interned is not None:
+        return interned
+
+    interned_strings[python_str] = j_str
+    return j_str

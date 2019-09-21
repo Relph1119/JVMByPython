@@ -20,7 +20,7 @@ class SWAP(NoOperandsInstruction):
     """
 
     def execute(self, frame):
-        stack = frame.operand_stack()
+        stack = frame.operand_stack
         slot1 = stack.pop_slot()
         slot2 = stack.pop_slot()
         stack.push_slot(slot1)

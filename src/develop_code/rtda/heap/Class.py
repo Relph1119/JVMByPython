@@ -9,6 +9,7 @@
 from classfile.ClassFile import ClassFile
 from rtda.Slot import Slots
 from rtda.heap import AccessFlags, ClassNameHelper
+from rtda.heap.ClassNameHelper import PrimitiveTypes
 from rtda.heap.ConstantPool import ConstantPool
 from rtda.heap.Field import Field
 from rtda.heap.Method import Method
@@ -249,8 +250,13 @@ class Class:
             c = c.super_class
         return None
 
-
     # 返回转换后的类名,self.name形如java/lang/Object，转换后为java.lang.Object
     @property
     def java_name(self):
         return self.name.replace("/", ".", -1)
+
+    # 判断类是否是基本类型的类
+    def is_primitive(self) -> bool:
+        if PrimitiveTypes.get(self.name) is not None:
+            return True
+        return False

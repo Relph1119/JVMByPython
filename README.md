@@ -19,7 +19,7 @@ Java版本：1.8
 
 ![](images/ch01/命令行工具.png)
 1. 采用OptionParser作为命令行解析器，具体处理的打印输入留给Cmd类去处理。
-2. 用于在使用命令行解析器时，必须使用"--X"表示参数，不能按照书中的"-"进行编码。
+2. 在使用命令行解析器时，必须使用"--X"表示参数，不能按照书中的"-"进行编码。
 
 ### 第2章-搜索class文件
 完成搜索class文件功能，类路径的查找，按照搜索的先后顺序，类路径可以从以下3个部分查找：启动类路径、扩展类路径、用户类路径。
@@ -71,3 +71,17 @@ Java版本：1.8
 **本章总结：**  
 1. 排查了冒泡排序算法执行时的问题，由于DUP指令的实现问题，之前采用的是slot的深拷贝，导致在对象引用置空的时候，不能将slot里的引用同时置空，解决方法：自己实现了一个copy_slot方法，创建一个Slot对象将num和ref都进行复制即可。
 2. 在测试HelloWorld程序时，解析java.lang.CharSequence类报错，最后查看到是由于ConstantMethodHandleInfo类中的read_info读取问题导致的。
+
+### 第9章-本地方法调用
+实现了本地方法调用的指令，以及Java类库中一些最基本的类和本地方法，有如下本地方法：java.lang.Object.getClass()、java.lang.Class.getPrimitiveClass()、java.lang.Class.getName0()、java.lang.Class.desiredAssertionStatues0、System.arrayCopy()、Float.floatToRawIntBits()、Double.doubleToRawLongBits()  
+1. 执行GetClassTest程序，得到基本数据类型的类getName()结果。
+![](images/ch09/执行GetClassTest程序.png)
+2. 执行StringTest程序，得到字符串判断的结果
+![](images/ch09/执行StringTest程序.png)
+
+**本章总结：**  
+1. 由于invokenative指令是动态执行本地方法，又因为本地方法在不同的模块里，因此自己实现了动态加载模块，并执行对应的函数方法。
+2. 在doubleToRawLongBits本地方法中处理大数值超长的bits转换采用了如下代码：  
+    > s = struct.pack('>q', ctypes.c_uint64(bits).value)  
+    value = struct.unpack('>d', s)[0]
+

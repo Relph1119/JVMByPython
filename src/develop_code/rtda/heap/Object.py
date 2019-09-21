@@ -6,6 +6,7 @@
 @time: 2019/9/15 16:04
 @desc: 表示对象
 """
+
 from rtda.Slot import Slots
 from rtda.heap.Class import Class
 
@@ -68,7 +69,10 @@ class Object:
     # <t>aload和<t>astore系列指令各有8条，针对每种类型都提供一个方法，返回相应的数组数据（由于python的数组中可以存放各种类型，故不区分数组类型）
     # arraylength指令只有一条，只需要一个方法。
     def array_length(self):
-        return len(self.data)
+        if type(self.data).__getitem__ is not None:
+            return len(self.data)
+        else:
+            raise RuntimeError("Not array!")
 
     # 直接给对象的引用类型实例变量赋值
     def set_ref_var(self, name, descriptor, ref):
@@ -80,3 +84,11 @@ class Object:
         field = self._class.get_field(name, descriptor, False)
         slots = self.data
         return slots.get_ref(field.slot_id)
+
+    # 数组拷贝
+    @staticmethod
+    def array_copy(src, dest, src_pos, dest_pos, length):
+        if type(src.data).__getitem__ is not None:
+            dest.data[dest_pos: dest_pos + length] = list(src.data[src_pos: src_pos + length])
+        else:
+            raise RuntimeError("Not array!")
