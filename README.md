@@ -78,10 +78,12 @@ Java版本：1.8
 ![](images/ch09/执行GetClassTest程序.png)
 2. 执行StringTest程序，得到字符串判断的结果
 ![](images/ch09/执行StringTest程序.png)
-3. 执行ObjectTest程序，得到对象的hashCode值
+3. 执行ObjectTest程序，得到对象的hashCode值，生成hashCode的代码是直接利用内置函数hash()生成的
 ![](images/ch09/执行ObjectTest程序.png)
 4. 执行CloneTest程序，可以观察到克隆的对象与原始对象的pi值不一样
 ![](images/ch09/执行CloneTest程序.png)
+5. 执行BoxTest程序，可以打印出数组的元素
+![](images/ch09/执行BoxTest程序.png)
 
 **本章总结：**  
 1. 由于invokenative指令是动态执行本地方法，又因为本地方法在不同的模块里，因此自己实现了动态加载模块，并执行对应的函数方法。
@@ -91,3 +93,4 @@ Java版本：1.8
 3. 在产生运行时常量池时，ConstantDoubleInfo类的read_info不能直接使用ctypes进行转换，会导致float转换异常，需要用struct进行数值转换。
     > bytes_data = int.from_bytes(class_reader.read_unit64(), byteorder='big')  
     self.val = struct.unpack('>d', struct.pack('>q', bytes_data))[0]
+4. 重构了OperandStack、LocalVars和Slots类下面的有关double和float的get/set方法，为了检查错误，打印出了operand_stack.slots和local_vars的数据。
