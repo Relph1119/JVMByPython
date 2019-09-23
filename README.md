@@ -88,11 +88,15 @@ Java版本：1.8
 **本章总结：**  
 1. 由于invokenative指令是动态执行本地方法，又因为本地方法在不同的模块里，因此自己实现了动态加载模块，并执行对应的函数方法。
 2. 在doubleToRawLongBits本地方法中处理大数值超长的bits转换采用了如下代码：  
-    > s = struct.pack('>q', ctypes.c_uint64(bits).value)  
-    value = struct.unpack('>d', s)[0]
+   ```python
+   s = struct.pack('>q', ctypes.c_uint64(bits).value)  
+   value = struct.unpack('>d', s)[0]
+   ```
 3. 在产生运行时常量池时，ConstantDoubleInfo类的read_info不能直接使用ctypes进行转换，会导致float转换异常，需要用struct进行数值转换。
-    > bytes_data = int.from_bytes(class_reader.read_unit64(), byteorder='big')  
-    self.val = struct.unpack('>d', struct.pack('>q', bytes_data))[0]
+   ```python
+   bytes_data = int.from_bytes(class_reader.read_unit64(), byteorder='big')  
+   self.val = struct.unpack('>d', struct.pack('>q', bytes_data))[0]
+   ```
 4. 重构了OperandStack、LocalVars和Slots类下面的有关double和float的get/set方法，为了检查错误，打印出了operand_stack.slots和local_vars的数据。
 
 ### 第10章-异常处理
@@ -106,12 +110,12 @@ Java版本：1.8
 
 **本章总结**  
 1. 字符串在class文件中是以MUTF-8（Modified UTF-8）方式编码的。Java序列化机制也使用了MUTF-8编码。java.io.DataInput和java.io.DataOutput接口分别定义了readUTF()和writeUTF()方法，可以读写MUTF-8编码的字符串。由于遇到了0xC0的问题，于是重构了decode_mutf8()方法，按照书中代码，也同样实现了一套字符转换，但是在python并不能将超过255的字符转换成字符串，于是查了Java1.8的代码，发现最后是强转成char，于是修改为如下代码：  
-    > "".join([chr(d) for d in char_arr])
-    
+   ```python
+   "".join([chr(d) for d in char_arr])
+   ```
     ![jdk的String实现](images/ch10/jdk的String实现.png)
 2. 打印异常信息，不用像go语言那样采用反射，Python语言可以直接用如下代码执行：
-    > for ste in ex.extra:  
-      print("\tat", ste)
-
-
-
+   ```ptyhon 
+   for ste in ex.extra:  
+       print("\tat", ste)
+   ```
