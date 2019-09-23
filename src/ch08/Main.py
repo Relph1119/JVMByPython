@@ -60,7 +60,7 @@ def start_JVM(cmd):
 if __name__ == '__main__':
     Xjre_path = os.path.join(os.environ.get("JAVA_HOME"), "jre")
     root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-    resources_path = os.path.join(os.path.dirname(root_path), "java")
+    resources_path = os.path.join(os.path.dirname(root_path), "java/class")
 
     # 1. 冒泡排序算法测试
     # fake_args = ['--Xjre', Xjre_path, '--verbose:class', '--cp', resources_path, 'jvmgo.book.ch08.BubbleSortTest']

@@ -60,15 +60,15 @@ def start_JVM(cmd):
 if __name__ == '__main__':
     Xjre_path = os.path.join(os.environ.get("JAVA_HOME"), "jre")
     root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
-    resources_path = os.path.join(os.path.dirname(root_path), "java")
+    resources_path = os.path.join(os.path.dirname(root_path), "java/class")
 
     # 执行ParseIntTest程序
     # 1. 输入参数123
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
+    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
 
     # 2. 输入参数abc
-    fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', 'abc']
+    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', 'abc']
 
     # 3. 不输入参数
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest']

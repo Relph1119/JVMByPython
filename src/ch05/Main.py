@@ -75,7 +75,7 @@ if __name__ == '__main__':
     # 得到项目路径的绝对地址
     root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
     # 得到java的用户类路径
-    resources_path = os.path.join(os.path.dirname(root_path), "java")
+    resources_path = os.path.join(os.path.dirname(root_path), "java/class")
 
     # 采用指定用户类路径--cp，执行GaussTest程序
     fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch05.GaussTest']
