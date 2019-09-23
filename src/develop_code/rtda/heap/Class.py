@@ -15,6 +15,15 @@ from rtda.heap.Field import Field
 from rtda.heap.Method import Method
 
 
+# 源文件名在ClassFile的属性表中，提取源文件名信息
+def get_source_file(classFile: ClassFile):
+    source_file_attr = classFile.source_file_attribute()
+    if source_file_attr is not None:
+        return source_file_attr.file_name
+
+    return "Unknown"
+
+
 class Class:
     def __init__(self):
         # 访问标志
@@ -31,6 +40,8 @@ class Class:
         self.fields = []
         # 方法表
         self.methods = []
+        # 源文件名
+        self.source_file = ""
         # 加载器
         self.loader = None
         # 超类
@@ -59,6 +70,8 @@ class Class:
         clazz.constant_pool = ConstantPool.new_constant_pool(clazz, classFile.constant_pool)
         clazz.fields = Field.new_fields(clazz, classFile.fields)
         clazz.methods = Method.new_methods(clazz, classFile.methods)
+        # 从class文件中读取源文件名
+        clazz.source_file = get_source_file(classFile)
         return clazz
 
     # 用于判断public访问标志是否被设置

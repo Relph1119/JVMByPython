@@ -11,7 +11,7 @@ from rtda.Frame import Frame
 from rtda.heap import StringPool
 
 
-def intern(frame:Frame):
+def intern(frame: Frame):
     this = frame.local_vars.get_this()
     interned = StringPool.intern_string(this)
     frame.operand_stack.push_ref(interned)

@@ -62,25 +62,15 @@ if __name__ == '__main__':
     root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
     resources_path = os.path.join(os.path.dirname(root_path), "java")
 
-    # 1. 执行GetClassTest程序
-    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch09.GetClassTest']
+    # 执行ParseIntTest程序
+    # 1. 输入参数123
+    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
+    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
 
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.GetClassTest']
+    # 2. 输入参数abc
+    fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', 'abc']
 
-    # 2. 执行StringTest程序，执行结果为True, False, True
-    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch09.StringTest']
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.StringTest']
-
-    # 3. 执行ObjectTest程序
-    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch09.ObjectTest']
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.ObjectTest']
-
-    # 4. 执行CloneTest程序
-    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch09.CloneTest']
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.CloneTest']
-
-    # 5. 执行BoxTest程序
-    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch09.BoxTest']
-    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.BoxTest']
+    # 3. 不输入参数
+    # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest']
 
     main(fake_args)

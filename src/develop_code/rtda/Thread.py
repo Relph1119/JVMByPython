@@ -36,3 +36,10 @@ class Thread:
 
     def is_stack_empty(self):
         return self.stack.is_empty()
+
+    # 清空stack
+    def clear_stack(self):
+        self.stack.clear()
+
+    def get_frames(self):
+        return self.stack.get_frames()

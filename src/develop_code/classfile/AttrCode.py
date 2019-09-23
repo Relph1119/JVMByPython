@@ -6,7 +6,7 @@
 @time: 2019/9/15 09:49
 @desc: Code属性存放字节码等方法相关信息
 """
-
+from classfile.AttrLineNumberTable import LineNumberTableAttribute
 from .AttributeInfo import AttributeInfo
 
 
@@ -31,6 +31,13 @@ class CodeAttribute(AttributeInfo):
         self.code = class_reader.read_bytes(code_length)
         self.exception_table = self.read_exception_table(class_reader)
         self.attributes = AttributeInfo.read_attributes(class_reader, self.cp)
+
+    def line_number_table_attribute(self):
+        for _, attr_info in enumerate(self.attributes):
+            if isinstance(attr_info, LineNumberTableAttribute):
+                return attr_info
+
+        return None
 
     @staticmethod
     def read_exception_table(class_reader):

@@ -43,5 +43,18 @@ class Stack:
             raise RuntimeError("jvm stack is empty!")
         return self.__top
 
+    def get_frames(self):
+        frames = []
+        frame = self.__top
+        while frame is not None:
+            frames.append(frame)
+            frame = frame.lower
+
+        return frames
+
     def is_empty(self):
         return self.__top is None
+
+    def clear(self):
+        while not self.is_empty():
+            self.pop()

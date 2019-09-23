@@ -7,7 +7,7 @@
 @desc: 方法信息
 """
 from classfile.MemberInfo import MemberInfo
-from rtda.heap import AccessFlags
+from rtda.heap import AccessFlags, ExceptionTable
 from rtda.heap.ClassMember import ClassMember
 from rtda.heap.MethodDescriptorParser import MethodDescriptorParser
 
@@ -21,6 +21,10 @@ class Method(ClassMember):
         self.max_locals = 0
         # 存放方法字节码
         self.code = []
+        # 异常处理表
+        self.exception_table = None
+        # 行号表
+        self.line_number_table = None
         self.arg_slot_count = 0
 
     # 根据class文件中的方法信息创建Method表
@@ -79,6 +83,11 @@ class Method(ClassMember):
             self.max_stack = code_attr.max_stack
             self.max_locals = code_attr.max_locals
             self.code = code_attr.code
+            # 从class文件中提取行号表
+            self.line_number_table = code_attr.line_number_table_attribute()
+            # 复制异常处理表
+            self.exception_table = ExceptionTable.new_exception_table(code_attr.exception_table,
+                                                                      self.get_class().constant_pool)
 
     # 计算参数在局部变量表中占用多少位置
     def calc_arg_slot_count(self, param_types):
@@ -105,3 +114,34 @@ class Method(ClassMember):
 
     def is_strict(self):
         return 0 != self.access_flags & AccessFlags.ACC_STRICT
+
+    def find_exception_handler(self, exClass, pc):
+        """
+        调用ExceptionTable.find_exception_handler()方法搜索异常处理表，
+        如果能找到对应的异常处理项，则返回它的handler_pc字段，否则返回-1
+        :param exClass:
+        :param pc:
+        :return:
+        """
+        handler = self.exception_table.find_exception_handler(exClass, pc)
+        if handler is not None:
+            return handler.handler_pc
+
+        return -1
+
+    def get_line_number(self, pc):
+        """
+        和源文件名一样，并不是每个方法都有行号表。
+        如果方法没有行号表，查不到pc对应的行号，返回-1。
+        本地方法没有字节码，返回-2。
+        剩下情况调用LineNumberTableAttribute的get_line_number()方法查找行号。
+        :param pc:
+        :return:
+        """
+        if self.is_native():
+            return -2
+
+        if self.line_number_table is None:
+            return -1
+
+        return self.line_number_table.get_line_number(pc)

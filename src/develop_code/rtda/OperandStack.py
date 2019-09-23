@@ -75,5 +75,11 @@ class OperandStack:
     def get_ref_from_top(self, n):
         return self.slots[self.size - 1 - n].ref
 
+    # 清空虚拟机栈
+    def clear(self):
+        self.size = 0
+        for i, _ in enumerate(self.slots):
+            self.slots[i].ref = None
+
     def __str__(self):
         return "size:{0} slots:{1}".format(self.size, [str(t) for t in self.slots])

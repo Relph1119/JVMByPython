@@ -6,7 +6,7 @@
 @time: 2019/9/12 15:05
 @desc: 解析class文件
 """
-
+from classfile.AttrSourceFile import SourceFileAttribute
 from .AttributeInfo import AttributeInfo
 from .ClassReader import ClassReader
 from .ConstantPool import ConstantPool
@@ -100,3 +100,10 @@ class ClassFile:
 
     def fields(self):
         return self.fields
+
+    def source_file_attribute(self):
+        for _, attr_info in enumerate(self.attributes):
+            if isinstance(attr_info, SourceFileAttribute):
+                return attr_info
+
+        return None

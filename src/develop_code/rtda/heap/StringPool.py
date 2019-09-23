@@ -41,22 +41,29 @@ def j_string(loader: ClassLoader, python_str):
     return j_str
 
 
+# 把python字符串（utf-8格式）转成Java字符数组（utf-16格式）
 def string_to_utf16(s):
-    return s.encode("utf-8")
+    """
+    不能采用直接utf-8编码[s.encode("utf-8")]的原因：由于在python中存储的是字符串汉字（一个字符串表示三个字符，即三个整数），
+    但是在Java中只能是一个汉字字符表示一个整数
+    :param s:
+    :return:
+    """
+    return [ord(char) for char in s]
 
 
 # 得到python字符串
 def python_string(j_str):
     # 拿到String对象的value变量值
     char_array = j_str.get_ref_var("value", "[C")
-    if not isinstance(char_array, bytes):
-        char_array.data = bytes(char_array.data)
+    # if not isinstance(char_array, bytes):
+    #     char_array.data = bytes(char_array.data)
     # 把字符数组转换成python字符串
     return utf16_to_string(char_array.chars())
 
 
-def utf16_to_string(s):
-    return s.decode('utf-8')
+def utf16_to_string(data):
+    return "".join([chr(d) for d in data])
 
 
 def intern_string(j_str):

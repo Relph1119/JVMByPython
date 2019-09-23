@@ -46,6 +46,7 @@ from instructions.math.Sub import *
 from instructions.math.Xor import *
 from instructions.references.Anewarray import ANEW_ARRAY
 from instructions.references.ArrayLength import ARRAY_LENGTH
+from instructions.references.Athrow import ATHROW
 from instructions.references.Checkcast import CHECK_CAST
 from instructions.references.Getfield import GET_FIELD
 from instructions.references.Getstatic import GET_STATIC
@@ -457,9 +458,8 @@ class Factory:
             return ANEW_ARRAY()
         elif opcode == 0xbe:
             return ARRAY_LENGTH()
-
-        # todo:
-
+        elif opcode == 0xbf:
+            return ATHROW()
         elif opcode == 0xc0:
             return CHECK_CAST()
         elif opcode == 0xc1:

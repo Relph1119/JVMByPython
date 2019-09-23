@@ -21,6 +21,7 @@ modules = [
     'native.java.lang.Double',
     'native.java.lang.Float',
     'native.java.lang.System',
+    'native.java.lang.Throwable',
     'native.sun.misc.VM'
 ]
 

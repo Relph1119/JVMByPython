@@ -23,6 +23,14 @@ class LineNumberTableAttribute(AttributeInfo):
             line_number_table_entry.line_number = int.from_bytes(class_reader.read_unit16(), byteorder="big")
             self.lineNumberTable[i] = line_number_table_entry
 
+    def get_line_number(self, pc):
+        for i in range(len(self.lineNumberTable) - 1, -1, -1):
+            entry = self.lineNumberTable[i]
+            if pc >= int(entry.start_pc):
+                return int(entry.line_number)
+
+        return -1
+
 
 class LineNumberTableEntry():
     def __init__(self):
