@@ -8,9 +8,10 @@
 """
 
 
-class ExceptionTable(list):
+class ExceptionTable:
     def __init__(self):
-        super().__init__()
+        # 若将python对象初始化为list，则不能调用下面的代码，python判断不出来到底是对象还是list
+        self.exception_table = []
 
     def find_exception_handler(self, exClass, pc):
         """
@@ -20,7 +21,7 @@ class ExceptionTable(list):
         :param pc:
         :return:
         """
-        for _, handler in enumerate(self):
+        for _, handler in enumerate(self.exception_table):
             if handler.start_pc <= pc < handler.end_pc:
                 if handler.catch_type is None:
                     return handler
@@ -53,6 +54,7 @@ def new_exception_table(entries, constant_pool):
         exception_handler.handler_pc = int(entry.handler_pc)
         exception_handler.catch_type = get_catch_type(int(entry.catch_type), constant_pool)
         table.append(exception_handler)
+    return table
 
 
 def get_catch_type(index, constant_pool):

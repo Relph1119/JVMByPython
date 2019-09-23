@@ -6,6 +6,7 @@
 @time: 2019/9/16 16:55
 @desc: 方法信息
 """
+from classfile.AttrLineNumberTable import LineNumberTableAttribute
 from classfile.MemberInfo import MemberInfo
 from rtda.heap import AccessFlags, ExceptionTable
 from rtda.heap.ClassMember import ClassMember
@@ -22,9 +23,9 @@ class Method(ClassMember):
         # 存放方法字节码
         self.code = []
         # 异常处理表
-        self.exception_table = None
+        self.exception_table = ExceptionTable.ExceptionTable()
         # 行号表
-        self.line_number_table = None
+        self.line_number_table = LineNumberTableAttribute()
         self.arg_slot_count = 0
 
     # 根据class文件中的方法信息创建Method表
@@ -36,7 +37,6 @@ class Method(ClassMember):
             methods.append(method)
         return methods
 
-    #
     @staticmethod
     def new_method(clazz, cfMethod):
         method = Method()
@@ -86,8 +86,8 @@ class Method(ClassMember):
             # 从class文件中提取行号表
             self.line_number_table = code_attr.line_number_table_attribute()
             # 复制异常处理表
-            self.exception_table = ExceptionTable.new_exception_table(code_attr.exception_table,
-                                                                      self.get_class().constant_pool)
+            self.exception_table.exception_table = ExceptionTable.new_exception_table(code_attr.exception_table,
+                                                                                      self.get_class().constant_pool)
 
     # 计算参数在局部变量表中占用多少位置
     def calc_arg_slot_count(self, param_types):

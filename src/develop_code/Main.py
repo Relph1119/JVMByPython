@@ -65,12 +65,14 @@ if __name__ == '__main__':
     # 执行ParseIntTest程序
     # 1. 输入参数123
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
-    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
+    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', '123']
 
     # 2. 输入参数abc
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', 'abc']
+    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest', 'abc']
 
     # 3. 不输入参数
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest']
+    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch10.ParseIntTest']
 
     main(fake_args)

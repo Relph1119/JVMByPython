@@ -44,7 +44,7 @@ def find_and_goto_exception_handler(thread, ex) -> bool:
             stack = frame.operand_stack
             stack.clear()
             stack.push_ref(ex)
-            frame.set_next_pc(handler_pc)
+            frame.next_pc = handler_pc
             return True
 
         thread.pop_frame()
@@ -69,5 +69,6 @@ def handle_uncaught_exception(thread, ex):
     python_msg = StringPool.python_string(j_msg)
     print(ex.get_class().java_name + ": " + python_msg)
 
-    # todo: 打印异常信息
-    print(ex.extra)
+    # 打印异常信息
+    for ste in ex.extra:
+        print("\tat", ste)

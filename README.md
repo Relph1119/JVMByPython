@@ -99,10 +99,19 @@ Java版本：1.8
 实现了异常抛出和处理、异常处理表、athrow指令。在Java语言中，异常可以分为两类：Checked异常和Unchecked异常。Unchecked异常包括java.lang.RuntimeException、java.lang.Error以及它们的子类，其他异常都是Checked异常。所有异常都最终继承自java.lang.Throwable。如果一个方法有可能导致Checked异常抛出，则该方法要么需要捕获该异常并妥善处理，要么必须把该异常列在自己的throws子句中，否则无法通过编译。Unchecked异常没有这个限制。
 1. 执行ParseIntTest程序，输出参数123
 ![](images/ch10/执行ParseIntTest-输入参数123.png)
+2. 执行ParseIntTest程序，输出参数abc
+![](images/ch10/执行ParseIntTest-输入参数abc.png)
+3. 执行ParseIntTest程序，无输出参数，会抛出异常信息
+![](images/ch10/执行ParseIntTest-无参数.png)
 
 **本章总结**  
 1. 字符串在class文件中是以MUTF-8（Modified UTF-8）方式编码的。Java序列化机制也使用了MUTF-8编码。java.io.DataInput和java.io.DataOutput接口分别定义了readUTF()和writeUTF()方法，可以读写MUTF-8编码的字符串。由于遇到了0xC0的问题，于是重构了decode_mutf8()方法，按照书中代码，也同样实现了一套字符转换，但是在python并不能将超过255的字符转换成字符串，于是查了Java1.8的代码，发现最后是强转成char，于是修改为如下代码：  
     > "".join([chr(d) for d in char_arr])
     
     ![jdk的String实现](images/ch10/jdk的String实现.png)
+2. 打印异常信息，不用像go语言那样采用反射，Python语言可以直接用如下代码执行：
+    > for ste in ex.extra:  
+      print("\tat", ste)
+
+
 
