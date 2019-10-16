@@ -22,7 +22,7 @@ class ConstantMemberRefInfo(ConstantInfo):
 
     @property
     def class_name(self):
-        return self.cp.class_name(self.class_index)
+        return self.cp.get_class_name(self.class_index)
 
     @property
     def name_and_descriptor(self):

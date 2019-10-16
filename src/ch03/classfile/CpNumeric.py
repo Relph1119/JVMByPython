@@ -45,7 +45,6 @@ class ConstantLongInfo(ConstantInfo):
         self.val = ctypes.c_int64(bytes_data).value
 
 
-
 # 使用8字节存储IEEE754双精度浮点数
 class ConstantDoubleInfo(ConstantInfo):
     def __init__(self):

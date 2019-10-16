@@ -9,6 +9,7 @@
 
 import os
 from optparse import OptionParser
+
 from Cmd import Cmd
 from classfile.ClassFile import ClassFile
 from classpath import Classpath
@@ -74,6 +75,6 @@ if __name__ == '__main__':
     Xjre_path = os.path.join(os.environ.get("JAVA_HOME"), "jre")
 
     # 指定-Xjre选项和类名
-    # fake_args = ['--Xjre', Xjre_path, 'java.lang.String']
-    fake_args = ['--Xjre', Xjre_path, 'java/lang/CharSequence']
+    fake_args = ['--Xjre', Xjre_path, 'java.lang.String']
+    # fake_args = ['--Xjre', Xjre_path, 'java/lang/CharSequence']
     main(fake_args)
