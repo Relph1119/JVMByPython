@@ -8,8 +8,9 @@
 """
 
 import os.path
-from .WildcardEntry import WildcardEntry
+
 from .Entry import Entry
+from .WildcardEntry import WildcardEntry
 
 
 class Classpath:
@@ -64,14 +65,16 @@ class Classpath:
         self.user_classpath = Entry.new_entry(cpOption)
 
     def read_class(self, class_name):
+        global data, entry, error
         class_name = class_name + ".class"
         if self.boot_classpath:
             data, entry, error = self.boot_classpath.read_class(class_name)
-            return data, entry, error
-        if self.ext_classPath:
-            data, entry, error = self.ext_classPath.read_class(class_name)
-            return data, entry, error
-        return self.user_classpath.read_class(class_name)
+            if not data and self.ext_classPath:
+                data, entry, error = self.ext_classPath.read_class(class_name)
+                if not data and self.user_classpath:
+                    return self.user_classpath.read_class(class_name)
+
+        return data, entry, error
 
     def __str__(self):
         return self.user_classpath.__str__()

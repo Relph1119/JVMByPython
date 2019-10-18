@@ -339,7 +339,7 @@ class Factory:
         elif opcode == 0x82:
             return IXOR()
         elif opcode == 0x83:
-            return IXOR()
+            return LXOR()
         elif opcode == 0x84:
             return IINC()
         elif opcode == 0x85:

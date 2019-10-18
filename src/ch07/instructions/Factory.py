@@ -15,6 +15,7 @@ from instructions.comparisons.Ificmp import *
 from instructions.comparisons.Lcmp import *
 from instructions.constants.Const import *
 from instructions.constants.Ipush import *
+from instructions.constants.Ldc import *
 from instructions.constants.Nop import *
 from instructions.control.Goto import *
 from instructions.control.Lookupswitch import *
@@ -50,7 +51,6 @@ from instructions.references.Invokeinterface import INVOKE_INTERFACE
 from instructions.references.Invokespecial import INVOKE_SPECIAL
 from instructions.references.Invokestatic import INVOKE_STATIC
 from instructions.references.Invokevirtual import INVOKE_VIRTURL
-from instructions.constants.Ldc import *
 from instructions.references.New import NEW
 from instructions.references.Putfield import PUT_FIELD
 from instructions.references.Putstatic import PUT_STATIC
@@ -301,7 +301,7 @@ class Factory:
         elif opcode == 0x82:
             return IXOR()
         elif opcode == 0x83:
-            return IXOR()
+            return LXOR()
         elif opcode == 0x84:
             return IINC()
         elif opcode == 0x85:
