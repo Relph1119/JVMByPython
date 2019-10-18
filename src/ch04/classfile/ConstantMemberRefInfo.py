@@ -12,7 +12,8 @@ from .ConstantInfo import ConstantInfo
 
 class ConstantMemberRefInfo(ConstantInfo):
     def __init__(self, constant_pool):
-        self.cp = constant_pool
+        from classfile.ConstantPool import ConstantPool
+        self.cp = ConstantPool(constant_pool)
         self.class_index = 0
         self.name_and_type_index = 0
 

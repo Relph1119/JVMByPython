@@ -9,8 +9,10 @@
 
 
 class ConstantPool:
-    def __init__(self):
-        self.cp = []
+    def __init__(self, cp=None):
+        if cp is None:
+            cp = []
+        self.cp = cp
 
     def read_constant_pool(self, class_reader):
         from .CpNumeric import ConstantLongInfo, ConstantDoubleInfo

@@ -12,7 +12,8 @@ from .ConstantInfo import ConstantInfo
 
 class ConstantClassInfo(ConstantInfo):
     def __init__(self, constant_pool):
-        self.cp = constant_pool
+        from classfile.ConstantPool import ConstantPool
+        self.cp = ConstantPool(constant_pool)
         self.name_index = 0
 
     def read_info(self, class_reader):

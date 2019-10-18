@@ -157,6 +157,7 @@ class Factory:
             return ALOAD_2()
         elif opcode == 0x2d:
             return ALOAD_3()
+
         elif opcode == 0x36:
             return ISTORE()
         elif opcode == 0x37:
