@@ -66,8 +66,11 @@ class Interpreter:
         class_name = method.get_class().name
         method_name = method.name
         pc = frame.thread.pc
-        print("{0}.{1}() #{2:<2} {3} {4}".format(class_name, method_name, pc, inst.__class__.__name__,
-                                                 Interpreter.print_obj(inst)))
+        print("{0}.{1}() #{2:<2} {3} {4} operand_stack: {5} local_vars: {6}".format(class_name, method_name, pc,
+                                                                                    inst.__class__.__name__,
+                                                                                    Interpreter.print_obj(inst),
+                                                                                    frame.operand_stack,
+                                                                                    frame.local_vars))
 
     @staticmethod
     def print_obj(obj):
