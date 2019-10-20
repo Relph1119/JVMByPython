@@ -229,10 +229,10 @@ class Class:
         return self.loader.load_class(component_class_name)
 
     @staticmethod
-    def get_component_class_name(className):
+    def get_component_class_name(class_name):
         # 数组类名以[开头，把它去掉就是数组元素的类型描述符
-        if className[0] == '[':
-            component_type_descriptor = className[1:]
+        if class_name[0] == '[':
+            component_type_descriptor = class_name[1:]
             return ClassNameHelper.to_class_name(component_type_descriptor)
 
     # 根据字段名和描述符查找字段

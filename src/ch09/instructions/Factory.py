@@ -443,6 +443,7 @@ class Factory:
             return INVOKE_STATIC()
         elif opcode == 0xb9:
             return INVOKE_INTERFACE()
+
         elif opcode == 0xbb:
             return NEW()
         elif opcode == 0xbc:
@@ -451,10 +452,12 @@ class Factory:
             return ANEW_ARRAY()
         elif opcode == 0xbe:
             return ARRAY_LENGTH()
+
         elif opcode == 0xc0:
             return CHECK_CAST()
         elif opcode == 0xc1:
             return INSTANCE_OF()
+
         elif opcode == 0xc4:
             return WIDE()
         elif opcode == 0xc5:
@@ -465,6 +468,7 @@ class Factory:
             return IFNONNULL()
         elif opcode == 0xc8:
             return GOTO_W()
+
         elif opcode == 0xfe:
             return INVOKE_NATIVE()
         else:

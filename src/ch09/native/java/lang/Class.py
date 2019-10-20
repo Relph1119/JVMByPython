@@ -59,7 +59,6 @@ def desired_assertion_status_0(frame: Frame):
     """
     # 把false推入操作数栈顶
     frame.operand_stack.push_boolean(False)
-    pass
 
 
 register("java/lang/Class", "getPrimitiveClass",

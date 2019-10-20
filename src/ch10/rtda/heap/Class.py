@@ -295,4 +295,4 @@ class Class:
 
     def set_ref_var(self, field_name, field_descriptor, ref):
         field = self.get_field(field_name, field_descriptor, True)
-        self.static_vars.set_ref(field.sort_id, ref)
+        self.static_vars.set_ref(field.slot_id, ref)

@@ -64,13 +64,13 @@ class MethodDescriptorParser:
 
     def parse_return_type(self):
         if self.read_uint8() == 'V':
-            self.parsed.returnType = "V"
+            self.parsed.return_type = "V"
             return
 
         self.unread_uint8()
         t = self.parse_field_type()
         if t != "":
-            self.parsed.returnType = t
+            self.parsed.return_type = t
             return
 
         self.cause_panic()

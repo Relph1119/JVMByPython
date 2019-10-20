@@ -36,10 +36,10 @@ class PUT_FIELD(Index16Instruction):
             ref = stack.pop_ref()
             if ref is None:
                 raise RuntimeError("java.lang.NollPointerException")
-            ref.fields.set_numeric(slot_id, val)
+            ref.fields().set_numeric(slot_id, val)
         elif descriptor[0] in {"L", "["}:
             val = stack.pop_ref()
             ref = stack.pop_ref()
             if ref is None:
                 raise RuntimeError("java.lang.NollPointerException")
-            ref.fields.set_ref(slot_id, val)
+            ref.fields().set_ref(slot_id, val)

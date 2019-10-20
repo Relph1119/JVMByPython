@@ -7,16 +7,14 @@
 @desc: 解析class文件
 """
 
+from .AttributeInfo import AttributeInfo
 from .ClassReader import ClassReader
 from .ConstantPool import ConstantPool
 from .MemberInfo import MemberInfo
-from .AttributeInfo import AttributeInfo
 
 
 class ClassFile:
-    def __init__(self, class_data):
-        # class文件数据
-        self.class_data = class_data
+    def __init__(self):
         # 魔数
         self.magic = ""
         # 小版本号
@@ -40,9 +38,9 @@ class ClassFile:
         # 属性
         self.attributes = []
 
-    def parse(self):
+    def parse(self, class_data):
         try:
-            class_reader = ClassReader(self.class_data)
+            class_reader = ClassReader(class_data)
             self.read(class_reader)
             return self, None
         except Exception as err:

@@ -57,8 +57,8 @@ def start_JVM(cmd):
 def load_class(class_name, class_path: Classpath):
     class_data, _, error = class_path.read_class(class_name)
 
-    class_file = ClassFile(class_data)
-    cf = class_file.parse()
+    class_file = ClassFile()
+    cf = class_file.parse(class_data)
     return cf
 
 

@@ -410,6 +410,7 @@ class Factory:
             return IF_ACMPNE()
         elif opcode == 0xa7:
             return GOTO()
+
         elif opcode == 0xaa:
             return TABLE_SWITCH()
         elif opcode == 0xab:
@@ -442,6 +443,7 @@ class Factory:
             return INVOKE_STATIC()
         elif opcode == 0xb9:
             return INVOKE_INTERFACE()
+
         elif opcode == 0xbb:
             return NEW()
         elif opcode == 0xbc:
@@ -450,6 +452,7 @@ class Factory:
             return ANEW_ARRAY()
         elif opcode == 0xbe:
             return ARRAY_LENGTH()
+
         elif opcode == 0xc0:
             return CHECK_CAST()
         elif opcode == 0xc1:

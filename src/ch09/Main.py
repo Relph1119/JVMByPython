@@ -64,8 +64,7 @@ if __name__ == '__main__':
 
     # 1. 执行GetClassTest程序
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch09.GetClassTest']
-
-    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.GetClassTest']
+    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.GetClassTest']
 
     # 2. 执行StringTest程序，执行结果为True, False, True
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst','--cp', resources_path, 'jvmgo.book.ch09.StringTest']
@@ -81,6 +80,6 @@ if __name__ == '__main__':
 
     # 5. 执行BoxTest程序
     # fake_args = ['--Xjre', Xjre_path, '--verbose:inst', '--cp', resources_path, 'jvmgo.book.ch09.BoxTest']
-    fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.BoxTest']
+    # fake_args = ['--Xjre', Xjre_path, '--cp', resources_path, 'jvmgo.book.ch09.BoxTest']
 
     main(fake_args)
