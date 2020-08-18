@@ -6,8 +6,8 @@
 @time: 2019/9/15 19:25
 @desc: int类型变量存储指令
 """
-from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
-from rtda.Frame import Frame
+from ch07.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from ch07.rtda.Frame import Frame
 
 
 def _istore(frame: Frame, index):

@@ -7,7 +7,7 @@
 @desc: SourceFile属性，用于指出源文件名。
 """
 
-from .AttributeInfo import AttributeInfo
+from ch07.classfile.AttributeInfo import AttributeInfo
 
 
 class SourceFileAttribute(AttributeInfo):

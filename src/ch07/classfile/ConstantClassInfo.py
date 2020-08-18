@@ -7,12 +7,12 @@
 @desc: 表示类或者接口的符号引用
 """
 
-from .ConstantInfo import ConstantInfo
+from ch07.classfile.ConstantInfo import ConstantInfo
 
 
 class ConstantClassInfo(ConstantInfo):
     def __init__(self, constant_pool):
-        from classfile.ConstantPool import ConstantPool
+        from ch07.classfile.ConstantPool import ConstantPool
         self.cp = ConstantPool(constant_pool)
         self.name_index = 0
 

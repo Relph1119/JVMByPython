@@ -9,9 +9,9 @@
 
 import ctypes
 
-from instructions.base import MethodInvokeLogic
-from instructions.base.Instruction import Instruction
-from rtda.heap import MethodLookup
+from ch07.instructions.base import MethodInvokeLogic
+from ch07.instructions.base.Instruction import Instruction
+from ch07.rtda.heap import MethodLookup
 
 
 class INVOKE_INTERFACE(Instruction):

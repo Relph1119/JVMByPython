@@ -6,8 +6,8 @@
 @time: 2019/9/15 20:58
 @desc: if<cond>指令把操作数栈顶的int变量弹出，然后跟0进行比较，满足条件则跳转
 """
-from instructions.base.BranchLogic import branch
-from instructions.base.Instruction import BranchInstruction
+from ch07.instructions.base.BranchLogic import branch
+from ch07.instructions.base.Instruction import BranchInstruction
 
 
 # ifeq: x == 0

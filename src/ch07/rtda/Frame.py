@@ -6,10 +6,10 @@
 @time: 2019/9/15 16:19
 @desc: 帧
 """
-from rtda.LocalVars import LocalVars
-from rtda.OperandStack import OperandStack
-from rtda.Thread import Thread
-from rtda.heap.Method import Method
+from ch07.rtda.LocalVars import LocalVars
+from ch07.rtda.OperandStack import OperandStack
+from ch07.rtda.Thread import Thread
+from ch07.rtda.heap.Method import Method
 
 
 class Frame:

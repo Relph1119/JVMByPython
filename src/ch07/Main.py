@@ -9,10 +9,10 @@
 import os
 from optparse import OptionParser
 
-from Cmd import Cmd
-from Interpreter import Interpreter
-from classpath.Classpath import Classpath
-from rtda.heap.ClassLoader import ClassLoader
+from ch07.Cmd import Cmd
+from ch07.Interpreter import Interpreter
+from ch07.classpath.Classpath import Classpath
+from ch07.rtda.heap.ClassLoader import ClassLoader
 
 
 def main(input_args=None):

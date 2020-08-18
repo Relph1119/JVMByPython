@@ -6,12 +6,12 @@
 @time: 2019/9/16 16:07
 @desc: 类信息
 """
-from classfile.ClassFile import ClassFile
-from rtda.Slot import Slots
-from rtda.heap import AccessFlags
-from rtda.heap.ConstantPool import ConstantPool
-from rtda.heap.Field import Field
-from rtda.heap.Method import Method
+from ch07.classfile.ClassFile import ClassFile
+from ch07.rtda.Slot import Slots
+from ch07.rtda.heap import AccessFlags
+from ch07.rtda.heap.ConstantPool import ConstantPool
+from ch07.rtda.heap.Field import Field
+from ch07.rtda.heap.Method import Method
 
 
 class Class:
@@ -163,7 +163,7 @@ class Class:
         return None
 
     def new_object(self):
-        from rtda.heap.Object import Object
+        from ch07.rtda.heap.Object import Object
         return Object(self)
 
     def start_init(self):

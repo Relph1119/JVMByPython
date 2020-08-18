@@ -9,8 +9,8 @@
 import ctypes
 from abc import ABCMeta, abstractmethod
 
-from instructions.base import BytecodeReader
-from rtda import Frame
+from ch07.instructions.base import BytecodeReader
+from ch07.rtda import Frame
 
 
 class Instruction(metaclass=ABCMeta):

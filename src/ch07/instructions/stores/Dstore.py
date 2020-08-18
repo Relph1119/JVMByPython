@@ -6,7 +6,7 @@
 @time: 2019/9/15 19:23
 @desc: double类型变量存储指令
 """
-from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from ch07.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
 
 
 def _dstore(frame, index):

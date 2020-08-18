@@ -15,7 +15,7 @@ from ch06.instructions.comparisons.Ificmp import *
 from ch06.instructions.comparisons.Lcmp import *
 from ch06.instructions.constants.Const import *
 from ch06.instructions.constants.Ipush import *
-from ch06.instructions.references.Ldc import *
+from ch06.instructions.constants.Ldc import *
 from ch06.instructions.constants.Nop import *
 from ch06.instructions.control.Goto import *
 from ch06.instructions.control.Lookupswitch import *

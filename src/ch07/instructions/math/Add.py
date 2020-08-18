@@ -6,8 +6,8 @@
 @time: 2019/9/15 19:51
 @desc: 加法(add)指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda import Frame
+from ch07.instructions.base.Instruction import NoOperandsInstruction
+from ch07.rtda import Frame
 
 
 def _add(frame: Frame):

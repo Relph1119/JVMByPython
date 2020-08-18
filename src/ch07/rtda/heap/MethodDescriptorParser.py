@@ -7,7 +7,7 @@
 @desc: 方法描述符解析器
 """
 
-from rtda.heap.MethodDescriptor import MethodDescriptor
+from ch07.rtda.heap.MethodDescriptor import MethodDescriptor
 
 
 class MethodDescriptorParser:

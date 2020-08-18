@@ -14,20 +14,20 @@ class ConstantPool:
         self._class = clazz
         self.consts = consts
 
-    from classfile.ConstantPool import ConstantPool
+    from ch07.classfile.ConstantPool import ConstantPool
 
     # 把class文件中的常量池转换成运行时常量池
     @staticmethod
     def new_constant_pool(clazz, cfConstantPool: ConstantPool):
-        from classfile.CpNumeric import ConstantDoubleInfo, ConstantLongInfo, ConstantFloatInfo, ConstantIntegerInfo
-        from classfile.ConstantStringInfo import ConstantStringInfo
-        from classfile.ConstantClassInfo import ConstantClassInfo
-        from classfile.ConstantMemberRefInfo import ConstantFieldRefInfo, ConstantMethodRefInfo, \
+        from ch07.classfile.CpNumeric import ConstantDoubleInfo, ConstantLongInfo, ConstantFloatInfo, ConstantIntegerInfo
+        from ch07.classfile.ConstantStringInfo import ConstantStringInfo
+        from ch07.classfile.ConstantClassInfo import ConstantClassInfo
+        from ch07.classfile.ConstantMemberRefInfo import ConstantFieldRefInfo, ConstantMethodRefInfo, \
             ConstantInterfaceMethodRefInfo
-        from rtda.heap.CpClassRef import ClassRef
-        from rtda.heap.CpFieldRef import FieldRef
-        from rtda.heap.CpMethodRef import MethodRef
-        from rtda.heap.CpInterfaceMethodRef import InterfaceMethodRef
+        from ch07.rtda.heap.CpClassRef import ClassRef
+        from ch07.rtda.heap.CpFieldRef import FieldRef
+        from ch07.rtda.heap.CpMethodRef import MethodRef
+        from ch07.rtda.heap.CpInterfaceMethodRef import InterfaceMethodRef
 
         cp_count = len(cfConstantPool.cp)
         consts = [None for _ in range(cp_count)]

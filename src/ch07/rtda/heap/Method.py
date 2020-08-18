@@ -6,10 +6,10 @@
 @time: 2019/9/16 16:55
 @desc: 方法信息
 """
-from classfile.MemberInfo import MemberInfo
-from rtda.heap import AccessFlags
-from rtda.heap.ClassMember import ClassMember
-from rtda.heap.MethodDescriptorParser import MethodDescriptorParser
+from ch07.classfile.MemberInfo import MemberInfo
+from ch07.rtda.heap import AccessFlags
+from ch07.rtda.heap.ClassMember import ClassMember
+from ch07.rtda.heap.MethodDescriptorParser import MethodDescriptorParser
 
 
 class Method(ClassMember):

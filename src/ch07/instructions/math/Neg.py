@@ -6,7 +6,7 @@
 @time: 2019/9/15 20:01
 @desc: 取反(neg)指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch07.instructions.base.Instruction import NoOperandsInstruction
 
 
 def _neg(frame):

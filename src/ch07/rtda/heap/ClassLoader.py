@@ -6,10 +6,10 @@
 @time: 2019/9/16 18:16
 @desc: 类加载器
 """
-from classpath.Classpath import Classpath
-from rtda.Slot import Slots
-from rtda.heap.Class import Class
-from rtda.heap.Field import Field
+from ch07.classpath.Classpath import Classpath
+from ch07.rtda.Slot import Slots
+from ch07.rtda.heap.Class import Class
+from ch07.rtda.heap.Field import Field
 
 
 class ClassLoader:
@@ -63,7 +63,7 @@ class ClassLoader:
     # 把class文件数据转换成Class对象
     @staticmethod
     def parse_class(data):
-        from classfile.ClassFile import ClassFile
+        from ch07.classfile.ClassFile import ClassFile
 
         class_file = ClassFile()
         cf, err = class_file.parse(data)

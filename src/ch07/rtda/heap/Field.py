@@ -6,9 +6,9 @@
 @time: 2019/9/16 16:49
 @desc: 字段信息
 """
-from classfile.MemberInfo import MemberInfo
-from rtda.heap.ClassMember import ClassMember
-from rtda.heap import AccessFlags
+from ch07.classfile.MemberInfo import MemberInfo
+from ch07.rtda.heap.ClassMember import ClassMember
+from ch07.rtda.heap import AccessFlags
 
 
 class Field(ClassMember):

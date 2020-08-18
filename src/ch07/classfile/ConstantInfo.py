@@ -40,14 +40,14 @@ class ConstantInfo(metaclass=ABCMeta):
 
     @staticmethod
     def new_constant_info(tag, constant_pool):
-        from .CpNumeric import ConstantDoubleInfo, ConstantLongInfo, ConstantFloatInfo, ConstantIntegerInfo
-        from .ConstantUtf8Info import ConstantUtf8Info
-        from .ConstantStringInfo import ConstantStringInfo
-        from .ConstantMemberRefInfo import ConstantFieldRefInfo, ConstantInterfaceMethodRefInfo, \
+        from ch07.classfile.CpNumeric import ConstantDoubleInfo, ConstantLongInfo, ConstantFloatInfo, ConstantIntegerInfo
+        from ch07.classfile.ConstantUtf8Info import ConstantUtf8Info
+        from ch07.classfile.ConstantStringInfo import ConstantStringInfo
+        from ch07.classfile.ConstantMemberRefInfo import ConstantFieldRefInfo, ConstantInterfaceMethodRefInfo, \
             ConstantMethodRefInfo
-        from .ConstantNameAndTypeInfo import ConstantNameAndTypeInfo
-        from .ConstantClassInfo import ConstantClassInfo
-        from .CpInvokeDynamic import ConstantInvokeDynamicInfo, ConstantMethodHandleInfo, \
+        from ch07.classfile.ConstantNameAndTypeInfo import ConstantNameAndTypeInfo
+        from ch07.classfile.ConstantClassInfo import ConstantClassInfo
+        from ch07.classfile.CpInvokeDynamic import ConstantInvokeDynamicInfo, ConstantMethodHandleInfo, \
             ConstantMethodTypeInfo
 
         if tag == ConstantInfo.CONSTANT_Integer:

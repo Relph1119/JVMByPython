@@ -9,7 +9,7 @@
 
 import math
 
-from instructions.base.Instruction import NoOperandsInstruction
+from ch07.instructions.base.Instruction import NoOperandsInstruction
 
 
 # double remainder

@@ -6,7 +6,7 @@
 @time: 2019/9/15 19:53
 @desc: 按位与(and)指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch07.instructions.base.Instruction import NoOperandsInstruction
 
 
 def _and(frame):

@@ -6,7 +6,7 @@
 @time: 2019/9/17 08:57
 @desc: 查找方法
 """
-from rtda.heap.Class import Class
+from ch07.rtda.heap.Class import Class
 
 
 # 在类中查找方法

@@ -9,8 +9,8 @@
 解析这个符号引用就可以知道要给类的哪个静态变量赋值。
 第二个操作数是要赋值给静态变量的值，从操作数栈中弹出。
 """
-from instructions.base import ClassInitLogic
-from instructions.base.Instruction import Index16Instruction
+from ch07.instructions.base import ClassInitLogic
+from ch07.instructions.base.Instruction import Index16Instruction
 
 
 class PUT_STATIC(Index16Instruction):

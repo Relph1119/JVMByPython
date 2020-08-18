@@ -7,8 +7,8 @@
 @desc: 解释器
 """
 
-from rtda.Thread import Thread
-from rtda.heap.Method import Method
+from ch07.rtda.Thread import Thread
+from ch07.rtda.heap.Method import Method
 
 
 class Interpreter:
