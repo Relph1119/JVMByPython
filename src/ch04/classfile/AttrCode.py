@@ -7,7 +7,7 @@
 @desc: Code属性存放字节码等方法相关信息
 """
 
-from .AttributeInfo import AttributeInfo
+from ch04.classfile.AttributeInfo import AttributeInfo
 
 
 class CodeAttribute(AttributeInfo):

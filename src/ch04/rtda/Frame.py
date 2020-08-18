@@ -6,8 +6,8 @@
 @time: 2019/9/15 16:19
 @desc: 帧
 """
-from rtda.LocalVars import LocalVars
-from rtda.OperandStack import OperandStack
+from ch04.rtda.LocalVars import LocalVars
+from ch04.rtda.OperandStack import OperandStack
 
 
 class Frame:

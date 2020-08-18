@@ -7,7 +7,7 @@
 @desc: 对象引用类
 """
 
-from .ConstantInfo import ConstantInfo
+from ch03.classfile.ConstantInfo import ConstantInfo
 
 
 class ConstantMemberRefInfo(ConstantInfo):

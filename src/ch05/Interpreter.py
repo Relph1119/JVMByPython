@@ -6,9 +6,9 @@
 @time: 2019/9/15 21:59
 @desc: 解释器
 """
-from classfile import MemberInfo
+from ch05.classfile import MemberInfo
 
-from rtda.Thread import Thread
+from ch05.rtda.Thread import Thread
 
 
 class Interpreter:

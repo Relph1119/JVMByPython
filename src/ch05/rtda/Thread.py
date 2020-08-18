@@ -6,8 +6,8 @@
 @time: 2019/9/15 16:04
 @desc: 线程
 """
-from rtda.Frame import Frame
-from rtda.Stack import Stack
+from ch05.rtda.Frame import Frame
+from ch05.rtda.Stack import Stack
 
 
 class Thread:

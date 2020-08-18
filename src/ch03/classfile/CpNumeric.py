@@ -9,7 +9,7 @@
 import ctypes
 import struct
 
-from .ConstantInfo import ConstantInfo
+from ch03.classfile.ConstantInfo import ConstantInfo
 
 
 # 使用4字节存储整数常量

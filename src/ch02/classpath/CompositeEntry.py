@@ -7,7 +7,7 @@
 @desc: 由更小的Entry组成（继承Entry类）
 """
 
-from .Entry import Entry
+from ch02.classpath.Entry import Entry
 
 
 class CompositeEntry(Entry):

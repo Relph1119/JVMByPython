@@ -9,8 +9,8 @@
 
 import os.path
 
-from .Entry import Entry
-from .WildcardEntry import WildcardEntry
+from ch02.classpath.Entry import Entry
+from ch02.classpath.WildcardEntry import WildcardEntry
 
 
 class Classpath:

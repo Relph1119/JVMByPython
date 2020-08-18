@@ -7,7 +7,7 @@
 @desc: 表示类或者接口的符号引用
 """
 
-from .ConstantInfo import ConstantInfo
+from ch03.classfile.ConstantInfo import ConstantInfo
 
 
 class ConstantClassInfo(ConstantInfo):

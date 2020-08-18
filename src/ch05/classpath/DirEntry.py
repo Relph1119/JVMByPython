@@ -7,7 +7,7 @@
 @desc: 目录形式的类路径（继承Entry类）
 """
 
-from .Entry import Entry
+from ch05.classpath.Entry import Entry
 import os
 
 

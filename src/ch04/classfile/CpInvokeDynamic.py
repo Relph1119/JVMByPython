@@ -1,4 +1,4 @@
-from .ConstantInfo import ConstantInfo
+from ch04.classfile.ConstantInfo import ConstantInfo
 
 
 class ConstantMethodHandleInfo(ConstantInfo):

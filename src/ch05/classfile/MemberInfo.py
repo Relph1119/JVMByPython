@@ -6,10 +6,10 @@
 @time: 2019/9/14 22:49
 @desc: 统一的类表示字段和方法
 """
-from classfile.AttrCode import CodeAttribute
+from ch05.classfile.AttrCode import CodeAttribute
 
 
-class MemberInfo():
+class MemberInfo:
     def __init__(self, constant_pool):
         self.cp = constant_pool
         self.access_flags = ""

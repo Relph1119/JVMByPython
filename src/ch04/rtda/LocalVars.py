@@ -7,7 +7,7 @@
 @desc: 局部变量表，用于python的列表能存储任何数据类型，所以将基本数据类型和引用类型都用一个Slot表示。
 """
 
-from rtda.Slot import Slot
+from ch04.rtda.Slot import Slot
 
 
 class LocalVars:

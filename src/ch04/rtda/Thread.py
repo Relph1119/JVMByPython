@@ -6,7 +6,7 @@
 @time: 2019/9/15 16:04
 @desc: 线程
 """
-from rtda.Stack import Stack
+from ch04.rtda.Stack import Stack
 
 
 class Thread:

@@ -6,7 +6,7 @@
 @time: 2019/9/15 19:29
 @desc: pop系列指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch05.instructions.base.Instruction import NoOperandsInstruction
 
 
 class POP(NoOperandsInstruction):

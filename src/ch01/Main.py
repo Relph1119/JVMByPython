@@ -9,7 +9,7 @@
 
 from optparse import OptionParser
 
-from Cmd import Cmd
+from ch01.Cmd import Cmd
 
 
 def main(input_args):

@@ -8,7 +8,7 @@
 """
 
 
-class MemberInfo():
+class MemberInfo:
     def __init__(self, constant_pool):
         self.cp = constant_pool
         self.access_flags = ""

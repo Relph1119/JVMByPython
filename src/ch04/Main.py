@@ -9,9 +9,9 @@
 
 from optparse import OptionParser
 
-from Cmd import Cmd
-from rtda import LocalVars
-from rtda.Frame import Frame
+from ch04.Cmd import Cmd
+from ch04.rtda import LocalVars
+from ch04.rtda.Frame import Frame
 
 
 def main(input_args=None):

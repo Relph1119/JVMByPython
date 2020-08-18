@@ -7,7 +7,7 @@
 @desc: MUTF-9编码的字符串类
 """
 
-from .ConstantInfo import ConstantInfo
+from ch03.classfile.ConstantInfo import ConstantInfo
 import ctypes
 
 

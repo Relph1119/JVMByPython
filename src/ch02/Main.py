@@ -10,8 +10,8 @@
 
 import os
 from optparse import OptionParser
-from Cmd import Cmd
-from classpath import Classpath
+from ch02.Cmd import Cmd
+from ch02.classpath import Classpath
 
 
 def main(input_args):

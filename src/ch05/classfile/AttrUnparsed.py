@@ -7,7 +7,7 @@
 @desc: 未解析的属性
 """
 
-from .AttributeInfo import AttributeInfo
+from ch05.classfile.AttributeInfo import AttributeInfo
 
 
 class UnparsedAttribute(AttributeInfo):

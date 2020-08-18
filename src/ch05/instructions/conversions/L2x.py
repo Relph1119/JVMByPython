@@ -9,7 +9,7 @@
 
 import ctypes
 
-from instructions.base.Instruction import NoOperandsInstruction
+from ch05.instructions.base.Instruction import NoOperandsInstruction
 
 
 # Convert long to double

@@ -7,7 +7,7 @@
 @desc: 表示字段或方法的名称和描述符
 """
 
-from .ConstantInfo import ConstantInfo
+from ch04.classfile.ConstantInfo import ConstantInfo
 
 
 class ConstantNameAndTypeInfo(ConstantInfo):
