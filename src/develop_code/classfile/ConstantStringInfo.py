@@ -7,7 +7,7 @@
 @desc: 表示java.lang.String字面量
 """
 
-from .ConstantInfo import ConstantInfo
+from classfile.ConstantInfo import ConstantInfo
 
 
 class ConstantStringInfo(ConstantInfo):

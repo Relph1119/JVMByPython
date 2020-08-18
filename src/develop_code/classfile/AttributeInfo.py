@@ -39,14 +39,14 @@ class AttributeInfo(metaclass=ABCMeta):
 
     @staticmethod
     def new_attribute_info(attr_name, attr_len, constant_pool):
-        from .AttrCode import CodeAttribute
-        from .AttrConstantValue import ConstantValueAttribute
-        from .AttrMarkers import DeprecatedAttribute, SyntheticAttribute
-        from .AttrExceptions import ExceptionsAttribute
-        from .AttrLineNumberTable import LineNumberTableAttribute
-        from .AttrSourceFile import SourceFileAttribute
-        from .AttrUnparsed import UnparsedAttribute
-        from .AttrLocalVariableTable import LocalVariableTableAttribute
+        from classfile.AttrCode import CodeAttribute
+        from classfile.AttrConstantValue import ConstantValueAttribute
+        from classfile.AttrMarkers import DeprecatedAttribute, SyntheticAttribute
+        from classfile.AttrExceptions import ExceptionsAttribute
+        from classfile.AttrLineNumberTable import LineNumberTableAttribute
+        from classfile.AttrSourceFile import SourceFileAttribute
+        from classfile.AttrUnparsed import UnparsedAttribute
+        from classfile.AttrLocalVariableTable import LocalVariableTableAttribute
 
         if attr_name == "Code":
             return CodeAttribute(constant_pool)

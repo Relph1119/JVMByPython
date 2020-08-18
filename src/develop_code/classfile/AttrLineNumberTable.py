@@ -7,7 +7,7 @@
 @desc: LineNumberTable属性表存放方法的行号信息
 """
 
-from .AttributeInfo import AttributeInfo
+from classfile.AttributeInfo import AttributeInfo
 
 
 class LineNumberTableAttribute(AttributeInfo):

@@ -7,7 +7,7 @@
 @desc: 记录方法抛出的异常表
 """
 
-from .AttributeInfo import AttributeInfo
+from classfile.AttributeInfo import AttributeInfo
 
 
 class ExceptionsAttribute(AttributeInfo):

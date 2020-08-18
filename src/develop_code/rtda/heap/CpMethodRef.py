@@ -10,7 +10,6 @@ from classfile.ConstantMemberRefInfo import ConstantMethodRefInfo
 from rtda.heap import MethodLookup
 from rtda.heap.ConstantPool import ConstantPool
 from rtda.heap.CpMemberRef import MemberRef
-from rtda.heap.Method import Method
 
 
 class MethodRef(MemberRef):

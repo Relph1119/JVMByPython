@@ -8,8 +8,8 @@
 """
 
 import os.path
-from .WildcardEntry import WildcardEntry
-from .Entry import Entry
+from classpath.WildcardEntry import WildcardEntry
+from classpath.Entry import Entry
 
 
 class Classpath:

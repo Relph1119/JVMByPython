@@ -6,7 +6,6 @@
 @time: 2019/9/20 20:51
 @desc: java.lang.Object类
 """
-import ctypes
 
 from native.Registry import register
 from rtda.Frame import Frame

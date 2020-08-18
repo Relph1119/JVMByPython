@@ -29,7 +29,7 @@ class MemberInfo():
     # 读取字段或方法数据
     @staticmethod
     def read_member(class_reader, constant_pool):
-        from .AttributeInfo import AttributeInfo
+        from classfile.AttributeInfo import AttributeInfo
 
         # 初始化MemberInfo对象
         member = MemberInfo(constant_pool)
