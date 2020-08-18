@@ -6,8 +6,8 @@
 @time: 2019/9/16 17:57
 @desc: 类符号引用
 """
-from classfile.ConstantClassInfo import ConstantClassInfo
-from rtda.heap.CpSymRef import SymRef
+from ch09.classfile.ConstantClassInfo import ConstantClassInfo
+from ch09.rtda.heap.CpSymRef import SymRef
 
 
 class ClassRef(SymRef):

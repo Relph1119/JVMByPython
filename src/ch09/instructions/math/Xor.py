@@ -6,8 +6,8 @@
 @time: 2019/9/15 20:32
 @desc: 按位异或(xor)指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda import Frame
+from ch09.instructions.base.Instruction import NoOperandsInstruction
+from ch09.rtda import Frame
 
 
 def _xor(frame: Frame):

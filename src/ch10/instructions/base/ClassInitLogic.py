@@ -6,8 +6,8 @@
 @time: 2019/9/17 10:42
 @desc: 类的初始化
 """
-from rtda.Thread import Thread
-from rtda.heap.Class import Class
+from ch10.rtda.Thread import Thread
+from ch10.rtda.heap.Class import Class
 
 
 # 查找并调用类的初始化方法

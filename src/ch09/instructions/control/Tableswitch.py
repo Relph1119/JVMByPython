@@ -6,8 +6,8 @@
 @time: 2019/9/15 21:21
 @desc: switch-case语句：如果case值可以编码成一个索引表，则实现成tableswith指令
 """
-from instructions.base.BranchLogic import branch
-from instructions.base.Instruction import NoOperandsInstruction
+from ch09.instructions.base.BranchLogic import branch
+from ch09.instructions.base.Instruction import NoOperandsInstruction
 
 
 class TABLE_SWITCH(NoOperandsInstruction):

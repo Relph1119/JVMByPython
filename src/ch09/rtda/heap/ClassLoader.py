@@ -6,12 +6,12 @@
 @time: 2019/9/16 18:16
 @desc: 类加载器
 """
-from classpath.Classpath import Classpath
-from rtda.Slot import Slots
-from rtda.heap import AccessFlags
-from rtda.heap.Class import Class
-from rtda.heap.ClassNameHelper import PrimitiveTypes
-from rtda.heap.Field import Field
+from ch09.classpath.Classpath import Classpath
+from ch09.rtda.Slot import Slots
+from ch09.rtda.heap import AccessFlags
+from ch09.rtda.heap.Class import Class
+from ch09.rtda.heap.ClassNameHelper import PrimitiveTypes
+from ch09.rtda.heap.Field import Field
 
 
 class ClassLoader:

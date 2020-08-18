@@ -6,11 +6,11 @@
 @time: 2019/9/16 16:55
 @desc: 方法信息
 """
-from classfile.AttrLineNumberTable import LineNumberTableAttribute
-from classfile.MemberInfo import MemberInfo
-from rtda.heap import AccessFlags, ExceptionTable
-from rtda.heap.ClassMember import ClassMember
-from rtda.heap.MethodDescriptorParser import MethodDescriptorParser
+from ch10.classfile.AttrLineNumberTable import LineNumberTableAttribute
+from ch10.classfile.MemberInfo import MemberInfo
+from ch10.rtda.heap import AccessFlags, ExceptionTable
+from ch10.rtda.heap.ClassMember import ClassMember
+from ch10.rtda.heap.MethodDescriptorParser import MethodDescriptorParser
 
 
 class Method(ClassMember):

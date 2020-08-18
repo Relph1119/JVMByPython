@@ -8,9 +8,9 @@
 """
 import importlib
 
-from instructions.base.Instruction import NoOperandsInstruction
-from native.Registry import find_native_method
-from rtda.Frame import Frame
+from ch09.instructions.base.Instruction import NoOperandsInstruction
+from ch09.native.Registry import find_native_method
+from ch09.rtda.Frame import Frame
 
 # 模块名
 modules = [

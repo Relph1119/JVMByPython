@@ -6,7 +6,7 @@
 @time: 2019/9/16 16:33
 @desc: 类成员信息，由于字段和方法都属于类的成员，它们有一些相同的信息（访问标志、名字、描述符）。
 """
-from rtda.heap import AccessFlags
+from ch10.rtda.heap import AccessFlags
 
 
 class ClassMember:

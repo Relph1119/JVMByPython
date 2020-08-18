@@ -6,10 +6,10 @@
 @time: 2019/9/21 15:31
 @desc: VM
 """
-from instructions.base import MethodInvokeLogic
-from native.Registry import register
-from rtda.Frame import Frame
-from rtda.heap import StringPool
+from ch09.instructions.base import MethodInvokeLogic
+from ch09.native.Registry import register
+from ch09.rtda.Frame import Frame
+from ch09.rtda.heap import StringPool
 
 
 def initialize(frame: Frame):

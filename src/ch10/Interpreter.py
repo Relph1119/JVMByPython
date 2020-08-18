@@ -7,9 +7,9 @@
 @desc: 解释器
 """
 
-from rtda.Thread import Thread
-from rtda.heap.Method import Method
-from rtda.heap.StringPool import j_string
+from ch10.rtda.Thread import Thread
+from ch10.rtda.heap.Method import Method
+from ch10.rtda.heap.StringPool import j_string
 
 
 class Interpreter:

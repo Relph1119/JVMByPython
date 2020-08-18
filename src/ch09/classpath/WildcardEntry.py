@@ -8,8 +8,8 @@
 """
 
 import os
-from .ZipEntry import ZipEntry
-from .CompositeEntry import CompositeEntry
+from ch09.classpath.ZipEntry import ZipEntry
+from ch09.classpath.CompositeEntry import CompositeEntry
 
 
 class WildcardEntry(CompositeEntry):

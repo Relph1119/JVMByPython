@@ -9,7 +9,7 @@
 
 import os
 
-from .Entry import Entry
+from ch10.classpath.Entry import Entry
 
 
 class DirEntry(Entry):

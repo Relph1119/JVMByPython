@@ -6,11 +6,11 @@
 @time: 2019/9/12 15:05
 @desc: 解析class文件
 """
-from classfile.AttrSourceFile import SourceFileAttribute
-from .AttributeInfo import AttributeInfo
-from .ClassReader import ClassReader
-from .ConstantPool import ConstantPool
-from .MemberInfo import MemberInfo
+from ch10.classfile.AttrSourceFile import SourceFileAttribute
+from ch10.classfile.AttributeInfo import AttributeInfo
+from ch10.classfile.ClassReader import ClassReader
+from ch10.classfile.ConstantPool import ConstantPool
+from ch10.classfile.MemberInfo import MemberInfo
 
 
 class ClassFile:

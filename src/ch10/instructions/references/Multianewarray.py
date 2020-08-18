@@ -13,8 +13,8 @@
 import copy
 import ctypes
 
-from instructions.base.Instruction import Instruction
-from rtda.Frame import Frame
+from ch10.instructions.base.Instruction import Instruction
+from ch10.rtda.Frame import Frame
 
 
 # 从操作数栈中弹出n个int值，并确保它们都大于等于0，如果其中任何一个小于0，则抛出NegativeArraySizeException异常。

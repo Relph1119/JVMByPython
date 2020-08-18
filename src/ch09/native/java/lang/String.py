@@ -6,9 +6,9 @@
 @time: 2019/9/21 10:56
 @desc: java.lang.String类
 """
-from native.Registry import register
-from rtda.Frame import Frame
-from rtda.heap import StringPool
+from ch09.native.Registry import register
+from ch09.rtda.Frame import Frame
+from ch09.rtda.heap import StringPool
 
 
 def intern(frame:Frame):

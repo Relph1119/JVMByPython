@@ -7,8 +7,8 @@
 @desc: getfield指令获取对象的实例变量值，然后推入操作数栈，它需要两个操作数。
 第一个是uint16索引，第二个操作数是对象引用。
 """
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch10.instructions.base.Instruction import Index16Instruction
+from ch10.rtda.Frame import Frame
 
 
 class GET_FIELD(Index16Instruction):

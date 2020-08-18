@@ -9,8 +9,8 @@
 
 import ctypes
 
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda.Frame import Frame
+from ch09.instructions.base.Instruction import NoOperandsInstruction
+from ch09.rtda.Frame import Frame
 
 
 def check_not_none(ref):

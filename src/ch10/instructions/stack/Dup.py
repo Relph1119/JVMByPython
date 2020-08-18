@@ -7,8 +7,8 @@
 @desc: dup系列指令
 """
 
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda.Slot import copy_slot
+from ch10.instructions.base.Instruction import NoOperandsInstruction
+from ch10.rtda.Slot import copy_slot
 
 
 class DUP(NoOperandsInstruction):

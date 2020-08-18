@@ -6,15 +6,13 @@
 @time: 2019/9/22 10:44
 @desc: java.lang.Throwable类
 """
-from native.Registry import register
-
-from rtda.Frame import Frame
-
-# 用于记录Java虚拟机栈帧信息
-from rtda.heap.Class import Class
+from ch10.native.Registry import register
+from ch10.rtda.Frame import Frame
+from ch10.rtda.heap.Class import Class
 
 
 class StackTraceElement:
+    # 用于记录Java虚拟机栈帧信息
     def __init__(self):
         # 类所在的文件名
         self.file_name = ""

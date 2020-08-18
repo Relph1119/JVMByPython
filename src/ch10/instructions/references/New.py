@@ -6,9 +6,9 @@
 @time: 2019/9/16 19:44
 @desc: new指令
 """
-from instructions.base import ClassInitLogic
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch10.instructions.base import ClassInitLogic
+from ch10.instructions.base.Instruction import Index16Instruction
+from ch10.rtda.Frame import Frame
 
 
 class NEW(Index16Instruction):

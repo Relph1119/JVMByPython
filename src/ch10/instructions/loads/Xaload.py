@@ -6,9 +6,9 @@
 @time: 2019/9/17 21:35
 @desc: <t>aload系列指令按索引获取数组元素值，然后推入操作数栈。
 """
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda.Frame import Frame
-from rtda.heap.Object import Object
+from ch10.instructions.base.Instruction import NoOperandsInstruction
+from ch10.rtda.Frame import Frame
+from ch10.rtda.heap.Object import Object
 
 
 def check_not_none(ref: Object):

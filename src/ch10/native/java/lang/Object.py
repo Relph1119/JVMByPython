@@ -7,8 +7,8 @@
 @desc: java.lang.Object类
 """
 
-from native.Registry import register
-from rtda.Frame import Frame
+from ch10.native.Registry import register
+from ch10.rtda.Frame import Frame
 
 
 # public final native Class<?> getClass();

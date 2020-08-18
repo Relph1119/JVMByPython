@@ -9,8 +9,8 @@
 import ctypes
 import struct
 
-from native.Registry import register
-from rtda.Frame import Frame
+from ch09.native.Registry import register
+from ch09.rtda.Frame import Frame
 
 
 def floatToRawIntBits(frame: Frame):

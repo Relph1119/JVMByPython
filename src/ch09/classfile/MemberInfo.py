@@ -7,7 +7,7 @@
 @desc: 统一的类表示字段和方法
 """
 
-from classfile.AttrCode import CodeAttribute
+from ch09.classfile.AttrCode import CodeAttribute
 
 
 class MemberInfo():
@@ -63,7 +63,7 @@ class MemberInfo():
     @property
     def constant_value_attribute(self):
         for attrInfo in self.attributes:
-            from classfile.AttrConstantValue import ConstantValueAttribute
+            from ch09.classfile.AttrConstantValue import ConstantValueAttribute
             if isinstance(attrInfo, ConstantValueAttribute):
                 return attrInfo
 

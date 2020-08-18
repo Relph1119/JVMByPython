@@ -6,7 +6,7 @@
 @time: 2019/9/15 20:49
 @desc: 比较long变量指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch09.instructions.base.Instruction import NoOperandsInstruction
 
 
 class LCMP(NoOperandsInstruction):

@@ -7,7 +7,7 @@
 @desc: LocalVariableTable属性表中存放方法的局部变量信息
 """
 
-from .AttributeInfo import AttributeInfo
+from ch10.classfile.AttributeInfo import AttributeInfo
 
 
 class LocalVariableTableAttribute(AttributeInfo):

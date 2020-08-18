@@ -8,8 +8,8 @@
 """
 import struct
 
-from native.Registry import register
-from rtda.Frame import Frame
+from ch10.native.Registry import register
+from ch10.rtda.Frame import Frame
 
 
 def doubleToRawLongBits(frame: Frame):

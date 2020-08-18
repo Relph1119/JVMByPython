@@ -6,9 +6,9 @@
 @time: 2019/9/20 20:57
 @desc: java.lang.Class类
 """
-from native.Registry import register
-from rtda.Frame import Frame
-from rtda.heap.StringPool import python_string, j_string
+from ch09.native.Registry import register
+from ch09.rtda.Frame import Frame
+from ch09.rtda.heap.StringPool import python_string, j_string
 
 
 def get_primitive_class(frame: Frame):

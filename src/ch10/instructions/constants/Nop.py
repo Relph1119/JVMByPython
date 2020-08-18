@@ -6,7 +6,7 @@
 @time: 2019/9/15 18:33
 @desc: nop指令，它什么也不做
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch10.instructions.base.Instruction import NoOperandsInstruction
 
 
 class NOP(NoOperandsInstruction):

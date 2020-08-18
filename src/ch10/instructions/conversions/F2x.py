@@ -7,7 +7,7 @@
 @desc: float类型转换指令
 """
 
-from instructions.base.Instruction import NoOperandsInstruction
+from ch10.instructions.base.Instruction import NoOperandsInstruction
 
 
 # Convert float to double

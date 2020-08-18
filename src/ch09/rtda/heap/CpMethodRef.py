@@ -6,11 +6,10 @@
 @time: 2019/9/16 18:11
 @desc: 方法符号引用
 """
-from classfile.ConstantMemberRefInfo import ConstantMethodRefInfo
-from rtda.heap import MethodLookup
-from rtda.heap.ConstantPool import ConstantPool
-from rtda.heap.CpMemberRef import MemberRef
-from rtda.heap.Method import Method
+from ch09.classfile.ConstantMemberRefInfo import ConstantMethodRefInfo
+from ch09.rtda.heap import MethodLookup
+from ch09.rtda.heap.ConstantPool import ConstantPool
+from ch09.rtda.heap.CpMemberRef import MemberRef
 
 
 class MethodRef(MemberRef):

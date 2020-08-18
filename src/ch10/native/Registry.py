@@ -7,7 +7,7 @@
 @desc: 本地方法注册表，用来注册和查找本地方法
 """
 
-from rtda.Frame import Frame
+from ch10.rtda.Frame import Frame
 
 Registry = dict()
 

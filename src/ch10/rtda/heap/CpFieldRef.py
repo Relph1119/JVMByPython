@@ -6,10 +6,10 @@
 @time: 2019/9/16 18:00
 @desc: 字段符号引用
 """
-from classfile.ConstantMemberRefInfo import ConstantFieldRefInfo
-from rtda.heap.Class import Class
-from rtda.heap.ConstantPool import ConstantPool
-from rtda.heap.CpMemberRef import MemberRef
+from ch10.classfile.ConstantMemberRefInfo import ConstantFieldRefInfo
+from ch10.rtda.heap.Class import Class
+from ch10.rtda.heap.ConstantPool import ConstantPool
+from ch10.rtda.heap.CpMemberRef import MemberRef
 
 
 class FieldRef(MemberRef):

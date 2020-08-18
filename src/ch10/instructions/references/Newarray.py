@@ -8,8 +8,8 @@
 需要两个操作数：第一个操作数是一个uint8整数，在字节码中紧跟在指令操作码后面，表示要创建哪种类型的数组。
 第二个操作数是count，从操作数栈中弹出，表示数组长度。
 """
-from instructions.base.Instruction import Instruction
-from rtda.Frame import Frame
+from ch10.instructions.base.Instruction import Instruction
+from ch10.rtda.Frame import Frame
 
 
 class NEW_ARRAY(Instruction):

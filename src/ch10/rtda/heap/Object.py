@@ -7,8 +7,8 @@
 @desc: 表示对象
 """
 
-from rtda.Slot import Slots, copy_slot
-from rtda.heap.Class import Class
+from ch10.rtda.Slot import Slots, copy_slot
+from ch10.rtda.heap.Class import Class
 
 
 class Object:

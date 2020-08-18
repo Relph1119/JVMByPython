@@ -8,10 +8,10 @@
 ldc和ldc_w指令用于加载int、float和字符串常量，java.lang.Class实例或者MethodType和MethodHandle实例。
 ldc2_w指令用于加载long和double常量。
 """
-from instructions.base.Instruction import Index8Instruction, Index16Instruction
-from rtda.Frame import Frame
-from rtda.heap.CpClassRef import ClassRef
-from rtda.heap.StringPool import j_string
+from ch09.instructions.base.Instruction import Index8Instruction, Index16Instruction
+from ch09.rtda.Frame import Frame
+from ch09.rtda.heap.CpClassRef import ClassRef
+from ch09.rtda.heap.StringPool import j_string
 
 
 def _ldc(frame: Frame, index):

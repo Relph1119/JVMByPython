@@ -6,11 +6,11 @@
 @time: 2019/9/16 20:57
 @desc: invokevirtual用于打印计算结果
 """
-from instructions.base import MethodInvokeLogic
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
-from rtda.heap import MethodLookup
-from rtda.heap.StringPool import python_string
+from ch09.instructions.base import MethodInvokeLogic
+from ch09.instructions.base.Instruction import Index16Instruction
+from ch09.rtda.Frame import Frame
+from ch09.rtda.heap import MethodLookup
+from ch09.rtda.heap.StringPool import python_string
 
 
 class INVOKE_VIRTURL(Index16Instruction):

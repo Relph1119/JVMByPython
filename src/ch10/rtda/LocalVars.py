@@ -8,7 +8,7 @@
 """
 import struct
 
-from rtda.Slot import Slot
+from ch10.rtda.Slot import Slot
 
 
 class LocalVars(list):

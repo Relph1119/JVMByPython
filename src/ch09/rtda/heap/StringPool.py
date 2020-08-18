@@ -7,8 +7,8 @@
 @desc: 字符串池
 """
 
-from rtda.heap.ClassLoader import ClassLoader
-from rtda.heap.Object import Object
+from ch09.rtda.heap.ClassLoader import ClassLoader
+from ch09.rtda.heap.Object import Object
 
 # 字符串池
 interned_strings = dict()

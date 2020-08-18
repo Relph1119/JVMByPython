@@ -7,8 +7,8 @@
 @desc: putfield指令给实例变量赋值，它需要三个操作数。前两个操作数是常量池索引和变量值，用法和putstatic一样。
 第三个操作数是对象引用，从操作数栈中弹出。
 """
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch09.instructions.base.Instruction import Index16Instruction
+from ch09.rtda.Frame import Frame
 
 
 class PUT_FIELD(Index16Instruction):

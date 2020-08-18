@@ -6,9 +6,9 @@
 @time: 2019/9/16 20:04
 @desc: getstatic指令和putstatic指令正好相反，它取出类的某个静态变量值，然后推入栈顶。
 """
-from instructions.base import ClassInitLogic
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch10.instructions.base import ClassInitLogic
+from ch10.instructions.base.Instruction import Index16Instruction
+from ch10.rtda.Frame import Frame
 
 
 class GET_STATIC(Index16Instruction):

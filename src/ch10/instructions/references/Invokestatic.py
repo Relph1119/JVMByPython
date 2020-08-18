@@ -7,8 +7,8 @@
 @desc: 调用静态方法指令
 """
 
-from instructions.base import MethodInvokeLogic, ClassInitLogic
-from instructions.base.Instruction import Index16Instruction
+from ch10.instructions.base import MethodInvokeLogic, ClassInitLogic
+from ch10.instructions.base.Instruction import Index16Instruction
 
 
 class INVOKE_STATIC(Index16Instruction):

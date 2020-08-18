@@ -8,7 +8,7 @@
 第一个操作数是uint16索引，来自字节码。通过这个索引可以从当前类的运行时常量池中找到一个类符号引用，解析这个符号引用就可以得到数组元素的类。
 第二个操作数是数组长度，从操作数栈中弹出。
 """
-from instructions.base.Instruction import Index16Instruction
+from ch09.instructions.base.Instruction import Index16Instruction
 
 
 class ANEW_ARRAY(Index16Instruction):

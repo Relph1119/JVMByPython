@@ -6,9 +6,9 @@
 @time: 2019/9/21 9:24
 @desc: java.lang.System类
 """
-from native.Registry import register
-from rtda.Frame import Frame
-from rtda.heap.Object import Object
+from ch10.native.Registry import register
+from ch10.rtda.Frame import Frame
+from ch10.rtda.heap.Object import Object
 
 
 def arraycopy(frame: Frame):

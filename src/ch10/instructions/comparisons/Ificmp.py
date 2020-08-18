@@ -6,9 +6,9 @@
 @time: 2019/9/15 21:06
 @desc: if_icmp<cond>指令把栈顶的两个int变量弹出，然后进行比较，满足条件则跳转
 """
-from instructions.base.BranchLogic import branch
-from instructions.base.Instruction import BranchInstruction
-from rtda import Frame
+from ch10.instructions.base.BranchLogic import branch
+from ch10.instructions.base.Instruction import BranchInstruction
+from ch10.rtda import Frame
 
 
 def _icmpPop(frame: Frame):

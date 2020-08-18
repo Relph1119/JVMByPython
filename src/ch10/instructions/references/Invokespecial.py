@@ -6,10 +6,10 @@
 @time: 2019/9/16 20:55
 @desc: invokespecial指令用于调用构造函数初始化对象
 """
-from instructions.base import MethodInvokeLogic
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
-from rtda.heap import MethodLookup
+from ch10.instructions.base import MethodInvokeLogic
+from ch10.instructions.base.Instruction import Index16Instruction
+from ch10.rtda.Frame import Frame
+from ch10.rtda.heap import MethodLookup
 
 
 class INVOKE_SPECIAL(Index16Instruction):

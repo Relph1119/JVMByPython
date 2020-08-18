@@ -9,8 +9,8 @@
 
 import os
 
-from .CompositeEntry import CompositeEntry
-from .ZipEntry import ZipEntry
+from ch10.classpath.CompositeEntry import CompositeEntry
+from ch10.classpath.ZipEntry import ZipEntry
 
 
 class WildcardEntry(CompositeEntry):

@@ -9,8 +9,8 @@
 
 import ctypes
 
-from instructions.base.BranchLogic import branch
-from instructions.base.Instruction import NoOperandsInstruction
+from ch09.instructions.base.BranchLogic import branch
+from ch09.instructions.base.Instruction import NoOperandsInstruction
 
 
 class GOTO_W(NoOperandsInstruction):

@@ -6,7 +6,7 @@
 @time: 2019/9/15 18:34
 @desc: Const系列指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch09.instructions.base.Instruction import NoOperandsInstruction
 
 
 # aconst_null指令把null引用推入操作数栈顶

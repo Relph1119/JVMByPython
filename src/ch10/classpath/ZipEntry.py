@@ -10,7 +10,7 @@
 import os.path
 import zipfile
 
-from .Entry import Entry
+from ch10.classpath.Entry import Entry
 
 
 class ZipEntry(Entry):

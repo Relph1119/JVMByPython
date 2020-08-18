@@ -6,13 +6,13 @@
 @time: 2019/9/16 16:07
 @desc: 类信息
 """
-from classfile.ClassFile import ClassFile
-from rtda.Slot import Slots
-from rtda.heap import AccessFlags, ClassNameHelper
-from rtda.heap.ClassNameHelper import PrimitiveTypes
-from rtda.heap.ConstantPool import ConstantPool
-from rtda.heap.Field import Field
-from rtda.heap.Method import Method
+from ch09.classfile.ClassFile import ClassFile
+from ch09.rtda.Slot import Slots
+from ch09.rtda.heap import AccessFlags, ClassNameHelper
+from ch09.rtda.heap.ClassNameHelper import PrimitiveTypes
+from ch09.rtda.heap.ConstantPool import ConstantPool
+from ch09.rtda.heap.Field import Field
+from ch09.rtda.heap.Method import Method
 
 
 class Class:

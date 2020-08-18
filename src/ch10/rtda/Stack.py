@@ -6,7 +6,7 @@
 @time: 2019/9/15 16:13
 @desc: Java虚拟机栈
 """
-from rtda.Frame import Frame
+from ch10.rtda.Frame import Frame
 
 
 class Stack:

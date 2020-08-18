@@ -6,7 +6,7 @@
 @time: 2019/9/15 20:00
 @desc: 乘法(mul)指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch09.instructions.base.Instruction import NoOperandsInstruction
 
 
 def _mul(frame):

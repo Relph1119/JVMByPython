@@ -7,7 +7,7 @@
 @desc: Code属性存放字节码等方法相关信息
 """
 from classfile.AttrLineNumberTable import LineNumberTableAttribute
-from .AttributeInfo import AttributeInfo
+from classfile.AttributeInfo import AttributeInfo
 
 
 class CodeAttribute(AttributeInfo):

@@ -6,7 +6,7 @@
 @time: 2019/9/15 19:49
 @desc: swap指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch10.instructions.base.Instruction import NoOperandsInstruction
 
 
 class SWAP(NoOperandsInstruction):

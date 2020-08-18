@@ -6,9 +6,9 @@
 @time: 2019/9/22 12:57
 @desc: athrow指令，操作数是一个异常对象引用，从操作数栈弹出。
 """
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda.Frame import Frame
-from rtda.heap import StringPool
+from ch10.instructions.base.Instruction import NoOperandsInstruction
+from ch10.rtda.Frame import Frame
+from ch10.rtda.heap import StringPool
 
 
 class ATHROW(NoOperandsInstruction):

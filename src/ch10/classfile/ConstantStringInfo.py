@@ -7,12 +7,12 @@
 @desc: 表示java.lang.String字面量
 """
 
-from .ConstantInfo import ConstantInfo
+from ch10.classfile.ConstantInfo import ConstantInfo
 
 
 class ConstantStringInfo(ConstantInfo):
     def __init__(self, constant_pool):
-        from classfile.ConstantPool import ConstantPool
+        from ch10.classfile.ConstantPool import ConstantPool
         self.cp = ConstantPool(constant_pool)
         self.string_index = ""
 

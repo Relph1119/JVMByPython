@@ -7,7 +7,7 @@
 @desc: 用于表示常量表达式的值
 """
 
-from .AttributeInfo import AttributeInfo
+from ch10.classfile.AttributeInfo import AttributeInfo
 
 
 class ConstantValueAttribute(AttributeInfo):
