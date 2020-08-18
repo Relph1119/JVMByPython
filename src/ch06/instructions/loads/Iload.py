@@ -6,8 +6,8 @@
 @time: 2019/9/15 19:09
 @desc: int变量加载指令
 """
-from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
-from rtda import Frame
+from ch06.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from ch06.rtda import Frame
 
 
 def _iload(frame: Frame, index):

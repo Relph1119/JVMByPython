@@ -7,8 +7,8 @@
 @desc: 解释器
 """
 
-from rtda.Thread import Thread
-from rtda.heap.Method import Method
+from ch06.rtda.Thread import Thread
+from ch06.rtda.heap.Method import Method
 
 
 class Interpreter:
@@ -27,8 +27,8 @@ class Interpreter:
 
     @staticmethod
     def loop(thread, bytecode):
-        from instructions.base.BytecodeReader import BytecodeReader
-        from instructions.Factory import Factory
+        from ch06.instructions.base.BytecodeReader import BytecodeReader
+        from ch06.instructions.Factory import Factory
 
         frame = thread.pop_frame()
         reader = BytecodeReader()

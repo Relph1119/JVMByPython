@@ -9,7 +9,7 @@
 import ctypes
 import struct
 
-from .ConstantInfo import ConstantInfo
+from ch06.classfile.ConstantInfo import ConstantInfo
 
 
 # 使用4字节存储整数常量
@@ -43,7 +43,6 @@ class ConstantLongInfo(ConstantInfo):
     def read_info(self, class_reader):
         bytes_data = int.from_bytes(class_reader.read_unit64(), byteorder='big')
         self.val = ctypes.c_int64(bytes_data).value
-
 
 
 # 使用8字节存储IEEE754双精度浮点数

@@ -6,7 +6,7 @@
 @time: 2019/9/15 19:16
 @desc: double类型变量加载指令
 """
-from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from ch06.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
 
 
 def _dload(frame, index):

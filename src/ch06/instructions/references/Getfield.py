@@ -7,8 +7,8 @@
 @desc: getfield指令获取对象的实例变量值，然后推入操作数栈，它需要两个操作数。
 第一个是uint16索引，第二个操作数是对象引用。
 """
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch06.instructions.base.Instruction import Index16Instruction
+from ch06.rtda.Frame import Frame
 
 
 class GET_FIELD(Index16Instruction):
@@ -27,7 +27,7 @@ class GET_FIELD(Index16Instruction):
 
         descriptor = field.descriptor
         slot_id = field.slot_id
-        slots = ref.fields()
+        slots = ref.fields
 
         if descriptor[0] in {"Z", "B", "C", "S", "I", "F", "J", "D"}:
             stack.push_numeric(slots.get_numeric(slot_id))

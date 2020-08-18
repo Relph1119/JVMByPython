@@ -7,8 +7,8 @@
 @desc: new指令
 """
 
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch06.instructions.base.Instruction import Index16Instruction
+from ch06.rtda.Frame import Frame
 
 
 class NEW(Index16Instruction):

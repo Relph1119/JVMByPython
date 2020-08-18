@@ -7,7 +7,7 @@
 @desc: 线程
 """
 
-from rtda.heap.Method import Method
+from ch06.rtda.heap.Method import Method
 
 
 class Thread:

@@ -7,7 +7,7 @@
 @desc: 起标记作用的属性
 """
 
-from .AttributeInfo import AttributeInfo
+from ch06.classfile.AttributeInfo import AttributeInfo
 
 
 class MarkerAttribute(AttributeInfo):

@@ -7,8 +7,8 @@
 @desc: invokespecial指令用于调用构造函数初始化对象
 """
 
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch06.instructions.base.Instruction import Index16Instruction
+from ch06.rtda.Frame import Frame
 
 
 class INVOKE_SPECIAL(Index16Instruction):

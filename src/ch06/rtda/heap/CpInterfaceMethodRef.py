@@ -6,9 +6,9 @@
 @time: 2019/9/16 18:13
 @desc: 接口方法符号引用
 """
-from classfile.ConstantMemberRefInfo import ConstantInterfaceMethodRefInfo
-from rtda.heap.ConstantPool import ConstantPool
-from rtda.heap.CpMemberRef import MemberRef
+from ch06.classfile.ConstantMemberRefInfo import ConstantInterfaceMethodRefInfo
+from ch06.rtda.heap.ConstantPool import ConstantPool
+from ch06.rtda.heap.CpMemberRef import MemberRef
 
 
 class InterfaceMethodRef(MemberRef):

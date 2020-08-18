@@ -6,8 +6,8 @@
 @time: 2019/9/16 16:55
 @desc: 方法信息
 """
-from classfile.MemberInfo import MemberInfo
-from rtda.heap.ClassMember import ClassMember
+from ch06.classfile.MemberInfo import MemberInfo
+from ch06.rtda.heap.ClassMember import ClassMember
 
 
 class Method(ClassMember):

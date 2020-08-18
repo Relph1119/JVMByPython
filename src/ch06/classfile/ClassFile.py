@@ -7,10 +7,10 @@
 @desc: 解析class文件
 """
 
-from .AttributeInfo import AttributeInfo
-from .ClassReader import ClassReader
-from .ConstantPool import ConstantPool
-from .MemberInfo import MemberInfo
+from ch06.classfile.AttributeInfo import AttributeInfo
+from ch06.classfile.ClassReader import ClassReader
+from ch06.classfile.ConstantPool import ConstantPool
+from ch06.classfile.MemberInfo import MemberInfo
 
 
 class ClassFile:

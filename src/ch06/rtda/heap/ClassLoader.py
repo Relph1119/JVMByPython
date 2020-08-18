@@ -6,10 +6,10 @@
 @time: 2019/9/16 18:16
 @desc: 类加载器
 """
-from classpath.Classpath import Classpath
-from rtda.Slot import Slots
-from rtda.heap.Class import Class
-from rtda.heap.Field import Field
+from ch06.classpath.Classpath import Classpath
+from ch06.rtda.Slot import Slots
+from ch06.rtda.heap.Class import Class
+from ch06.rtda.heap.Field import Field
 
 
 class ClassLoader:
@@ -60,10 +60,10 @@ class ClassLoader:
     # 把class文件数据转换成Class对象
     @staticmethod
     def parse_class(data):
-        from classfile.ClassFile import ClassFile
+        from ch06.classfile.ClassFile import ClassFile
 
-        class_file = ClassFile(data)
-        cf, err = class_file.parse()
+        class_file = ClassFile()
+        cf, err = class_file.parse(data)
         if err:
             raise RuntimeError("java.lang.ClassFormatError!")
         else:

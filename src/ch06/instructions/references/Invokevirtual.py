@@ -7,8 +7,8 @@
 @desc: invokevirtual用于打印计算结果
 """
 
-from instructions.base.Instruction import Index16Instruction
-from rtda.Frame import Frame
+from ch06.instructions.base.Instruction import Index16Instruction
+from ch06.rtda.Frame import Frame
 
 
 class INVOKE_VIRTURL(Index16Instruction):

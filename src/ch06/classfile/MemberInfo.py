@@ -8,7 +8,7 @@
 """
 from typing import Optional
 
-from classfile.AttrCode import CodeAttribute
+from ch06.classfile.AttrCode import CodeAttribute
 
 
 class MemberInfo():
@@ -64,7 +64,7 @@ class MemberInfo():
     @property
     def constant_value_attribute(self):
         for attrInfo in self.attributes:
-            from classfile.AttrConstantValue import ConstantValueAttribute
+            from ch06.classfile.AttrConstantValue import ConstantValueAttribute
             if isinstance(attrInfo, ConstantValueAttribute):
                 return attrInfo
 

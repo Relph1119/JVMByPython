@@ -6,7 +6,7 @@
 @time: 2019/9/15 19:26
 @desc: long类型变量存储指令
 """
-from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from ch06.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
 
 
 def _lstore(frame, index):
