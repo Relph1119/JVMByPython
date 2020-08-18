@@ -6,8 +6,8 @@
 @time: 2019/9/16 18:02
 @desc: 符号引用信息，用于存放字段和方法符号引用共有的信息
 """
-from classfile.ConstantMemberRefInfo import ConstantMemberRefInfo
-from rtda.heap.CpSymRef import SymRef
+from ch08.classfile.ConstantMemberRefInfo import ConstantMemberRefInfo
+from ch08.rtda.heap.CpSymRef import SymRef
 
 
 class MemberRef(SymRef):

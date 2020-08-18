@@ -6,7 +6,7 @@
 @time: 2019/9/15 20:54
 @desc: 比较float变量指令，当两个float变量中至少有一个是NaN时，用fcmpg指令比较的结果是1，用fcmpl指令比较的结果是-1
 """
-from instructions.base.Instruction import NoOperandsInstruction
+from ch08.instructions.base.Instruction import NoOperandsInstruction
 
 
 def _fcmp(frame, gFlag):

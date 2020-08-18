@@ -7,8 +7,8 @@
 @desc: dup系列指令
 """
 
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda.Slot import Slot
+from ch08.instructions.base.Instruction import NoOperandsInstruction
+from ch08.rtda.Slot import Slot
 
 
 # slot拷贝，不能使用深拷贝copy.deepcopy函数，由于ref复制的是引用，需要将num和ref都进行拷贝。

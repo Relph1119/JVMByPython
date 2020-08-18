@@ -6,7 +6,7 @@
 @time: 2019/9/15 19:18
 @desc: float类型变量加载指令
 """
-from instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
+from ch08.instructions.base.Instruction import Index8Instruction, NoOperandsInstruction
 
 
 def _fload(frame, index):

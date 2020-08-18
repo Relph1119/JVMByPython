@@ -22,10 +22,10 @@ class Entry(metaclass=ABCMeta):
     # 根据参数常见不同类型的Entry实例
     @staticmethod
     def new_entry(path):
-        from classpath.CompositeEntry import CompositeEntry
-        from classpath.WildcardEntry import WildcardEntry
-        from classpath.ZipEntry import ZipEntry
-        from classpath.DirEntry import DirEntry
+        from ch08.classpath.CompositeEntry import CompositeEntry
+        from ch08.classpath.WildcardEntry import WildcardEntry
+        from ch08.classpath.ZipEntry import ZipEntry
+        from ch08.classpath.DirEntry import DirEntry
 
         if Entry.path_list_separator in path:
             return CompositeEntry(path)

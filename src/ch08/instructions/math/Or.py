@@ -6,8 +6,8 @@
 @time: 2019/9/15 20:30
 @desc: 按位或(or)指令
 """
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda import Frame
+from ch08.instructions.base.Instruction import NoOperandsInstruction
+from ch08.rtda import Frame
 
 
 def _or(frame: Frame):

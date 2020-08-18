@@ -6,12 +6,11 @@
 @time: 2019/9/16 18:16
 @desc: 类加载器
 """
-from classpath.Classpath import Classpath
-from rtda.Slot import Slots
-from rtda.heap import AccessFlags
-from rtda.heap.Class import Class
-from rtda.heap.Field import Field
-
+from ch08.classpath.Classpath import Classpath
+from ch08.rtda.Slot import Slots
+from ch08.rtda.heap import AccessFlags
+from ch08.rtda.heap.Class import Class
+from ch08.rtda.heap.Field import Field
 
 
 class ClassLoader:
@@ -82,7 +81,7 @@ class ClassLoader:
     # 把class文件数据转换成Class对象
     @staticmethod
     def parse_class(data):
-        from classfile.ClassFile import ClassFile
+        from ch08.classfile.ClassFile import ClassFile
 
         class_file = ClassFile()
         cf, err = class_file.parse(data)
@@ -160,7 +159,7 @@ class ClassLoader:
     # 从常量池中加载常量值，然后给静态变量赋值
     @staticmethod
     def init_static_final_var(clazz: Class, field: Field):
-        from rtda.heap.StringPool import j_string
+        from ch08.rtda.heap.StringPool import j_string
 
         static_vars = clazz.static_vars
         constant_pool = clazz.constant_pool

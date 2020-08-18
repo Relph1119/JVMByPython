@@ -6,8 +6,8 @@
 @time: 2019/9/17 21:31
 @desc: arraylength指令用于获取数组长度，只需要一个操作数，即从操作数栈顶弹出的数组引用。
 """
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda.Frame import Frame
+from ch08.instructions.base.Instruction import NoOperandsInstruction
+from ch08.rtda.Frame import Frame
 
 
 class ARRAY_LENGTH(NoOperandsInstruction):

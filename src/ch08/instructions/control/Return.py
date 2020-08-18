@@ -7,8 +7,8 @@
 @desc: 返回指令，方法执行完毕之后，需要把结果返回给调用方
 """
 
-from instructions.base.Instruction import NoOperandsInstruction
-from rtda.Frame import Frame
+from ch08.instructions.base.Instruction import NoOperandsInstruction
+from ch08.rtda.Frame import Frame
 
 
 def _numeric_return(frame: Frame):

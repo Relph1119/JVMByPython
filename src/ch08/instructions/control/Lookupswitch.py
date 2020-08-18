@@ -9,8 +9,8 @@
 
 import ctypes
 
-from instructions.base.BranchLogic import branch
-from instructions.base.Instruction import NoOperandsInstruction
+from ch08.instructions.base.BranchLogic import branch
+from ch08.instructions.base.Instruction import NoOperandsInstruction
 
 
 class LOOKUP_SWITCH(NoOperandsInstruction):

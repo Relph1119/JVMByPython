@@ -7,12 +7,12 @@
 @desc: 线程
 """
 
-from rtda.heap.Method import Method
+from ch08.rtda.heap.Method import Method
 
 
 class Thread:
     def __init__(self):
-        from rtda.Stack import Stack
+        from ch08.rtda.Stack import Stack
         self.pc = 0
         self.stack = Stack(1024)
 
@@ -27,7 +27,7 @@ class Thread:
         return self.stack.top()
 
     def new_frame(self, method: Method):
-        from rtda.Frame import Frame
+        from ch08.rtda.Frame import Frame
         return Frame(self, method)
 
     @property

@@ -6,7 +6,7 @@
 @time: 2019/9/15 21:01
 @desc: 跳转逻辑
 """
-from rtda import Frame
+from ch08.rtda import Frame
 
 
 def branch(frame: Frame, offset):

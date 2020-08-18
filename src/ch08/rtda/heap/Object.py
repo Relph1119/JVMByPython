@@ -6,8 +6,8 @@
 @time: 2019/9/15 16:04
 @desc: 表示对象
 """
-from rtda.Slot import Slots
-from rtda.heap.Class import Class
+from ch08.rtda.Slot import Slots
+from ch08.rtda.heap.Class import Class
 
 
 class Object:

@@ -6,8 +6,8 @@
 @time: 2019/9/16 09:05
 @desc: 在定位到需要调用的方法之后，Java虚拟机要给这个方法创建一个新的帧并把它推入Java虚拟机栈顶，然后传递参数。
 """
-from rtda.Frame import Frame
-from rtda.heap.Method import Method
+from ch08.rtda.Frame import Frame
+from ch08.rtda.heap.Method import Method
 
 
 def invoke_method(invoker_frame: Frame, method: Method):

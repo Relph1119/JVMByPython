@@ -8,7 +8,7 @@
 """
 import ctypes
 
-from instructions.base.Instruction import Instruction
+from ch08.instructions.base.Instruction import Instruction
 
 
 # 从操作数中获取一个byte类型整数，扩展成int型，然后推入栈顶

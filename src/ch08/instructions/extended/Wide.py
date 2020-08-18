@@ -12,18 +12,18 @@ wide指令只是增加索引宽度，并不改变子指令操作。
 
 import ctypes
 
-from instructions.base.Instruction import NoOperandsInstruction
-from instructions.loads.Aload import ALOAD
-from instructions.loads.Dload import DLOAD
-from instructions.loads.Fload import FLOAD
-from instructions.loads.Iload import ILOAD
-from instructions.loads.Lload import LLOAD
-from instructions.math.Iinc import IINC
-from instructions.stores.Astore import ASTORE
-from instructions.stores.Dstore import DSTORE
-from instructions.stores.Fstore import FSTORE
-from instructions.stores.Istore import ISTORE
-from instructions.stores.Lstore import LSTORE
+from ch08.instructions.base.Instruction import NoOperandsInstruction
+from ch08.instructions.loads.Aload import ALOAD
+from ch08.instructions.loads.Dload import DLOAD
+from ch08.instructions.loads.Fload import FLOAD
+from ch08.instructions.loads.Iload import ILOAD
+from ch08.instructions.loads.Lload import LLOAD
+from ch08.instructions.math.Iinc import IINC
+from ch08.instructions.stores.Astore import ASTORE
+from ch08.instructions.stores.Dstore import DSTORE
+from ch08.instructions.stores.Fstore import FSTORE
+from ch08.instructions.stores.Istore import ISTORE
+from ch08.instructions.stores.Lstore import LSTORE
 
 
 class WIDE(NoOperandsInstruction):
